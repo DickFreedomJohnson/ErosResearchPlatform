@@ -70,6 +70,7 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ice,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/coffee,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cream,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cum,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tea,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/icetea,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cola,

@@ -49,6 +49,7 @@
 	ice			spawn_reagent = "ice"
 	coffee		spawn_reagent = "coffee"
 	cream		spawn_reagent = "cream"
+	cum			spawn_reagent = "cum"
 	tea			spawn_reagent = "tea"
 	icetea		spawn_reagent = "icetea"
 	cola		spawn_reagent = "cola"

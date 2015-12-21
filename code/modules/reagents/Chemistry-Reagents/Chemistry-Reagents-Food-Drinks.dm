@@ -503,6 +503,17 @@
 	glass_name = "glass of cream"
 	glass_desc = "Ewwww..."
 
+/datum/reagent/drink/milk/cum
+	name = "Semen"
+	id = "cum"
+	description = "Not quite babies!"
+	var/nutriment_factor = 30 // Per unit
+	var/injectable = 0
+	color = "#DFD7AF"
+
+	glass_icon_state = "glass_white"
+	glass_name = "glass of semen"
+	glass_desc = "Ewwww..."
 /datum/reagent/drink/milk/soymilk
 	name = "Soy Milk"
 	id = "soymilk"
