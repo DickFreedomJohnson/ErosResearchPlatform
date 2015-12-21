@@ -892,6 +892,10 @@ area/space/atmosalert()
 	name = "\improper Medbay - CMO's Office"
 	icon_state = "head_quarters"
 
+/area/crew_quarters/heads/cc
+	name = "\improper CentComm Liason Office"
+	icon_state = "head_quarters"
+
 /area/crew_quarters/courtroom
 	name = "\improper Courtroom"
 	icon_state = "courtroom"
