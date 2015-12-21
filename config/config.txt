@@ -114,6 +114,7 @@ TRAITOR_SCALING
 #OBJECTIVES_DISABLED
 
 ## make ERT's be only called by admins
+
 #ERT_ADMIN_ONLY
 
 ## If uncommented, votes can be called to add extra antags to the round.
@@ -132,7 +133,7 @@ ALLOW_ADMIN_OOCCOLOR
 ALLOW_VOTE_RESTART
 
 ## allow players to initate a mode-change start
-ALLOW_VOTE_MODE
+#ALLOW_VOTE_MODE
 
 ## min delay (deciseconds) between voting sessions (default 10 minutes)
 VOTE_DELAY 6000
@@ -249,8 +250,9 @@ USEALIENWHITELIST
 
 ## Comment this to unrestrict the number of alien players allowed in the round. The number represents the number of alien players for every human player.
 #ALIEN_PLAYER_RATIO 0.2
+
 ##Remove the # to let ghosts spin chairs
-#GHOST_INTERACTION
+GHOST_INTERACTION
 
 ## Password used for authorizing ircbot and other external tools.
 #COMMS_PASSWORD
