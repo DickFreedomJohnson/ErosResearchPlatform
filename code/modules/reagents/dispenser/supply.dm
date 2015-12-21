@@ -89,7 +89,6 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ice,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/coffee,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cream,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cum,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tea,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/icetea,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cola,
@@ -102,7 +101,10 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sugar,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/orange,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lime,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/watermelon
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/watermelon,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cum,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/femcum,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/piss
 		)
 	cost = 50
 	containertype = /obj/structure/closet/crate

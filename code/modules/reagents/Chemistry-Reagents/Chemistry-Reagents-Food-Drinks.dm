@@ -299,7 +299,7 @@
 			M.eye_blind = max(M.eye_blind, 10)
 
 	if(mouth_covered)
-		if(!message) 
+		if(!message)
 			message = "<span class='warning'>Your [face_protection] protects you from the pepperspray!</span>"
 	else if(!no_pain)
 		message = "<span class='danger'>Your face and throat burn!</span>"
@@ -503,17 +503,6 @@
 	glass_name = "glass of cream"
 	glass_desc = "Ewwww..."
 
-/datum/reagent/drink/milk/cum
-	name = "Semen"
-	id = "cum"
-	description = "Not quite babies!"
-	var/nutriment_factor = 30 // Per unit
-	var/injectable = 0
-	color = "#DFD7AF"
-
-	glass_icon_state = "glass_white"
-	glass_name = "glass of semen"
-	glass_desc = "Ewwww..."
 /datum/reagent/drink/milk/soymilk
 	name = "Soy Milk"
 	id = "soymilk"
@@ -555,6 +544,42 @@
 	glass_name = "glass of iced tea"
 	glass_desc = "No relation to a certain rap artist/ actor."
 	glass_center_of_mass = list("x"=15, "y"=10)
+
+/datum/reagent/drink/piss
+	name = "Urine"
+	id = "piss"
+	description = "Certainly a strong smell."
+	var/nutriment_factor = 5 // Per unit
+	var/injectable = 0
+	color = "#DFD7AF"
+
+	glass_icon_state = "beerglass"
+	glass_name = "glass of urine"
+	glass_desc = "Ewwww..."
+
+/datum/reagent/drink/cum
+	name = "Semen"
+	id = "cum"
+	description = "Not quite babies!"
+	var/nutriment_factor = 30 // Per unit
+	var/injectable = 0
+	color = "#DFD7AF"
+
+	glass_icon_state = "glass_white"
+	glass_name = "glass of semen"
+	glass_desc = "Ewwww..."
+
+/datum/reagent/drink/femcum
+	name = "Femjuice"
+	id = "cum"
+	description = "Not quite babies!"
+	var/nutriment_factor = 30 // Per unit
+	var/injectable = 0
+	color = "#DFD7AF"
+
+	glass_icon_state = "glass_clear"
+	glass_name = "glass of femjuice"
+	glass_desc = "Ewwww..."
 
 /datum/reagent/drink/coffee
 	name = "Coffee"

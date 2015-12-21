@@ -49,7 +49,6 @@
 	ice			spawn_reagent = "ice"
 	coffee		spawn_reagent = "coffee"
 	cream		spawn_reagent = "cream"
-	cum			spawn_reagent = "cum"
 	tea			spawn_reagent = "tea"
 	icetea		spawn_reagent = "icetea"
 	cola		spawn_reagent = "cola"
@@ -62,6 +61,9 @@
 	orange		spawn_reagent = "orangejuice"
 	lime		spawn_reagent = "limejuice"
 	watermelon	spawn_reagent = "watermelonjuice"
+	cum			spawn_reagent = "cum"
+	femcum		spawn_reagent = "femcum"
+	piss		spawn_reagent = "piss"
 
 	// ERT
 	inaprov		spawn_reagent = "inaprovaline"
