@@ -1000,6 +1000,12 @@ var/global/list/gear_datums = list()
 
 // "Useful" items - I'm guessing things that might be used at work?
 
+/datum/gear/glasses
+	display_name = "cham glasses"
+	path = /obj/item/clothing/glasses/chameleon
+	sort_category = "utility"
+	cost = 3
+
 /datum/gear/briefcase
 	display_name = "briefcase"
 	path = /obj/item/weapon/storage/briefcase
