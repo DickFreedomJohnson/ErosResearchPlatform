@@ -7,7 +7,7 @@
 		usr << "You are unable to emote."
 		return
 
-	var/muzzled = istype(src.wear_mask, /obj/item/clothing/mask/muzzle)
+	var/muzzled = (istype(src.wear_mask, /obj/item/clothing/mask/muzzle) || istype(src.wear_mask, /obj/item/clothing/mask/ballgag))
 	if(m_type == 2 && muzzled) return
 
 	var/input

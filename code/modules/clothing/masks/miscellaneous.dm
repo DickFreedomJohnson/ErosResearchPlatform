@@ -8,6 +8,16 @@
 	w_class = 2
 	gas_transfer_coefficient = 0.90
 
+/obj/item/clothing/mask/ballgag
+	name = "ballgag"
+	desc = "To stop that awful noise."
+	icon_state = "ballgag"
+	item_state = "ballgag"
+	flags = MASKCOVERSMOUTH
+	body_parts_covered = 0
+	w_class = 2
+	gas_transfer_coefficient = 0.90
+
 // Clumsy folks can't take the mask off themselves.
 /obj/item/clothing/mask/muzzle/attack_hand(mob/user as mob)
 	if(user.wear_mask == src && !user.IsAdvancedToolUser())

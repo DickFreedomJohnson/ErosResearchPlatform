@@ -322,6 +322,12 @@ var/global/list/gear_datums = list()
 
 // Mask
 
+/datum/gear/ballgag
+	display_name = "ballgag"
+	path = /obj/item/clothing/mask/ballgag
+	slot = slot_wear_mask
+	cost = 1
+
 /datum/gear/sterilemask
 	display_name = "sterile mask"
 	path = /obj/item/clothing/mask/surgical
