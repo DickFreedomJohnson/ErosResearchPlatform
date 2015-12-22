@@ -39,7 +39,7 @@
 	heat_level_2 = 480 //Default 400
 	heat_level_3 = 1100 //Default 1000
 
-	flags = CAN_JOIN | IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+	flags = CAN_JOIN | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	flesh_color = "#34AF10"
 
@@ -93,7 +93,7 @@
 
 	primitive_form = "Farwa"
 
-	flags = CAN_JOIN | IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+	flags = CAN_JOIN | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	flesh_color = "#AFA59E"
 	base_color = "#333333"
@@ -125,7 +125,7 @@
 	herbivores on the whole and tend to be co-operative with the other species of the galaxy, although they rarely reveal \
 	the secrets of their empire to their allies."
 
-	flags = CAN_JOIN | IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR
+	flags = CAN_JOIN | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR
 
 	flesh_color = "#8CD7A3"
 	blood_color = "#1D2CBF"
@@ -197,7 +197,7 @@
 
 	body_temperature = T0C + 15		//make the plant people have a bit lower body temperature, why not
 
-	flags = CAN_JOIN | IS_WHITELISTED | NO_BREATHE | NO_SCAN | IS_PLANT | NO_BLOOD | NO_PAIN | NO_SLIP | REGENERATES_LIMBS
+	flags = CAN_JOIN | NO_BREATHE | NO_SCAN | IS_PLANT | NO_BLOOD | NO_PAIN | NO_SLIP | REGENERATES_LIMBS
 
 	blood_color = "#004400"
 	flesh_color = "#907E4A"
@@ -251,7 +251,7 @@
 
 	synth_temp_gain = 10 //this should cause IPCs to stabilize at ~80 C in a 20 C environment.
 
-	flags = CAN_JOIN | IS_WHITELISTED | NO_BREATHE | NO_SCAN | NO_BLOOD | NO_PAIN | IS_SYNTHETIC
+	flags = CAN_JOIN | HAS_UNDERWEAR | NO_BREATHE | NO_SCAN | NO_BLOOD | NO_PAIN | IS_SYNTHETIC
 
 	blood_color = "#1F181F"
 	flesh_color = "#575757"
@@ -266,3 +266,17 @@
 		H.h_style = ""
 		spawn(100)
 			if(H) H.update_hair()
+
+/datum/species/skellington // /vg/
+	name = "Skellington"
+	icobase = 'icons/mob/human_races/r_skeleton.dmi'
+	deform = 'icons/mob/human_races/r_skeleton.dmi'
+	language = "Clatter"
+
+	flags = CAN_JOIN | HAS_UNDERWEAR | HAS_LIPS | NO_BREATHE | NO_BLOOD
+
+	brute_mod = 2.0
+	show_ssd = "still as death"
+
+	has_organ = list(
+		)
