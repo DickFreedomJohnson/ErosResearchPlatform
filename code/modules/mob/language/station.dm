@@ -6,7 +6,6 @@
 	exclaim_verb = "rustles"
 	colour = "soghun"
 	key = "q"
-	flags = RESTRICTED
 	syllables = list("hs","zt","kr","st","sh")
 
 /datum/language/diona/get_random_name()
@@ -22,7 +21,6 @@
 	exclaim_verb = "roars"
 	colour = "soghun"
 	key = "o"
-	flags = RESTRICTED
 	syllables = list("ss","ss","ss","ss","skak","seeki","resh","las","esi","kor","sh")
 
 /datum/language/unathi/get_random_name()
@@ -40,7 +38,6 @@
 	exclaim_verb = "yowls"
 	colour = "tajaran"
 	key = "j"
-	flags = RESTRICTED
 	syllables = list("mrr","rr","tajr","kir","raj","kii","mir","kra","ahk","nal","vah","khaz","jri","ran","darr",
 	"mi","jri","dynh","manq","rhe","zar","rrhaz","kal","chur","eech","thaa","dra","jurl","mah","sanu","dra","ii'r",
 	"ka","aasi","far","wa","baq","ara","qara","zir","sam","mak","hrar","nja","rir","khan","jun","dar","rik","kah",
@@ -63,7 +60,6 @@
 	exclaim_verb = "warbles"
 	colour = "skrell"
 	key = "k"
-	flags = RESTRICTED
 	syllables = list("qr","qrr","xuq","qil","quum","xuqm","vol","xrim","zaoo","qu-uu","qix","qoo","zix","*","!")
 
 /datum/language/skellington
@@ -74,7 +70,6 @@
 	ask_verb = "clatters"
 	exclaim_verb = "chatters loudly"
 	colour = "sinister"
-	flags = RESTRICTED
 	syllables = list("CLICK", "CLACK")
 
 /datum/language/grey
@@ -85,7 +80,6 @@
 	ask_verb = "acks"
 	exclaim_verb = "quacks loudly"
 	colour = "grey"
-	flags = RESTRICTED
 	syllables = list("ACK", "AKACK", "ACK")
 
 /datum/language/human
@@ -95,8 +89,6 @@
 	whisper_verb = "whispers"
 	colour = "solcom"
 	key = "1"
-	flags = RESTRICTED
-
 	//syllables are at the bottom of the file
 
 /datum/language/human/get_spoken_verb(var/msg_end)

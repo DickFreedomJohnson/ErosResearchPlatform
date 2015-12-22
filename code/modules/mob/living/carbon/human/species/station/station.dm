@@ -269,11 +269,14 @@
 
 /datum/species/skellington // /vg/
 	name = "Skellington"
+	name_plural = "Skellingtons"
+
 	icobase = 'icons/mob/human_races/r_skeleton.dmi'
 	deform = 'icons/mob/human_races/r_skeleton.dmi'
 	language = "Clatter"
+	unarmed_types = list(/datum/unarmed_attack/punch)
 
-	flags = CAN_JOIN | HAS_UNDERWEAR | HAS_LIPS | NO_BREATHE | NO_BLOOD
+	flags = CAN_JOIN | HAS_UNDERWEAR | HAS_LIPS | NO_BREATHE | NO_BLOOD| HAS_EYE_COLOR
 
 	brute_mod = 2.0
 	show_ssd = "still as death"
