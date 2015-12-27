@@ -1196,43 +1196,49 @@ var/global/list/gear_datums = list()
 	cost = 1
 
 /datum/gear/collar_blk
-	display_name = "black collar"
+	display_name = "collar, black"
 	path = /obj/item/clothing/accessory/collar_blk
-	slot = slot_tie
+	slot = slot_wear_suit
 	cost = 1
 
 /datum/gear/collar_gld
-	display_name = "gold collar"
+	display_name = "collar, gold"
 	path = /obj/item/clothing/accessory/collar_gld
-	slot = slot_tie
+	slot = slot_wear_suit
+	cost = 1
 
 /datum/gear/collar_bell
-	display_name = "bell collar"
+	display_name = "collar, bell"
 	path = /obj/item/clothing/accessory/collar_bell
-	slot = slot_tie
-
+	slot = slot_wear_suit
+	cost = 1
 
 /datum/gear/collar_spike
-	display_name = "spike collar"
+	display_name = "collar, spike"
 	path = /obj/item/clothing/accessory/collar_spike
-	slot = slot_tie
+	slot = slot_wear_suit
+	cost = 1
 
 /datum/gear/collar_pink
-	display_name = "pink collar"
+	display_name = "collar, pink"
 	path = /obj/item/clothing/accessory/collar_pink
-	slot = slot_tie
+	slot = slot_wear_suit
+	cost = 1
 
 /datum/gear/collar_steel
-	display_name = "steel collar"
+	display_name = "collar, steel"
 	path = /obj/item/clothing/accessory/collar_steel
-	slot = slot_tie
+	slot = slot_wear_suit
+	cost = 1
 
 /datum/gear/collar_holo
-	display_name = "holo collar"
+	display_name = "collar, holo"
 	path = /obj/item/clothing/accessory/collar_holo
-	slot = slot_tie
+	slot = slot_wear_suit
+	cost = 1
 
 /datum/gear/collar_shk
-	display_name = "shock collar"
+	display_name = "collar, shock"
 	path = /obj/item/device/radio/collar_shk
-	slot = slot_tie
+	slot = slot_wear_suit
+	cost = 1
