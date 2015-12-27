@@ -400,6 +400,7 @@
 #define OXY       "oxy"
 #define CLONE     "clone"
 #define HALLOSS   "halloss"
+#define LUST	  "lust"
 
 #define CUT       "cut"
 #define BRUISE    "bruise"
@@ -419,6 +420,7 @@
 #define FIRELOSS  2
 #define TOXLOSS   4
 #define OXYLOSS   8
+#define LUSTLOSS  16
 
 // Bitflags defining which status effects could be or are inflicted on a mob.
 #define CANSTUN     1
@@ -729,7 +731,7 @@ var/list/be_special_flags = list(
 #define IS_UNATHI 4
 #define IS_XENOS  5
 
-#define MAX_GEAR_COST 5 // Used in chargen for accessory loadout limit.
+#define MAX_GEAR_COST 15 // Used in chargen for accessory loadout limit.
 
 /*
  *	Atmospherics Machinery.

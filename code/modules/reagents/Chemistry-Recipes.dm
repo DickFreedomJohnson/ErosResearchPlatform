@@ -1926,6 +1926,20 @@
 	required_reagents = list("space_up" = 2, "bluecuracao" = 1, "melonliquor" = 1)
 	result_amount = 4
 
+/datum/chemical_reaction/lustium
+	name = "lustium"
+	id = "lustium"
+	result = "lustium"
+	required_reagents = list("cum" = 1, "femcum" = 1, "radium" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/aphrodisiac
+	name = "aphrodisiac"
+	id = "aphrodisiac"
+	result = "aphrodisiac"
+	required_reagents = list("lustium" = 1, "lithium" = 1)
+	result_amount = 2
+
 /* Removed xenoarcheology stuff
 datum
 	chemical_reaction

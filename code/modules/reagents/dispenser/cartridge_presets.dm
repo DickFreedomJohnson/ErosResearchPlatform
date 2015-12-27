@@ -8,6 +8,9 @@
 	// Multiple
 	water		spawn_reagent = "water"
 	sugar		spawn_reagent = "sugar"
+	femcum		spawn_reagent = "femcum"
+	piss		spawn_reagent = "piss"
+	cum			spawn_reagent = "cum"
 
 	// Chemistry
 	hydrogen	spawn_reagent = "hydrogen"
@@ -61,9 +64,6 @@
 	orange		spawn_reagent = "orangejuice"
 	lime		spawn_reagent = "limejuice"
 	watermelon	spawn_reagent = "watermelonjuice"
-	cum			spawn_reagent = "cum"
-	femcum		spawn_reagent = "femcum"
-	piss		spawn_reagent = "piss"
 
 	// ERT
 	inaprov		spawn_reagent = "inaprovaline"

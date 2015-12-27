@@ -155,6 +155,10 @@
 			message = "<B>[src]</B> twitches violently."
 			m_type = 1
 
+		if ("orgasm")
+			message = "<B>[src]</B> shakes in pleasure."
+			m_type = 1
+
 		if ("twitch_s")
 			message = "<B>[src]</B> twitches."
 			m_type = 1
