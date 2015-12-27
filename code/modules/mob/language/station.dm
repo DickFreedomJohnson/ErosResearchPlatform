@@ -6,7 +6,6 @@
 	exclaim_verb = "rustles"
 	colour = "soghun"
 	key = "q"
-	flags = RESTRICTED
 	syllables = list("hs","zt","kr","st","sh")
 
 /datum/language/diona/get_random_name()
@@ -22,7 +21,6 @@
 	exclaim_verb = "roars"
 	colour = "soghun"
 	key = "o"
-	flags = WHITELISTED
 	syllables = list("ss","ss","ss","ss","skak","seeki","resh","las","esi","kor","sh")
 
 /datum/language/unathi/get_random_name()
@@ -40,7 +38,6 @@
 	exclaim_verb = "yowls"
 	colour = "tajaran"
 	key = "j"
-	flags = WHITELISTED
 	syllables = list("mrr","rr","tajr","kir","raj","kii","mir","kra","ahk","nal","vah","khaz","jri","ran","darr",
 	"mi","jri","dynh","manq","rhe","zar","rrhaz","kal","chur","eech","thaa","dra","jurl","mah","sanu","dra","ii'r",
 	"ka","aasi","far","wa","baq","ara","qara","zir","sam","mak","hrar","nja","rir","khan","jun","dar","rik","kah",
@@ -63,8 +60,27 @@
 	exclaim_verb = "warbles"
 	colour = "skrell"
 	key = "k"
-	flags = WHITELISTED
 	syllables = list("qr","qrr","xuq","qil","quum","xuqm","vol","xrim","zaoo","qu-uu","qix","qoo","zix","*","!")
+
+/datum/language/skellington
+	name = "Clatter"
+	desc = "Click clack go the bones."
+	key = "z"
+	speech_verb = "chatters"
+	ask_verb = "clatters"
+	exclaim_verb = "chatters loudly"
+	colour = "sinister"
+	syllables = list("CLICK", "CLACK")
+
+/datum/language/grey
+	name = "Grey"
+	desc = "Sounds more like quacking than anything else."
+	key = "g"
+	speech_verb = "quacks"
+	ask_verb = "acks"
+	exclaim_verb = "quacks loudly"
+	colour = "grey"
+	syllables = list("ACK", "AKACK", "ACK")
 
 /datum/language/human
 	name = "Sol Common"
@@ -73,8 +89,6 @@
 	whisper_verb = "whispers"
 	colour = "solcom"
 	key = "1"
-	flags = RESTRICTED
-
 	//syllables are at the bottom of the file
 
 /datum/language/human/get_spoken_verb(var/msg_end)

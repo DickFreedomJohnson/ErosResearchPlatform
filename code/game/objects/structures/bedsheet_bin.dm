@@ -74,6 +74,39 @@ LINEN BINS
 /obj/item/weapon/bedsheet/brown
 	icon_state = "sheetbrown"
 
+/obj/item/weapon/bedsheet/USA
+	icon_state = "sheetUSA"
+
+/obj/item/weapon/bedsheet/wiz
+	icon_state = "sheetwiz"
+
+/obj/item/weapon/bedsheet/qm
+	icon_state = "sheetqm"
+
+/obj/item/weapon/bedsheet/cmo
+	icon_state = "sheetcmo"
+
+/obj/item/weapon/bedsheet/ian
+	icon_state = "sheetian"
+
+/obj/item/weapon/bedsheet/syndie
+	icon_state = "sheetsyndie"
+
+/obj/item/weapon/bedsheet/cult
+	icon_state = "sheetcult"
+
+/obj/item/weapon/bedsheet/brown
+	icon_state = "sheetbrown"
+
+/obj/item/weapon/bedsheet/grey
+	icon_state = "sheetgrey"
+
+/obj/item/weapon/bedsheet/black
+	icon_state = "sheetblack"
+
+/obj/item/weapon/bedsheet/centcom
+	icon_state = "sheetcentcom"
+
 
 /obj/structure/bedsheetbin
 	name = "linen bin"
