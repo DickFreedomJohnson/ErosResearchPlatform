@@ -322,12 +322,6 @@ var/global/list/gear_datums = list()
 
 // Mask
 
-/datum/gear/ballgag
-	display_name = "ballgag"
-	path = /obj/item/clothing/mask/ballgag
-	slot = slot_wear_mask
-	cost = 1
-
 /datum/gear/sterilemask
 	display_name = "sterile mask"
 	path = /obj/item/clothing/mask/surgical
@@ -1191,3 +1185,54 @@ var/global/list/gear_datums = list()
 	cost = 1
 	sort_category = "ears"
 	whitelisted = "Skrell"
+
+//Kinky
+
+
+/datum/gear/ballgag
+	display_name = "ballgag"
+	path = /obj/item/clothing/mask/ballgag
+	slot = slot_wear_mask
+	cost = 1
+
+/datum/gear/collar_blk
+	display_name = "black collar"
+	path = /obj/item/clothing/accessory/collar_blk
+	slot = slot_tie
+	cost = 1
+
+/datum/gear/collar_gld
+	display_name = "gold collar"
+	path = /obj/item/clothing/accessory/collar_gld
+	slot = slot_tie
+
+/datum/gear/collar_bell
+	display_name = "bell collar"
+	path = /obj/item/clothing/accessory/collar_bell
+	slot = slot_tie
+
+
+/datum/gear/collar_spike
+	display_name = "spike collar"
+	path = /obj/item/clothing/accessory/collar_spike
+	slot = slot_tie
+
+/datum/gear/collar_pink
+	display_name = "pink collar"
+	path = /obj/item/clothing/accessory/collar_pink
+	slot = slot_tie
+
+/datum/gear/collar_steel
+	display_name = "steel collar"
+	path = /obj/item/clothing/accessory/collar_steel
+	slot = slot_tie
+
+/datum/gear/collar_holo
+	display_name = "holo collar"
+	path = /obj/item/clothing/accessory/collar_holo
+	slot = slot_tie
+
+/datum/gear/collar_shk
+	display_name = "shock collar"
+	path = /obj/item/device/radio/collar_shk
+	slot = slot_tie
