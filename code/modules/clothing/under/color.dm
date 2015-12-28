@@ -145,3 +145,10 @@
 	icon_state = "darkred"
 	item_state = "r_suit"
 	worn_state = "darkred"
+
+/obj/item/clothing/under/piplad
+	name = "Pip-Suit"
+	desc = "Looks like it could survive anything!"
+	icon_state = "piplad"
+	item_state = "b_suit"
+	worn_state = "piplad"
