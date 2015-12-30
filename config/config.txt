@@ -148,7 +148,7 @@ VOTE_AUTOTRANSFER_INITIAL 144000
 VOTE_AUTOTRANSFER_INTERVAL 36000
 
 ## Time left (seconds) before round start when automatic gamemote vote is called (default 100).
-#VOTE_AUTOGAMEMODE_TIMELEFT 100
+VOTE_AUTOGAMEMODE_TIMELEFT 9999999  # Ridiculous number stops the vote.
 
 ## prevents dead players from voting or starting votes
 #NO_DEAD_VOTE
@@ -193,13 +193,13 @@ GUEST_BAN
 #SERVERURL server.net:port
 
 ## forum address
-# FORUMURL http://example.com
+FORUMURL http://erosresearchplatform.pangoro.net/forums/index.php
 
 ## Wiki address
-# WIKIURL http://example.com
+WIKIURL http://erosresearchplatform.wikia.com/wiki/Eros_Research_Platform_Wikia
 
 ## GitHub address
-# GITHUBURL https://github.com/bear-irl/ErosRelayPlatform
+GITHUBURL https://github.com/bear-irl/ErosRelayPlatform
 
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
 # BANAPPEALS http://example.com
@@ -212,7 +212,7 @@ GUEST_BAN
 # LOAD_JOBS_FROM_TXT
 
 ##Remove the # mark infront of this to forbid admins from posssessing the singularity.
-FORBID_SINGULO_POSSESSION
+#FORBID_SINGULO_POSSESSION
 
 ## Remove the # to show a popup 'reply to' window to every non-admin that recieves an adminPM. 
 ## The intention is to make adminPMs more visible. (although I fnd popups annoying so this defaults to off)
@@ -246,7 +246,7 @@ GATEWAY_DELAY 18000
 #CONTINUOUS_ROUNDS
 
 ## Uncomment to restrict non-admins from using humanoid alien races
-USEALIENWHITELIST
+#USEALIENWHITELIST
 
 ## Comment this to unrestrict the number of alien players allowed in the round. The number represents the number of alien players for every human player.
 #ALIEN_PLAYER_RATIO 0.2
