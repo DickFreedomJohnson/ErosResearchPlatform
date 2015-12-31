@@ -1389,7 +1389,7 @@ datum/preferences
 					var/list/pretty_ear_styles = list("Normal")
 					for(var/path in ear_styles_list)
 						var/datum/sprite_accessory/ears/instance = ear_styles_list[path]
-							pretty_ear_styles[instance.name] = path
+						pretty_ear_styles[instance.name] = path
 
 					var/selection = input(user, "Pick ears (doesn't update preview)", "Character Preference") as null|anything in pretty_ear_styles
 					if(selection && selection != "Normal")
@@ -1401,7 +1401,7 @@ datum/preferences
 					var/list/pretty_tail_styles = list("Normal")
 					for(var/path in tail_styles_list)
 						var/datum/sprite_accessory/tail/instance = tail_styles_list[path]
-							pretty_tail_styles[instance.name] = path
+						pretty_tail_styles[instance.name] = path
 
 					var/selection = input(user, "Pick tail (doesn't update preview)", "Character Preference") as null|anything in pretty_tail_styles
 					if(selection && selection != "Normal")
@@ -1410,7 +1410,7 @@ datum/preferences
 						tail_style = null
 
 				if("skin")
-					if(species == "Unathi" || species == "Tajara" || species == "Skrell")
+					if(species == "Human" || species == "Unathi" || species == "Tajara" || species == "Skrell")
 						var/new_skin = input(user, "Choose your character's skin colour: ", "Character Preference", rgb(r_skin, g_skin, b_skin)) as color|null
 						if(new_skin)
 							r_skin = hex2num(copytext(new_skin, 2, 4))
