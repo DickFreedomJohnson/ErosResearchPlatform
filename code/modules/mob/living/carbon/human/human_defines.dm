@@ -16,7 +16,7 @@
 	var/g_eyes = 0
 	var/b_eyes = 0
 
-	var/s_tone = 0	//Skin tone //Goodbye Skintone, Orbis
+//	var/s_tone = 0	//Skin tone //Goodbye Skintone, Orbis
 
 	//Skin colour
 	var/r_skin = 238 // TO DO: Set defaults for other races.
