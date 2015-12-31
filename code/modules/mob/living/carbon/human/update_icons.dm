@@ -245,7 +245,7 @@ var/global/list/damage_icon_parts = list()
 		qdel(stand_icon)
 	stand_icon = new(species.icon_template ? species.icon_template : 'icons/mob/human.dmi',"blank")
 
-	var/icon_key = "[species.race_key][g][s_tone][r_skin][g_skin][b_skin]"
+	var/icon_key = "[species.race_key][g][r_skin][g_skin][b_skin]"
 	if(lip_style)
 		icon_key += "[lip_style]"
 	else
@@ -894,19 +894,6 @@ var/global/list/damage_icon_parts = list()
 	else
 		overlays_standing[L_HAND_LAYER] = null
 
-	if(update_icons) update_icons()
-
-/mob/living/carbon/human/proc/update_tail_showing(var/update_icons=1)
-	overlays_standing[TAIL_LAYER] = null
-
-	if(species.tail && !(wear_suit && wear_suit.flags_inv & HIDETAIL))
-		var/icon/tail_s = get_tail_icon()
-		overlays_standing[TAIL_LAYER] = image(tail_s, icon_state = "[species.tail]_s")
-		animate_tail_reset(0)
-
-	if(update_icons)
-		update_icons()
-
 /mob/living/carbon/human/proc/get_tail_icon()
 	var/icon_key = "[species.race_key][r_skin][g_skin][b_skin]"
 
@@ -973,6 +960,49 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/proc/animate_tail_stop(var/update_icons=1)
 	set_tail_state("[species.tail]_static")
+
+	if(update_icons)
+		update_icons()
+
+
+
+	if(update_icons) update_icons()
+
+/mob/living/carbon/human/proc/update_tail_showing(var/update_icons=1)
+	overlays_standing[TAIL_LAYER] = null
+
+	if(taur && taur <= taur_styles_list.len) //taur is True and not exceeding the actual number of possible options
+		var/datum/sprite_accessory/taur/taur_style = taur_styles_list[taur_styles_list[taur]]  // Taur is int, list is by name
+		if(taur_style)
+			var/icon/taur_s = new/icon("icon" = taur_style.icon, "icon_state" = taur_style.icon_state)
+			if(taur_style.do_colouration)
+				//Note, this could be moved to the switch above if needed, but currently every taur uses _MULTIPLY
+				taur_s.Blend(rgb(r_taur, g_taur, b_taur), ICON_MULTIPLY)
+				 //Apply taur to overlays, with required pixel offset applied.
+//				overlays_standing[TAIL_LAYER] = image(taur_s, "pixel_x" = (-16*playerscale))  - Commented out playerscale version for adding sizes later, don't want to deal right now - Werebear
+				overlays_standing[TAIL_LAYER] = image(taur_s, "pixel_x" = (-16))
+
+	else if(src.tail_style)
+		if(!wear_suit || !(wear_suit.flags_inv & HIDETAIL) && !istype(wear_suit, /obj/item/clothing/suit/space))
+			var/icon/tail_s = new/icon("icon" = tail_style.icon, "icon_state" = tail_style.icon_state)
+			if(tail_style.do_colouration)
+				tail_s.Blend(rgb(src.r_hair, src.g_hair, src.b_hair), ICON_ADD)
+			if(tail_style.colored_overlay)
+				var/icon/overlay = new/icon("icon" = tail_style.icon, "icon_state" = tail_style.colored_overlay)
+				tail_s.Blend(overlay, ICON_OVERLAY)
+				del overlay
+			if(tail_style.show_species_tail && species.tail)
+				var/icon/spec_tail = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[species.tail]_s")
+				spec_tail.Blend(rgb(r_skin, g_skin, b_skin), ICON_MULTIPLY)
+				tail_s.Blend(spec_tail, ICON_OVERLAY)
+
+			overlays_standing[TAIL_LAYER] = image(tail_s)
+
+	else if(species.tail)
+		if(!wear_suit || !(wear_suit.flags_inv & HIDETAIL) && !istype(wear_suit, /obj/item/clothing/suit/space))
+			var/icon/tail_s = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[species.tail]_s")
+			tail_s.Blend(rgb(r_skin, g_skin, b_skin), ICON_MULTIPLY) //changed icon add to multiply. Orbis
+			overlays_standing[TAIL_LAYER] = image(tail_s)
 
 	if(update_icons)
 		update_icons()

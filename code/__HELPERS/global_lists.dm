@@ -37,6 +37,8 @@ var/global/list/poster_designs = list()
 var/list/obj/item/device/uplink/world_uplinks = list()
 
 //Preferences stuff
+	// Taur body type
+var/global/list/taur_styles_list = list()
 	//Hairstyles
 var/global/list/hair_styles_list = list()			//stores /datum/sprite_accessory/hair indexed by name
 var/global/list/hair_styles_male_list = list()
@@ -45,6 +47,9 @@ var/global/list/facial_hair_styles_list = list()	//stores /datum/sprite_accessor
 var/global/list/facial_hair_styles_male_list = list()
 var/global/list/facial_hair_styles_female_list = list()
 var/global/list/skin_styles_female_list = list()		//unused
+var/global/list/ear_styles_list = list()
+var/global/list/tail_styles_list = list()
+// var/global/list/player_sizes_list = list() - Commented out for adding sizes later, don't want to deal right now - Werebear
 	//Underwear
 var/global/list/underwear_m = list("White" = "m1", "Grey" = "m2", "Green" = "m3", "Blue" = "m4", "Black" = "m5", "Mankini" = "m6", "None") //Curse whoever made male/female underwear diffrent colours
 var/global/list/underwear_f = list("Red" = "f1", "White" = "f2", "Yellow" = "f3", "Blue" = "f4", "Black" = "f5", "Thong" = "f6", "Black Sports" = "f7","White Sports" = "f8","None")
@@ -71,6 +76,13 @@ var/global/list/endgame_safespawns = list()
 /proc/makeDatumRefLists()
 	var/list/paths
 
+
+	// Taurs - Initialise all /datum/sprite_accessory/taur into an list indexed by taur type name
+	paths = typesof(/datum/sprite_accessory/taur) - /datum/sprite_accessory/taur
+	for(var/path in paths)
+		var/datum/sprite_accessory/taur/H = new path()
+		taur_styles_list[H.name] = H
+
 	//Hair - Initialise all /datum/sprite_accessory/hair into an list indexed by hair-style name
 	paths = typesof(/datum/sprite_accessory/hair) - /datum/sprite_accessory/hair
 	for(var/path in paths)
@@ -94,6 +106,21 @@ var/global/list/endgame_safespawns = list()
 			else
 				facial_hair_styles_male_list += H.name
 				facial_hair_styles_female_list += H.name
+
+	//Custom Ears
+	paths = typesof(/datum/sprite_accessory/ears) - /datum/sprite_accessory/ears
+	for(var/path in paths)
+		var/obj/item/clothing/head/instance = new path()
+		ear_styles_list[path] = instance
+
+	//Custom Tails
+	paths = typesof(/datum/sprite_accessory/tail) - /datum/sprite_accessory/tail
+	for(var/path in paths)
+		var/datum/sprite_accessory/tail/instance = new path()
+		tail_styles_list[path] = instance
+
+	//Standard sizes - Commented out for adding sizes later, don't want to deal right now - Werebear
+//	player_sizes_list = list("Macro" = RESIZE_HUGE, "Big" = RESIZE_BIG, "Normal" = RESIZE_NORMAL, "Small" = RESIZE_SMALL, "Tiny" = RESIZE_TINY)
 
 	//Surgery Steps - Initialize all /datum/surgery_step into a list
 	paths = typesof(/datum/surgery_step)-/datum/surgery_step

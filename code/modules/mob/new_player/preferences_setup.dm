@@ -6,7 +6,7 @@ datum/preferences
 				gender = MALE
 			else
 				gender = FEMALE
-		s_tone = random_skin_tone()
+//		s_tone = random_skin_tone()
 		h_style = random_hair_style(gender, species)
 		f_style = random_facial_hair_style(gender, species)
 		randomize_hair_color("hair")
@@ -208,21 +208,45 @@ datum/preferences
 				continue
 			preview_icon.Blend(new /icon(icobase, "[name]"), ICON_OVERLAY)
 
-		//Tail
-		if(current_species && (current_species.tail))
-			var/icon/temp = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[current_species.tail]_s")
-			preview_icon.Blend(temp, ICON_OVERLAY)
-
 		// Skin color
 		if(current_species && (current_species.flags & HAS_SKIN_COLOR))
-			preview_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+			preview_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_MULTIPLY) //CHANGED ICON ADD TO MULTIPLY
 
-		// Skin tone
-		if(current_species && (current_species.flags & HAS_SKIN_TONE))
-			if (s_tone >= 0)
-				preview_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
-			else
-				preview_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
+		//Tail (HORRIBLE COPY PASTE!)
+		if(taur && taur <= taur_styles_list.len) //taur is True and not exceeding the actual number of possible options
+			var/datum/sprite_accessory/taur/taur_style = taur_styles_list[taur_styles_list[taur]]  // Taur is int, list is by name
+			if(taur_style)
+				var/icon/taur_s = new/icon("icon" = taur_style.icon, "icon_state" = taur_style.icon_state)
+				if(taur_style.do_colouration)
+					taur_s.Blend(rgb(r_taur, g_taur, b_taur), ICON_MULTIPLY)
+//					preview_icon.Blend(taur_s, ICON_OVERLAY, 1-(16*RESIZE_NORMAL))
+					preview_icon.Blend(taur_s, ICON_OVERLAY, 1-(16))
+
+		else if(tail_style && tail_styles_list[tail_style])
+			var/datum/sprite_accessory/tail/meta = tail_styles_list[tail_style]
+			var/icon/tail_s = new/icon("icon" = meta.icon, "icon_state" = meta.icon_state)
+			if(meta.do_colouration)
+				tail_s.Blend(rgb(src.r_hair, src.g_hair, src.b_hair), ICON_ADD)
+			if(meta.colored_overlay)
+				var/icon/overlay = new/icon("icon" = meta.icon, "icon_state" = meta.colored_overlay)
+				tail_s.Blend(overlay, ICON_OVERLAY)
+			if(meta.show_species_tail && current_species.tail)
+				var/icon/spec_tail = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[current_species.tail]_s")
+				spec_tail.Blend(rgb(r_skin, g_skin, b_skin), ICON_MULTIPLY)
+				tail_s.Blend(spec_tail, ICON_OVERLAY)
+			preview_icon.Blend(tail_s, ICON_OVERLAY)
+
+		else if(current_species && (current_species.tail))
+			var/icon/temp = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[current_species.tail]_s")
+			temp.Blend(rgb(r_skin, g_skin, b_skin), ICON_MULTIPLY)
+			preview_icon.Blend(temp, ICON_OVERLAY)
+
+		// Skin tone //Goodbye Skintone, Orbis
+//		if(current_species && (current_species.flags & HAS_SKIN_TONE))
+//			if (s_tone >= 0)
+//				preview_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
+//			else
+//				preview_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
 
 		var/icon/eyes_s = new/icon("icon" = 'icons/mob/human_face.dmi', "icon_state" = current_species ? current_species.eyes : "eyes_s")
 		if ((current_species && (current_species.flags & HAS_EYE_COLOR)))
@@ -239,6 +263,17 @@ datum/preferences
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			facial_s.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
 			eyes_s.Blend(facial_s, ICON_OVERLAY)
+
+		// Ear Items (HORRIBLE COPY PASTE)
+		if(ear_style && ear_styles_list[ear_style])
+			var/datum/sprite_accessory/ears/meta = ear_styles_list[ear_style]
+			var/icon/ears_s = icon("icon" = meta.icon, "icon_state" = meta.icon_state)
+			if(meta.do_colouration)
+				ears_s.Blend(rgb(src.r_hair, src.g_hair, src.b_hair), ICON_ADD)
+			if(meta.colored_overlay)
+				var/icon/overlay = new/icon("icon" = meta.icon, "icon_state" = meta.colored_overlay)
+				ears_s.Blend(overlay, ICON_OVERLAY)
+			eyes_s.Blend(ears_s, ICON_OVERLAY)
 
 		var/icon/underwear_s = null
 		if(underwear && current_species.flags & HAS_UNDERWEAR)
