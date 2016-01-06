@@ -196,7 +196,7 @@ GUEST_BAN
 FORUMURL http://erosresearchplatform.pangoro.net/forums/index.php
 
 ## Wiki address
-WIKIURL http://erosresearchplatform.wikia.com/wiki/Eros_Research_Platform_Wikia
+WIKIURL http://erosresearchplatform.pangoro.net/wiki/index.php/Main_Page
 
 ## GitHub address
 GITHUBURL https://github.com/bear-irl/ErosRelayPlatform

@@ -165,6 +165,28 @@
 		if((0 < beard) && (beard <= facial_hair_styles_list.len))
 			H.f_style = facial_hair_styles_list[beard]
 
+		//Ears
+		var/ears = dna.GetUIValueRange(DNA_UI_EAR_STYLE,ear_styles_list.len)
+		if(ears == 0)
+			H.ear_style = null
+		else if((0 < ears) && (ears <= ear_styles_list.len))
+			H.ear_style = ear_styles_list[ear_styles_list[ears]]
+
+		//Tail
+		var/tail = dna.GetUIValueRange(DNA_UI_TAIL_STYLE,tail_styles_list.len)
+		if(tail == 0)
+			H.tail_style = null
+		else if((0 < tail) && (tail <= tail_styles_list.len))
+			H.tail_style = tail_styles_list[tail_styles_list[tail]]
+
+		// Taur
+		var/taur = dna.GetUIValueRange(DNA_UI_TAUR_BODY,taur_styles_list.len)
+		if (taur == 0)
+			H.taur = 0
+		else if((0 < taur) && (taur <= taur_styles_list.len))
+			H.taur = taur // Taur is stored as the index for historical reasons
+
+
 		H.force_update_limbs()
 		H.update_eyes()
 		H.update_hair()
