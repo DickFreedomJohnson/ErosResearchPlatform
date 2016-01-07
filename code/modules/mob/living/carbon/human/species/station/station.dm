@@ -10,7 +10,19 @@
 	interests, rampant cyber and bio-augmentation and secretive factions make life on most human \
 	worlds tumultous at best."
 
-	flags = CAN_JOIN | HAS_SKIN_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
+	flags = CAN_JOIN | HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
+
+/datum/species/nonhuman
+	name = "Nonhuman"
+	name_plural = "Nonhumans"
+	language = "Sol Common"
+	icobase = 'icons/mob/human_races/r_humanb.dmi'
+	deform = 'icons/mob/human_races/r_def_humanb.dmi'
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite)
+	blurb = "It looks like a human, except you can use more colors. Expect this to be removed later when we figure out skincolor instead of skintone for humans."
+
+	flags = CAN_JOIN | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR | HAS_SKIN_COLOR
+	flesh_color = "#34AF10"
 
 /datum/species/unathi
 	name = "Unathi"
@@ -39,7 +51,7 @@
 	heat_level_2 = 480 //Default 400
 	heat_level_3 = 1100 //Default 1000
 
-	flags = CAN_JOIN | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+	flags = CAN_JOIN | IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	flesh_color = "#34AF10"
 
@@ -93,7 +105,7 @@
 
 	primitive_form = "Farwa"
 
-	flags = CAN_JOIN | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+	flags = CAN_JOIN | IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	flesh_color = "#AFA59E"
 	base_color = "#333333"
@@ -197,7 +209,7 @@
 
 	body_temperature = T0C + 15		//make the plant people have a bit lower body temperature, why not
 
-	flags = CAN_JOIN | NO_BREATHE | NO_SCAN | IS_PLANT | NO_BLOOD | NO_PAIN | NO_SLIP | REGENERATES_LIMBS
+	flags = CAN_JOIN | NO_BREATHE | NO_SCAN | IS_PLANT | NO_BLOOD | NO_PAIN | NO_SLIP | REGENERATES_LIMBS | HAS_UNDERWEAR
 
 	blood_color = "#004400"
 	flesh_color = "#907E4A"
@@ -251,7 +263,7 @@
 
 	synth_temp_gain = 10 //this should cause IPCs to stabilize at ~80 C in a 20 C environment.
 
-	flags = CAN_JOIN | HAS_UNDERWEAR | NO_BREATHE | NO_SCAN | NO_BLOOD | NO_PAIN | IS_SYNTHETIC
+	flags = CAN_JOIN | NO_BREATHE | NO_SCAN | NO_BLOOD | NO_PAIN | IS_SYNTHETIC | HAS_UNDERWEAR
 
 	blood_color = "#1F181F"
 	flesh_color = "#575757"
@@ -266,20 +278,3 @@
 		H.h_style = ""
 		spawn(100)
 			if(H) H.update_hair()
-
-/datum/species/skellington // /vg/
-	name = "Skellington"
-	name_plural = "Skellingtons"
-
-	icobase = 'icons/mob/human_races/r_skeleton.dmi'
-	deform = 'icons/mob/human_races/r_skeleton.dmi'
-	language = "Clatter"
-	unarmed_types = list(/datum/unarmed_attack/punch)
-
-	flags = CAN_JOIN | HAS_UNDERWEAR | HAS_LIPS | NO_BREATHE | NO_BLOOD| HAS_EYE_COLOR
-
-	brute_mod = 2.0
-	show_ssd = "still as death"
-
-	has_organ = list(
-		)

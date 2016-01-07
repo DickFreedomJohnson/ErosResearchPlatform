@@ -17,8 +17,8 @@ var/global/list/limb_icon_cache = list()
 	s_col = null
 	if(status & ORGAN_ROBOT)
 		return
-//	if(!isnull(human.s_tone) && (human.species.flags & HAS_SKIN_TONE))
-//		s_tone = human.s_tone
+	if(!isnull(human.s_tone) && (human.species.flags & HAS_SKIN_TONE))
+		s_tone = human.s_tone
 	if(human.species.flags & HAS_SKIN_COLOR)
 		s_col = list(human.r_skin, human.g_skin, human.b_skin)
 

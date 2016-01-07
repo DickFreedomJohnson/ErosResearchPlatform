@@ -16,22 +16,12 @@
 	var/g_eyes = 0
 	var/b_eyes = 0
 
-//	var/s_tone = 0	//Skin tone //Goodbye Skintone, Orbis
+	var/s_tone = 0	//Skin tone
 
 	//Skin colour
-	var/r_skin = 238 // TO DO: Set defaults for other races.
-	var/g_skin = 206
-	var/b_skin = 179
-
-	//Hooray furries
-	var/datum/sprite_accessory/ears/ear_style = null
-	var/datum/sprite_accessory/tail/tail_style = null
-
-	//Taur stuff
-	var/taur = 0
-	var/r_taur = 30
-	var/g_taur = 30
-	var/b_taur = 30
+	var/r_skin = 0
+	var/g_skin = 0
+	var/b_skin = 0
 
 	var/size_multiplier = 1 //multiplier for the mob's icon size
 	var/damage_multiplier = 1 //multiplies melee combat damage

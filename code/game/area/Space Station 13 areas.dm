@@ -2054,16 +2054,16 @@ area/space/atmosalert()
 			S = sound(file=pick('sound/ambience/seag1.ogg','sound/ambience/seag2.ogg','sound/ambience/seag3.ogg'), volume=100)
 			sound_delay = rand(0, 50)
 
-//		for(var/mob/living/carbon/human/H in src)
-//			if(H.s_tone > -55)
-//				H.s_tone--
-//				H.update_body()
-//				if(H.client)
-//				mysound.status = SOUND_UPDATE
-//				H << mysound
-//				if(S)
-//					spawn(sound_delay)
-//						H << S
+		for(var/mob/living/carbon/human/H in src)
+			if(H.s_tone > -55)
+				H.s_tone--
+				H.update_body()
+			if(H.client)
+				mysound.status = SOUND_UPDATE
+				H << mysound
+				if(S)
+					spawn(sound_delay)
+						H << S
 
 		spawn(60) .()
 
