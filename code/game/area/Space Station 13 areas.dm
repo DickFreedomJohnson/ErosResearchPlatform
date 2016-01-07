@@ -2016,8 +2016,6 @@ area/space/atmosalert()
 	luminosity = 1
 	lighting_use_dynamic = 0
 	requires_power = 0
-
-/*
 	ambience = list()
 	var/sound/mysound = null
 
@@ -2047,14 +2045,14 @@ area/space/atmosalert()
 				mysound.status = SOUND_PAUSED | SOUND_UPDATE
 				Obj << mysound
 
-//	proc/process()
-//		set background = 1
+	proc/process()
+		set background = 1
 
-//		var/sound/S = null
-//		var/sound_delay = 0
-//		if(prob(25))
-//			S = sound(file=pick('sound/ambience/seag1.ogg','sound/ambience/seag2.ogg','sound/ambience/seag3.ogg'), volume=100)
-//			sound_delay = rand(0, 50)
+		var/sound/S = null
+		var/sound_delay = 0
+		if(prob(25))
+			S = sound(file=pick('sound/ambience/seag1.ogg','sound/ambience/seag2.ogg','sound/ambience/seag3.ogg'), volume=100)
+			sound_delay = rand(0, 50)
 
 //		for(var/mob/living/carbon/human/H in src)
 //			if(H.s_tone > -55)
@@ -2063,12 +2061,12 @@ area/space/atmosalert()
 //				if(H.client)
 //				mysound.status = SOUND_UPDATE
 //				H << mysound
-//		if(S)
-//			spawn(sound_delay)
-//				H << S
+//				if(S)
+//					spawn(sound_delay)
+//						H << S
 
-//		spawn(60) .()
-*/
+		spawn(60) .()
+
 /////////////////////////////////////////////////////////////////////
 /*
  Lists of areas to be used with is_type_in_list.
