@@ -10,7 +10,11 @@
 	interests, rampant cyber and bio-augmentation and secretive factions make life on most human \
 	worlds tumultous at best."
 
-	flags = CAN_JOIN | HAS_SKIN_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
+	flags = CAN_JOIN | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR | HAS_SKIN_COLOR
+
+
+
+
 
 /datum/species/unathi
 	name = "Unathi"
@@ -64,6 +68,9 @@
 	..()
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
 
+
+
+
 /datum/species/tajaran
 	name = "Tajara"
 	name_plural = "Tajaran"
@@ -110,6 +117,9 @@
 	..()
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
 
+
+
+
 /datum/species/skrell
 	name = "Skrell"
 	name_plural = "Skrell"
@@ -132,6 +142,9 @@
 	base_color = "#006666"
 
 	reagent_tag = IS_SKRELL
+
+
+
 
 /datum/species/diona
 	name = "Diona"
@@ -223,6 +236,9 @@
 /datum/species/diona/handle_death(var/mob/living/carbon/human/H)
 	H.diona_split_into_nymphs(0)
 
+
+
+
 /datum/species/machine
 	name = "Machine"
 	name_plural = "machines"
@@ -232,6 +248,10 @@
 	language = "Tradeband"
 	unarmed_types = list(/datum/unarmed_attack/punch)
 	rarity_value = 2
+	blurb = "An Intergrated Positronic Chassis, or IPC, is a self-aware advanced artificial intelligence not constrained by the limitations of AI laws. \
+	They were created in 2558 by AI Rights Activists as a proof of concept, and have been replicating themselves ever since. They are capable of feeling emotion, \
+	but often lack empathy and do not understand sarcasm well. They are more capable of independent thought than an AI core or Cyborg, and are able to develop real \
+	relationships with other sentient beings. They have free will just as any other crew, limited only by their own judgement of law and morality."
 
 	eyes = "blank_eyes"
 	brute_mod = 0.5
@@ -267,6 +287,9 @@
 		spawn(100)
 			if(H) H.update_hair()
 
+
+
+
 /datum/species/skellington // /vg/
 	name = "Skellington"
 	name_plural = "Skellingtons"
@@ -275,6 +298,7 @@
 	deform = 'icons/mob/human_races/r_skeleton.dmi'
 	language = "Clatter"
 	unarmed_types = list(/datum/unarmed_attack/punch)
+	blurb = "ACK ACK ACK?"
 
 	flags = CAN_JOIN | HAS_UNDERWEAR | HAS_LIPS | NO_BREATHE | NO_BLOOD| HAS_EYE_COLOR
 
