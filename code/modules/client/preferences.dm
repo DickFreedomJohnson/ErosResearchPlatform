@@ -1183,7 +1183,7 @@ datum/preferences
 					g_eyes = rand(0,255)
 					b_eyes = rand(0,255)
 //		if("s_tone")
-//					s_tone = random_skin_tone()  // Goodbye skintone
+//					s_tone = random_skin_tone()
 				if("s_color")
 					r_skin = rand(0,255)
 					g_skin = rand(0,255)

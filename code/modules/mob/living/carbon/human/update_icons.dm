@@ -902,7 +902,7 @@ var/global/list/damage_icon_parts = list()
 
 		//generate a new one
 		tail_icon = new/icon(icon = (species.tail_animation? species.tail_animation : 'icons/effects/species.dmi'))
-		tail_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_MULTIPLY)
+		tail_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
 
 		tail_icon_cache[icon_key] = tail_icon
 

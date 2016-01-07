@@ -753,7 +753,7 @@
 
 	if(!lastpuke)
 		lastpuke = 1
-		src << "<span class='warning'>You feel nauseated...</span>"
+		src << "<span class='warning'>You feel nauseous...</span>"
 		spawn(150)	//15 seconds until second warning
 			src << "<span class='warning'>You feel like you are about to throw up!</span>"
 			spawn(100)	//and you have 10 more for mad dash to the bucket
@@ -1133,9 +1133,9 @@
 		g_skin = hex2num(copytext(species.base_color,4,6))
 		b_skin = hex2num(copytext(species.base_color,6,8))
 	else
-		r_skin = 238
-		g_skin = 206
-		b_skin = 179
+		r_skin = 0
+		g_skin = 0
+		b_skin = 0
 
 	if(species.holder_type)
 		holder_type = species.holder_type
