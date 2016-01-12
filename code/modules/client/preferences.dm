@@ -66,7 +66,7 @@ datum/preferences
 	var/r_facial = 0					//Face hair color
 	var/g_facial = 0					//Face hair color
 	var/b_facial = 0					//Face hair color
-	var/s_tone = 0						//Skin tone
+//	var/s_tone = 0						//Skin tone
 	var/r_skin = 0						//Skin color
 	var/g_skin = 0						//Skin color
 	var/b_skin = 0						//Skin color
@@ -309,7 +309,7 @@ datum/preferences
 	dat += "Species: <a href='?src=\ref[user];preference=species;task=change'>[species]</a><br>"
 	dat += "Secondary Language:<br><a href='byond://?src=\ref[user];preference=language;task=input'>[language]</a><br>"
 	dat += "Blood Type: <a href='byond://?src=\ref[user];preference=b_type;task=input'>[b_type]</a><br>"
-	dat += "Skin Tone: <a href='?_src_=prefs;preference=s_tone;task=input'>[-s_tone + 35]/220<br></a>"
+//	dat += "Skin Tone: <a href='?_src_=prefs;preference=s_tone;task=input'>[-s_tone + 35]/220<br></a>"
 	//dat += "Skin pattern: <a href='byond://?src=\ref[user];preference=skin_style;task=input'>Adjust</a><br>"
 	dat += "Needs Glasses: <a href='?_src_=prefs;preference=disabilities'><b>[disabilities == 0 ? "No" : "Yes"]</b></a><br>"
 	dat += "Limbs: <a href='byond://?src=\ref[user];preference=limbs;task=input'>Adjust</a><br>"
@@ -1170,8 +1170,8 @@ datum/preferences
 					r_eyes = rand(0,255)
 					g_eyes = rand(0,255)
 					b_eyes = rand(0,255)
-				if("s_tone")
-					s_tone = random_skin_tone()
+//				if("s_tone")
+//					s_tone = random_skin_tone()
 				if("s_color")
 					r_skin = rand(0,255)
 					g_skin = rand(0,255)
@@ -1245,7 +1245,7 @@ datum/preferences
 						g_hair = 0//hex2num(copytext(new_hair, 4, 6))
 						b_hair = 0//hex2num(copytext(new_hair, 6, 8))
 
-						s_tone = 0
+//						s_tone = 0
 
 				if("language")
 					var/languages_available
@@ -1281,7 +1281,7 @@ datum/preferences
 						b_type = new_b_type
 
 				if("hair")
-					if(species == "Human" || species == "Unathi" || species == "Tajara" || species == "Skrell")
+					if(species != "Vox" && species != "Machine" && species != "Diona") //here place the species that don't have hair selection.
 						var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference", rgb(r_hair, g_hair, b_hair)) as color|null
 						if(new_hair)
 							r_hair = hex2num(copytext(new_hair, 2, 4))
@@ -1353,15 +1353,15 @@ datum/preferences
 						g_eyes = hex2num(copytext(new_eyes, 4, 6))
 						b_eyes = hex2num(copytext(new_eyes, 6, 8))
 
-				if("s_tone")
-					if(species != "Human")
-						return
-					var/new_s_tone = input(user, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Character Preference")  as num|null
-					if(new_s_tone)
-						s_tone = 35 - max(min( round(new_s_tone), 220),1)
+//				if("s_tone")
+//					if(species != "Human")
+//						return
+//					var/new_s_tone = input(user, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Character Preference")  as num|null
+//					if(new_s_tone)
+//						s_tone = 35 - max(min( round(new_s_tone), 220),1)
 
 				if("skin")
-					if(species == "Unathi" || species == "Tajara" || species == "Skrell")
+					if(species != "Vox" && species != "Machine" && species != "Diona") //insert here the species that go without a skin color.
 						var/new_skin = input(user, "Choose your character's skin colour: ", "Character Preference", rgb(r_skin, g_skin, b_skin)) as color|null
 						if(new_skin)
 							r_skin = hex2num(copytext(new_skin, 2, 4))
@@ -1664,7 +1664,7 @@ datum/preferences
 	character.g_skin = g_skin
 	character.b_skin = b_skin
 
-	character.s_tone = s_tone
+//	character.s_tone = s_tone
 
 	character.h_style = h_style
 	character.f_style = f_style
