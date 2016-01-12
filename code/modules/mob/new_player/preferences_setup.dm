@@ -218,11 +218,11 @@ datum/preferences
 			preview_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_MULTIPLY)
 
 		// Skin tone
-//		if(current_species && (current_species.flags & HAS_SKIN_TONE))
-//			if (s_tone >= 0)
-//				preview_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
-//			else
-//				preview_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
+		/*if(current_species && (current_species.flags & HAS_SKIN_TONE))
+			if (s_tone >= 0)
+				preview_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
+			else
+				preview_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)*/
 
 		var/icon/eyes_s = new/icon("icon" = 'icons/mob/human_face.dmi', "icon_state" = current_species ? current_species.eyes : "eyes_s")
 		if ((current_species && (current_species.flags & HAS_EYE_COLOR)))

@@ -164,11 +164,11 @@
 		preview_icon.Blend(temp, ICON_OVERLAY)
 
 	// Skin tone
-//	if(H.species.flags & HAS_SKIN_TONE)
-//		if (H.s_tone >= 0)
-//			preview_icon.Blend(rgb(H.s_tone, H.s_tone, H.s_tone), ICON_ADD)
-//		else
-//			preview_icon.Blend(rgb(-H.s_tone,  -H.s_tone,  -H.s_tone), ICON_SUBTRACT)
+	/*if(H.species.flags & HAS_SKIN_TONE)
+		if (H.s_tone >= 0)
+			preview_icon.Blend(rgb(H.s_tone, H.s_tone, H.s_tone), ICON_ADD)
+		else
+			preview_icon.Blend(rgb(-H.s_tone,  -H.s_tone,  -H.s_tone), ICON_SUBTRACT)*/
 
 	// Skin color
 	if(H.species.flags & HAS_SKIN_TONE)

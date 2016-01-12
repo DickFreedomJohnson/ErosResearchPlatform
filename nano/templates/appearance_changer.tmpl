@@ -23,7 +23,7 @@
     </div>
 {{/if}}
 
-{{if data.change_eye_color || data.change_skin_tone || data.change_skin_color || data.change_hair_color || data.change_facial_hair_color}}
+{{if data.change_eye_color || data.change_skin_color || data.change_hair_color || data.change_facial_hair_color}}
     <div class="item">
         <div class="itemLabelNarrow">
             Colors:
@@ -31,9 +31,6 @@
         <div class="itemContentWide">
             {{if data.change_eye_color}}
                 {{:helper.link('Change eye color', null, { 'eye_color' : 1})}}
-            {{/if}}
-            {{if data.change_skin_tone}}
-                {{:helper.link('Change skin tone', null, { 'skin_tone' : 1})}}
             {{/if}}
             {{if data.change_skin_color}}
                 {{:helper.link('Change skin color', null, { 'skin_color' : 1})}}
