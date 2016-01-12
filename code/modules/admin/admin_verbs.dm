@@ -91,7 +91,8 @@ var/list/admin_verbs_admin = list(
 	/client/proc/change_human_appearance_self,	/* Allows the human-based mob itself change its basic appearance */
 	/client/proc/change_security_level,
 	/client/proc/view_chemical_reaction_logs,
-	/client/proc/makePAI
+	/client/proc/makePAI,
+	/datum/admins/proc/paralyze_mob
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
@@ -284,7 +285,8 @@ var/list/admin_verbs_mod = list(
 	/datum/admins/proc/show_player_panel,
 	/client/proc/check_antagonists,
 	/client/proc/jobbans,
-	/client/proc/cmd_admin_subtle_message 	/*send an message to somebody as a 'voice in their head'*/
+	/client/proc/cmd_admin_subtle_message, 	/*send an message to somebody as a 'voice in their head'*/
+	/datum/admins/proc/paralyze_mob
 )
 
 var/list/admin_verbs_mentor = list(
@@ -815,9 +817,9 @@ var/list/admin_verbs_mentor = list(
 	if(!istype(M, /mob/living/carbon/human))
 		usr << "\red You can only do this to humans!"
 		return
-	switch(alert("Are you sure you wish to edit this mob's appearance? Skrell, Unathi, Vox and Tajaran can result in unintended consequences.",,"Yes","No"))
-		if("No")
-			return
+//	switch(alert("Are you sure you wish to edit this mob's appearance? Skrell, Unathi, Vox and Tajaran can result in unintended consequences.",,"Yes","No"))
+//		if("No")
+//			return
 	var/new_facial = input("Please select facial hair color.", "Character Generation") as color
 	if(new_facial)
 		M.r_facial = hex2num(copytext(new_facial, 2, 4))
@@ -837,17 +839,17 @@ var/list/admin_verbs_mentor = list(
 		M.b_eyes = hex2num(copytext(new_eyes, 6, 8))
 		M.update_eyes()
 
-	var/new_skin = input("Please select body color. This is for Tajaran, Unathi, and Skrell only!", "Character Generation") as color
+	var/new_skin = input("Please select body color.", "Character Generation") as color
 	if(new_skin)
 		M.r_skin = hex2num(copytext(new_skin, 2, 4))
 		M.g_skin = hex2num(copytext(new_skin, 4, 6))
 		M.b_skin = hex2num(copytext(new_skin, 6, 8))
 
-	var/new_tone = input("Please select skin tone level: 1-220 (1=albino, 35=caucasian, 150=black, 220='very' black)", "Character Generation")  as text
+//	var/new_tone = input("Please select skin tone level: 1-220 (1=albino, 35=caucasian, 150=black, 220='very' black)", "Character Generation")  as text
 
-	if (new_tone)
-		M.s_tone = max(min(round(text2num(new_tone)), 220), 1)
-		M.s_tone =  -M.s_tone + 35
+//	if (new_tone)
+//		M.s_tone = max(min(round(text2num(new_tone)), 220), 1)
+//		M.s_tone =  -M.s_tone + 35
 
 	// hair
 	var/new_hstyle = input(usr, "Select a hair style", "Grooming")  as null|anything in hair_styles_list
