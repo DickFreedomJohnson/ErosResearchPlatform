@@ -13,12 +13,12 @@ var/global/list/limb_icon_cache = list()
 		overlays += organ.mob_icon
 
 /obj/item/organ/external/proc/sync_colour_to_human(var/mob/living/carbon/human/human)
-	s_tone = null
+//	s_tone = null
 	s_col = null
 	if(status & ORGAN_ROBOT)
 		return
-	if(!isnull(human.s_tone) && (human.species.flags & HAS_SKIN_TONE))
-		s_tone = human.s_tone
+//	if(!isnull(human.s_tone) && (human.species.flags & HAS_SKIN_TONE))
+//		s_tone = human.s_tone
 	if(human.species.flags & HAS_SKIN_COLOR)
 		s_col = list(human.r_skin, human.g_skin, human.b_skin)
 
@@ -101,13 +101,13 @@ var/global/list/limb_icon_cache = list()
 					mob_icon.ColorTone(rgb(10,50,0))
 					mob_icon.SetIntensity(0.7)
 
-				if(!isnull(s_tone))
-					if(s_tone >= 0)
-						mob_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
-					else
-						mob_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
-				else if(s_col && s_col.len >= 3)
-					mob_icon.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_ADD)
+//				if(!isnull(s_tone))
+//					if(s_tone >= 0)
+//						mob_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
+//					else
+//						mob_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
+				if(s_col && s_col.len >= 3)
+					mob_icon.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_MULTIPLY)
 
 	dir = EAST
 	icon = mob_icon
