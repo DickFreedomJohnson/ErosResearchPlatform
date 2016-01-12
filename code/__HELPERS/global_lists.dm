@@ -58,7 +58,7 @@ var/global/list/undershirt_t = list(
 	"White shirt" = "u4", "White shirt 2" = "shirt_white_s", "White tank top 2" = "tank_white_s",
 	"Black shirt 2" = "shirt_black_s", "Grey shirt" = "shirt_grey_s", "Heart shirt" = "lover_s",
 	"I love NT shirt" = "ilovent_s", "White shortsleeve shirt" = "whiteshortsleeve_s", "Purple shirtsleeve shirt" = "purpleshortsleeve_s",
-	"Blue shortsleeve shirt" = "blueshortsleeve_s", "Green shortsleeve shirt" = "greenshortsleeve_s", "Black shortsleeve shirt" = "blackshortsleeve_s",
+	"Blue shortsleeve shirt" = "blueshortsleeve_s", "Green shortsleeve shirt" = "greenshortsleeve_s", "Midriff tanktop" = "tank_midriff_s", "Red top" = "redtop_s", "White opt" = "whitetop_s", "Black shortsleeve shirt" = "blackshortsleeve_s",
 	"Blue shirt" = "blueshirt_s", "Red shirt" = "redshirt_s", "Yellow shirt" = "yellowshirt_s", "Green shirt" = "greenshirt_s",
 	"Blue polo shirt" = "bluepolo_s", "Red polo shirt" = "redpolo_s", "White polo shirt" = "whitepolo_s",
 	"Grey-yellow polo shirt" = "grayyellowpolo_s", "Fire tank top" = "tank_fire_s", "NT shirt" = "shirt_nano_s",

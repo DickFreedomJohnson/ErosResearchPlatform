@@ -532,9 +532,9 @@
 	item_state = "corset"
 	worn_state = "corset"
 
-/obj/item/clothing/under/nude
-	name = "nothing"
-	desc = "It's like I'm wearing... nothin at all!"
-	icon_state = "nude"
-	item_state = "nude"
-	worn_state = "nude"
+/obj/item/clothing/under/chaps
+	name = "chaps"
+	desc = "Yeeehaw!"
+	icon_state = "chaps_s"
+	item_state = "chaps_s"
+	worn_state = "chaps_s"

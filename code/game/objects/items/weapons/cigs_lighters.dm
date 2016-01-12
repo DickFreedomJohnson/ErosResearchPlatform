@@ -313,6 +313,15 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	user.update_inv_l_hand(0)
 	user.update_inv_r_hand(1)
 
+/obj/item/clothing/mask/smokable/cigarette/cigar/e_cig
+	name = "Electronic cigarette"
+	desc = "An electronic cigarette. Most of the relief of a real cigarette with none of the side effects. Often used by smokers who are trying to quit the habit."
+	icon = 'icons/obj/custom_items_obj.dmi'
+	icon_state = "cigon"
+	throw_speed = 0.5
+	item_state = "ciglit"
+	w_class = 1
+	body_parts_covered = null
 /////////////////
 //SMOKING PIPES//
 /////////////////
@@ -500,3 +509,4 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(location)
 		location.hotspot_expose(700, 5)
 	return
+
