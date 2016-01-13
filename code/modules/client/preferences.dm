@@ -1171,8 +1171,8 @@ datum/preferences
 					r_eyes = rand(0,255)
 					g_eyes = rand(0,255)
 					b_eyes = rand(0,255)
-//				if("s_tone")
-//					s_tone = random_skin_tone()
+				/*if("s_tone")
+					s_tone = random_skin_tone()*/
 				if("s_color")
 					r_skin = rand(0,255)
 					g_skin = rand(0,255)
@@ -1354,12 +1354,12 @@ datum/preferences
 						g_eyes = hex2num(copytext(new_eyes, 4, 6))
 						b_eyes = hex2num(copytext(new_eyes, 6, 8))
 
-//				if("s_tone")
-//					if(species != "Human")
-//						return
-//					var/new_s_tone = input(user, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Character Preference")  as num|null
-//					if(new_s_tone)
-//						s_tone = 35 - max(min( round(new_s_tone), 220),1)
+				/*if("s_tone")
+					if(species != "Human")
+						return
+					var/new_s_tone = input(user, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Character Preference")  as num|null
+					if(new_s_tone)
+						s_tone = 35 - max(min( round(new_s_tone), 220),1)*/
 
 				if("skin")
 					if(species != "Vox" && species != "Machine" && species != "Diona") //insert here the species that go without a skin color.

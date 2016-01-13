@@ -120,14 +120,14 @@
 	force_update_limbs()
 	return 1
 
-// /mob/living/carbon/human/proc/change_skin_tone(var/tone)
-//	if(s_tone == tone || !(species.flags & HAS_SKIN_TONE))
-//		return
+/*/mob/living/carbon/human/proc/change_skin_tone(var/tone)
+	if(s_tone == tone || !(species.flags & HAS_SKIN_TONE))
+		return
 
-//	s_tone = tone
+	s_tone = tone
 
-//	force_update_limbs()
-//	return 1
+	force_update_limbs()
+	return 1*/
 
 /mob/living/carbon/human/proc/update_dna()
 	check_dna()
