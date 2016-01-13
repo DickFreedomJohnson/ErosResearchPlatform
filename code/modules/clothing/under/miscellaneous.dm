@@ -513,7 +513,28 @@
 
 /obj/item/clothing/under/blazer
 	name = "blue blazer"
-	desc = "A bold but yet conservative outfit, red corduroys, navy blazer and a tie." 
+	desc = "A bold but yet conservative outfit, red corduroys, navy blazer and a tie."
 	icon_state = "blue_blazer"
 	item_state = "blue_blazer"
 	worn_state = "blue_blazer"
+
+/obj/item/clothing/under/chastity
+	name = "chastity belt"
+	desc = "For extreme measures."
+	icon_state = "chastity"
+	item_state = "chastity"
+	worn_state = "chastity"
+
+/obj/item/clothing/under/corset
+	name = "corset"
+	desc = "For keeping everything in place, even in those later years."
+	icon_state = "corset"
+	item_state = "corset"
+	worn_state = "corset"
+
+/obj/item/clothing/under/chaps
+	name = "chaps"
+	desc = "Yeeehaw!"
+	icon_state = "chaps_s"
+	item_state = "chaps_s"
+	worn_state = "chaps_s"

@@ -218,7 +218,7 @@
 /obj/item/clothing/accessory/collar_steel
 	name = "Steel collar"
 	desc = "A durable industrial collar, show your pet how much they mean to YOU!"
-	slot_flags = SLOT_OCLOTHING
+	slot_flags = SLOT_TIE | SLOT_OCLOTHING
 	icon_state = "collar_steel"
 	item_state = "collar_steel"
 
