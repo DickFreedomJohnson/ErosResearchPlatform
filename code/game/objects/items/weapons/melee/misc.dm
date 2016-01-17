@@ -36,7 +36,7 @@
 	desc = "For when the real thing just doesn't cut it."
 	icon = 'icons/obj/adult_toy.dmi'
 	icon_state = "metal_dildo"
-	item_state = "metal_dildo_w"
+	item_state = "metal_dildo"
 	slot_flags = SLOT_BELT
 	attack_verb = list("fucked", "probed", "violated", "teased", "prodded")
 
@@ -45,7 +45,7 @@
 	desc = "For when the real thing just doesn't cut it."
 	icon = 'icons/obj/adult_toy.dmi'
 	icon_state = "bigblackdick"
-	item_state = "bigblackdick_w"
+	item_state = "bigblackdick"
 	slot_flags = SLOT_BELT
 	attack_verb = list("fucked", "probed", "violated", "teased", "prodded")
 
@@ -54,7 +54,7 @@
 	desc = "For when the real thing just doesn't cut it."
 	icon = 'icons/obj/adult_toy.dmi'
 	icon_state = "purple-dong"
-	item_state = "purple-dong_w"
+	item_state = "purple-dong"
 	slot_flags = SLOT_BELT
 	attack_verb = list("fucked", "probed", "violated", "teased", "prodded")
 
@@ -63,7 +63,7 @@
 	desc = "For when the real thing just doesn't cut it."
 	icon = 'icons/obj/adult_toy.dmi'
 	icon_state = "canine"
-	item_state = "canine_w"
+	item_state = "canine"
 	slot_flags = SLOT_BELT
 	attack_verb = list("fucked", "probed", "violated", "teased", "prodded")
 
@@ -72,7 +72,7 @@
 	desc = "For when the real thing just doesn't cut it."
 	icon = 'icons/obj/adult_toy.dmi'
 	icon_state = "floppydick"
-	item_state = "floppydick_w"
+	item_state = "floppydick"
 	slot_flags = SLOT_BELT
 	attack_verb = list("fucked", "probed", "violated", "teased", "prodded")
 
@@ -81,6 +81,24 @@
 	desc = "For when the real thing just doesn't cut it."
 	icon = 'icons/obj/adult_toy.dmi'
 	icon_state = "floppydick"
-	item_state = "floppydick_w"
+	item_state = "floppydick"
+	slot_flags = SLOT_BELT
+	attack_verb = list("pleasured", "vibrated", "violated", "teased", "poked")
+
+/obj/item/weapon/melee/fluff/hardlightXL
+	name = "hardlightXL panties"
+	desc = "For when the real thing just doesn't cut it."
+	icon = 'icons/obj/adult_toy.dmi'
+	icon_state = "hardlight"
+	item_state = "hardlight_xl"
+	slot_flags = SLOT_BELT
+	attack_verb = list("pleasured", "vibrated", "violated", "teased", "poked")
+
+/obj/item/weapon/melee/fluff/hardlight
+	name = "hardlight panties"
+	desc = "For when the real thing just doesn't cut it."
+	icon = 'icons/obj/adult_toy.dmi'
+	icon_state = "hardlight"
+	item_state = "hardlight"
 	slot_flags = SLOT_BELT
 	attack_verb = list("pleasured", "vibrated", "violated", "teased", "poked")
