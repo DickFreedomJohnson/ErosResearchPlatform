@@ -101,11 +101,11 @@ var/global/list/limb_icon_cache = list()
 					mob_icon.ColorTone(rgb(10,50,0))
 					mob_icon.SetIntensity(0.7)
 
-//				if(!isnull(s_tone))
-//					if(s_tone >= 0)
-//						mob_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
-//					else
-//						mob_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
+				/*if(!isnull(s_tone))
+					if(s_tone >= 0)
+						mob_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
+					else
+						mob_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)*/
 				if(s_col && s_col.len >= 3)
 					mob_icon.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_MULTIPLY)
 
