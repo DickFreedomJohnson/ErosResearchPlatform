@@ -221,6 +221,38 @@
 	worn_state = "schoolgirl"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
+/obj/item/clothing/under/schoolgirl
+	name = "blue schoolgirl uniform"
+	desc = "It's just like one of my Japanese animes!"
+	icon_state = "schoolgirl"
+	item_state = "b_suit"
+	worn_state = "schoolgirl"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+/obj/item/clothing/under/schoolgirl
+	name = "redschoolgirl uniform"
+	desc = "It's just like one of my Japanese animes!"
+	icon_state = "schoolgirlred"
+	item_state = "b_suit"
+	worn_state = "schoolgirlred"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+/obj/item/clothing/under/schoolgirl
+	name = "green schoolgirl uniform"
+	desc = "It's just like one of my Japanese animes!"
+	icon_state = "schoolgirlgreen"
+	item_state = "b_suit"
+	worn_state = "schoolgirlgreen"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+/obj/item/clothing/under/schoolgirl
+	name = "orangeschoolgirl uniform"
+	desc = "It's just like one of my Japanese animes!"
+	icon_state = "schoolgirlorange"
+	item_state = "b_suit"
+	worn_state = "schoolgirlorange"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
 /obj/item/clothing/under/overalls
 	name = "laborer's overalls"
 	desc = "A set of durable overalls for getting the job done."
@@ -538,3 +570,104 @@
 	icon_state = "chaps_s"
 	item_state = "chaps_s"
 	worn_state = "chaps_s"
+
+/obj/item/clothing/under/jacket
+	name = "jacket costume"
+	desc = "Do you like hurting other people?"
+	icon_state = "jacket_s"
+	item_state = "jacket_s"
+	worn_state = "jacket_s"
+
+/obj/item/clothing/under/biker
+	name = "biker costume"
+	desc = "..."
+	icon_state = "biker_s"
+	item_state = "biker_s"
+	worn_state = "biker_s"
+
+/obj/item/clothing/under/roll
+	name = "robot girl costume"
+	desc = "I refuse to lose!"
+	icon_state = "roll_s"
+	item_state = "roll_s"
+	worn_state = "roll_s"
+
+/obj/item/clothing/under/maid
+	name = "frilly maid outfit"
+	desc = "J-just like my japanese animes!"
+	icon_state = "maid_s"
+	item_state = "maid_s"
+	worn_state = "maid_s"
+
+/obj/item/clothing/under/maid
+	name = "maid outfit"
+	desc = "Most likely seen on their knees."
+	icon_state = "janimaid_s"
+	item_state = "janimaid_s"
+	worn_state = "janimaid_s"
+
+// WINTER COATS
+
+/obj/item/clothing/suit/storage/hooded/wintercoat
+	name = "winter coat"
+	desc = "A heavy jacket made from 'synthetic' animal furs."
+	icon_state = "coatwinter"
+	item_state = "labcoat"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
+//	hooded = 1
+//	action_button_name = "Toggle Winter Hood"
+//	hoodtype = /obj/item/clothing/head/winterhood
+
+/obj/item/clothing/head/winterhood
+	name = "winter hood"
+	desc = "A hood attached to a heavy winter jacket."
+	icon_state = "generic_hood"
+	body_parts_covered = HEAD
+	cold_protection = HEAD
+	flags_inv = HIDEEARS | BLOCKHAIR
+	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/captain
+	name = "captain's winter coat"
+	icon_state = "coatcaptain"
+	armor = list(melee = 20, bullet = 15, laser = 20, energy = 10, bomb = 15, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/security
+	name = "security winter coat"
+	icon_state = "coatsecurity"
+	armor = list(melee = 25, bullet = 20, laser = 20, energy = 15, bomb = 20, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/medical
+	name = "medical winter coat"
+	icon_state = "coatmedical"
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 0)
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/science
+	name = "science winter coat"
+	icon_state = "coatscience"
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/engineering
+	name = "engineering winter coat"
+	icon_state = "coatengineer"
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 20)
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/engineering/atmos
+	name = "atmospherics winter coat"
+	icon_state = "coatatmos"
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/hydro
+	name = "hydroponics winter coat"
+	icon_state = "coathydro"
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/cargo
+	name = "cargo winter coat"
+	icon_state = "coatcargo"
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/miner
+	name = "mining winter coat"
+	icon_state = "coatminer"
+	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
