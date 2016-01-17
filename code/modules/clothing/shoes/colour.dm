@@ -53,6 +53,46 @@
 	desc = "Very gay shoes."
 	icon_state = "rain_bow"
 
+/obj/item/clothing/shoes/flats
+	name = "black flats"
+	desc = "Sleek black flats."
+	icon_state = "flatsblack"
+
+/obj/item/clothing/shoes/flats/white
+	name = "white flats"
+	desc = "Shiny white flats."
+	icon_state = "flatswhite"
+
+/obj/item/clothing/shoes/flats/red
+	name = "red flats"
+	desc = "Ruby red flats."
+	icon_state = "flatsred"
+
+/obj/item/clothing/shoes/flats/purple
+	name = "purple flats"
+	desc = "Royal purple flats."
+	icon_state = "flatspurple"
+
+/obj/item/clothing/shoes/flats/blue
+	name = "blue flats"
+	desc = "Sleek blue flats."
+	icon_state = "flatsblue"
+
+/obj/item/clothing/shoes/flats/brown
+	name = "brown flats"
+	desc = "Sleek brown flats."
+	icon_state = "flatsbrown"
+
+/obj/item/clothing/shoes/flats/orange
+	name = "orange flats"
+	desc = "Radiant orange flats."
+	icon_state = "flatsorange"
+
+/obj/item/clothing/shoes/flats/glass
+	name = "glass slippers"
+	desc = "Rather elegant slippers."
+	icon_state = "flatsglass"
+
 /obj/item/clothing/shoes/orange
 	name = "orange shoes"
 	icon_state = "orange"
