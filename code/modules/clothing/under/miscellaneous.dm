@@ -221,15 +221,7 @@
 	worn_state = "schoolgirl"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
-/obj/item/clothing/under/schoolgirl
-	name = "blue schoolgirl uniform"
-	desc = "It's just like one of my Japanese animes!"
-	icon_state = "schoolgirl"
-	item_state = "b_suit"
-	worn_state = "schoolgirl"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-
-/obj/item/clothing/under/schoolgirl
+/obj/item/clothing/under/schoolgirlred
 	name = "redschoolgirl uniform"
 	desc = "It's just like one of my Japanese animes!"
 	icon_state = "schoolgirlred"
@@ -237,7 +229,7 @@
 	worn_state = "schoolgirlred"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
-/obj/item/clothing/under/schoolgirl
+/obj/item/clothing/under/schoolgirlgreen
 	name = "green schoolgirl uniform"
 	desc = "It's just like one of my Japanese animes!"
 	icon_state = "schoolgirlgreen"
@@ -245,7 +237,7 @@
 	worn_state = "schoolgirlgreen"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
-/obj/item/clothing/under/schoolgirl
+/obj/item/clothing/under/schoolgirlorange
 	name = "orangeschoolgirl uniform"
 	desc = "It's just like one of my Japanese animes!"
 	icon_state = "schoolgirlorange"
