@@ -584,7 +584,7 @@
 	item_state = "roll_s"
 	worn_state = "roll_s"
 
-/obj/item/clothing/under/maid
+/obj/item/clothing/under/maid_sexy
 	name = "frilly maid outfit"
 	desc = "J-just like my japanese animes!"
 	icon_state = "maid_s"

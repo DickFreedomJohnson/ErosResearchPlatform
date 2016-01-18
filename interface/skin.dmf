@@ -119,6 +119,14 @@ macro "borghotkeymode"
 		name = "A+REP"
 		command = ".west"
 		is-disabled = false
+ 	elem 
+		name = "CTRL+5"
+		command = ".me"
+		is-disabled = false
+	elem 
+		name = "CTRL+6"
+		command = "Subtle"
+		is-disabled = false		
 	elem 
 		name = "CTRL+A+REP"
 		command = ".west"
@@ -205,7 +213,7 @@ macro "borghotkeymode"
 		is-disabled = false
 	elem 
 		name = "CTRL+Y"
-		command = "Activate-Held-Object"
+		command = "Whisper"
 		is-disabled = false
 	elem 
 		name = "Z"
@@ -575,6 +583,18 @@ macro "hotkeymode"
 		name = "5"
 		command = ".me"
 		is-disabled = false
+ 	elem 
+		name = "CTRL+5"
+		command = ".me"
+		is-disabled = false
+	elem 
+		name = "6"
+		command = "Subtle"
+		is-disabled = false
+	elem 
+		name = "CTRL+6"
+		command = "Subtle"
+		is-disabled = false		
 	elem 
 		name = "A+REP"
 		command = ".west"
@@ -677,11 +697,11 @@ macro "hotkeymode"
 		is-disabled = false
 	elem 
 		name = "Y"
-		command = "Activate-Held-Object"
+		command = "Whisper"
 		is-disabled = false
 	elem 
 		name = "CTRL+Y"
-		command = "Activate-Held-Object"
+		command = "Whisper"
 		is-disabled = false
 	elem 
 		name = "Z"
@@ -1357,6 +1377,8 @@ window "chemdispenser"
 		keep-aspect = false
 		align = center
 		text-wrap = false
+		allow-html = false
+		letterbox = true
 	elem "eject"
 		type = BUTTON
 		pos = 264,4
@@ -1523,6 +1545,8 @@ window "chemdispenser"
 		keep-aspect = false
 		align = center
 		text-wrap = false
+		allow-html = false
+		letterbox = true
 	elem "child1"
 		type = CHILD
 		pos = 0,40
@@ -1644,6 +1668,8 @@ window "chemdispenser_reagents"
 		keep-aspect = false
 		align = center
 		text-wrap = false
+		allow-html = false
+		letterbox = true
 
 window "mainwindow"
 	elem "mainwindow"
