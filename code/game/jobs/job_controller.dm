@@ -469,7 +469,7 @@ var/global/datum/controller/occupations/job_master
 				if("AI")
 					return H
 				if("Captain")
-					var/sound/announce_sound = (ticker.current_state <= GAME_STATE_SETTING_UP)? null : sound('sound/misc/boatswain.ogg', volume=20)
+					var/sound/announce_sound = (ticker.current_state <= GAME_STATE_SETTING_UP)? null : sound('sound/misc/boatswain.ogg', volume=10)
 					captain_announcement.Announce("All hands, Captain [H.real_name] on deck!", new_sound=announce_sound)
 
 			//Deferred item spawning.
@@ -509,7 +509,7 @@ var/global/datum/controller/occupations/job_master
 			H << "<b>To speak on your department's radio channel use :h. For the use of other channels, examine your headset.</b>"
 
 		if(job.req_admin_notify)
-			H << "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>"
+			H << "<b>You are playing a job that is important for Game Progression. Please remember to attend to your job before ERP unless absolutely impossible, and to head to cryo if you have to log off.</b>"
 
 		//Gives glasses to the vision impaired
 		if(H.disabilities & NEARSIGHTED)
