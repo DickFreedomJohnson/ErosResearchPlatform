@@ -525,9 +525,9 @@ area/space/atmosalert()
 
 
 
-/area/planet/clown
-	name = "\improper Clown Planet"
-	icon_state = "honk"
+/area/planet/eros
+	name = "\improper Eros"
+	icon_state = "white"
 	requires_power = 0
 
 /area/tdome
