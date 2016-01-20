@@ -1,3 +1,16 @@
+/turf/simulated/floor/snow
+	name = "snow"
+	icon = 'icons/turf/snow.dmi'
+	icon_state = "snow"
+	temperature = TICE
+	initial_flooring = /decl/flooring/snow
+
+/turf/simulated/floor/plating/snow
+	name = "snow plating"
+	icon = 'icons/turf/snow.dmi'
+	icon_state = "plating"
+	temperature = TICE
+
 /turf/simulated/floor/carpet
 	name = "carpet"
 	icon = 'icons/turf/flooring/carpet.dmi'
@@ -195,7 +208,6 @@
 
 /turf/simulated/floor/airless/lava
 /turf/simulated/floor/light
-/turf/simulated/floor/snow
 /*
 /turf/simulated/floor/beach
 /turf/simulated/floor/beach/sand
@@ -204,5 +216,4 @@
 /turf/simulated/floor/beach/water
 /turf/simulated/floor/beach/water/ocean
 */
-/turf/simulated/floor/plating/snow
 /turf/simulated/floor/airless/ceiling
