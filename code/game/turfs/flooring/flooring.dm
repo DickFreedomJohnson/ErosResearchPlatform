@@ -56,6 +56,14 @@ var/list/flooring_types
 	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
 	build_type = null
 
+/decl/flooring/snow
+	name = "snow"
+	desc = "Fluffy and inviting"
+	icon = 'icons/turf/snow.dmi'
+	icon_base = "snow"
+	build_type = null
+	flags = TURF_HAS_CORNERS
+
 /decl/flooring/carpet
 	name = "carpet"
 	desc = "Imported and comfy."
