@@ -1,15 +1,16 @@
 /datum/species/slime
 	name = "Slime"
 	name_plural = "slimes"
-	is_small = 1
+	mob_size = MOB_SMALL
 
 	icobase = 'icons/mob/human_races/r_slime.dmi'
 	deform = 'icons/mob/human_races/r_slime.dmi'
 
-	language = "Sol Common" //todo?
+	language = null //todo?
 	unarmed_types = list(/datum/unarmed_attack/slime_glomp)
-	flags = IS_RESTRICTED | NO_BLOOD | NO_SCAN | NO_SLIP | NO_BREATHE
-	siemens_coefficient = 3
+	flags = NO_SCAN | NO_SLIP | NO_MINOR_CUT
+	spawn_flags = IS_RESTRICTED
+	siemens_coefficient = 3 //conductive
 	darksight = 3
 
 	blood_color = "#05FF9B"
@@ -19,7 +20,7 @@
 	death_message = "rapidly loses cohesion, splattering across the ground..."
 
 	has_organ = list(
-		"brain" = /obj/item/organ/brain/slime
+		"brain" = /obj/item/organ/internal/brain/slime
 		)
 
 	breath_type = null
@@ -30,17 +31,17 @@
 	push_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 
 	has_limbs = list(
-		"chest" =  list("path" = /obj/item/organ/external/chest/slime),
-		"groin" =  list("path" = /obj/item/organ/external/groin/slime),
-		"head" =   list("path" = /obj/item/organ/external/head/slime),
-		"l_arm" =  list("path" = /obj/item/organ/external/arm/slime),
-		"r_arm" =  list("path" = /obj/item/organ/external/arm/right/slime),
-		"l_leg" =  list("path" = /obj/item/organ/external/leg/slime),
-		"r_leg" =  list("path" = /obj/item/organ/external/leg/right/slime),
-		"l_hand" = list("path" = /obj/item/organ/external/hand/slime),
-		"r_hand" = list("path" = /obj/item/organ/external/hand/right/slime),
-		"l_foot" = list("path" = /obj/item/organ/external/foot/slime),
-		"r_foot" = list("path" = /obj/item/organ/external/foot/right/slime)
+		BP_TORSO =  list("path" = /obj/item/organ/external/chest/unbreakable),
+		BP_GROIN =  list("path" = /obj/item/organ/external/groin/unbreakable),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/unbreakable),
+		BP_L_ARM =  list("path" = /obj/item/organ/external/arm/unbreakable),
+		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right/unbreakable),
+		BP_L_LEG =  list("path" = /obj/item/organ/external/leg/unbreakable),
+		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right/unbreakable),
+		BP_L_HAND = list("path" = /obj/item/organ/external/hand/unbreakable),
+		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right/unbreakable),
+		BP_L_FOOT = list("path" = /obj/item/organ/external/foot/unbreakable),
+		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right/unbreakable)
 		)
 
 /datum/species/slime/handle_death(var/mob/living/carbon/human/H)

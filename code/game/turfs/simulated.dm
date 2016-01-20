@@ -3,6 +3,10 @@
 	var/wet = 0
 	var/image/wet_overlay = null
 
+	//Mining resources (for the large drills).
+	var/has_resources
+	var/list/resources
+
 	var/thermite = 0
 	oxygen = MOLES_O2STANDARD
 	nitrogen = MOLES_N2STANDARD
@@ -10,11 +14,48 @@
 	var/max_fire_temperature_sustained = 0 //The max temperature of the fire which it was subjected to
 	var/dirt = 0
 
+// This is not great.
+/turf/simulated/proc/wet_floor(var/wet_val = 1)
+	spawn(0)
+		if(wet_val <= wet)
+			return
+		wet = wet_val
+		if(wet_overlay)
+			overlays -= wet_overlay
+			wet_overlay = null
+		wet_overlay = image('icons/effects/water.dmi',src,"wet_floor")
+		overlays += wet_overlay
+		sleep(800)
+		if(wet >= 2)
+			return
+		wet = 0
+		if(wet_overlay)
+			overlays -= wet_overlay
+			wet_overlay = null
+
+/turf/simulated/clean_blood()
+	for(var/obj/effect/decal/cleanable/blood/B in contents)
+		B.clean_blood()
+	..()
+
 /turf/simulated/New()
 	..()
 	if(istype(loc, /area/chapel))
 		holy = 1
 	levelupdate()
+
+/turf/simulated/proc/initialize()
+	return
+
+/turf/simulated/proc/check_destroy_override()
+	if(destroy_floor_override) //Don't bother doing the additional checks if we don't have to.
+		var/area/my_area = get_area(src)
+//		my_area = my_area.master
+		if(is_type_in_list(my_area, destroy_floor_override_ignore_areas))
+			return 0
+		if(z in destroy_floor_override_z_levels)
+			return 1
+	return 0
 
 /turf/simulated/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
 	var/obj/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src
@@ -22,30 +63,30 @@
 		tracks = new typepath(src)
 	tracks.AddTracks(bloodDNA,comingdir,goingdir,bloodcolor)
 
+/turf/simulated/proc/update_dirt()
+	dirt = min(dirt++, 101)
+	var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, src)
+	if (dirt > 50)
+		if (!dirtoverlay)
+			dirtoverlay = new/obj/effect/decal/cleanable/dirt(src)
+		dirtoverlay.alpha = min((dirt - 50) * 5, 255)
+
 /turf/simulated/Entered(atom/A, atom/OL)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
-		usr << "\red Movement is admin-disabled." //This is to identify lag problems
+		usr << "<span class='danger'>Movement is admin-disabled.</span>" //This is to identify lag problems
 		return
 
 	if (istype(A,/mob/living))
 		var/mob/living/M = A
 		if(M.lying)
-			..()
-			return
+			return ..()
 
 		// Ugly hack :( Should never have multiple plants in the same tile.
 		var/obj/effect/plant/plant = locate() in contents
 		if(plant) plant.trodden_on(M)
 
 		// Dirt overlays.
-		dirt++
-		var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, src)
-		if (dirt >= 50)
-			if (!dirtoverlay)
-				dirtoverlay = new/obj/effect/decal/cleanable/dirt(src)
-				dirtoverlay.alpha = 15
-			else if (dirt > 50)
-				dirtoverlay.alpha = min(dirtoverlay.alpha+5, 255)
+		update_dirt()
 
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = M
@@ -110,6 +151,8 @@
 
 	if(istype(M))
 		for(var/obj/effect/decal/cleanable/blood/B in contents)
+			if(!B.blood_DNA)
+				B.blood_DNA = list()
 			if(!B.blood_DNA[M.dna.unique_enzymes])
 				B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
 				B.virus2 = virus_copylist(M.virus2)

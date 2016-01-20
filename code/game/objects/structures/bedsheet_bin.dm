@@ -25,6 +25,16 @@ LINEN BINS
 	add_fingerprint(user)
 	return
 
+/obj/item/weapon/bedsheet/attackby(obj/item/I, mob/user)
+	if(is_sharp(I))
+		user.visible_message("<span class='notice'>\The [user] begins cutting up [src] with [I].</span>", "<span class='notice'>You begin cutting up [src] with [I].</span>")
+		if(do_after(user, 50))
+			user << "<span class='notice'>You cut [src] into pieces!</span>"
+			for(var/i in 1 to rand(2,5))
+				new /obj/item/weapon/reagent_containers/glass/rag(src.loc)
+			qdel(src)
+		return
+	..()
 
 /obj/item/weapon/bedsheet/blue
 	icon_state = "sheetblue"
@@ -73,39 +83,6 @@ LINEN BINS
 
 /obj/item/weapon/bedsheet/brown
 	icon_state = "sheetbrown"
-
-/obj/item/weapon/bedsheet/USA
-	icon_state = "sheetUSA"
-
-/obj/item/weapon/bedsheet/wiz
-	icon_state = "sheetwiz"
-
-/obj/item/weapon/bedsheet/qm
-	icon_state = "sheetqm"
-
-/obj/item/weapon/bedsheet/cmo
-	icon_state = "sheetcmo"
-
-/obj/item/weapon/bedsheet/ian
-	icon_state = "sheetian"
-
-/obj/item/weapon/bedsheet/syndie
-	icon_state = "sheetsyndie"
-
-/obj/item/weapon/bedsheet/cult
-	icon_state = "sheetcult"
-
-/obj/item/weapon/bedsheet/brown
-	icon_state = "sheetbrown"
-
-/obj/item/weapon/bedsheet/grey
-	icon_state = "sheetgrey"
-
-/obj/item/weapon/bedsheet/black
-	icon_state = "sheetblack"
-
-/obj/item/weapon/bedsheet/centcom
-	icon_state = "sheetcentcom"
 
 
 /obj/structure/bedsheetbin

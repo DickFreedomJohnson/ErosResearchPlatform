@@ -21,9 +21,7 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ethanol,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sugar,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sacid,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tungsten,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cum,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/femcum
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tungsten
 		)
 
 /obj/machinery/chemical_dispenser/ert
@@ -114,4 +112,23 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cognac,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ale,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/mead
+		)
+
+/obj/machinery/chemical_dispenser/bar_coffee
+	name = "coffee dispenser"
+	desc = "Driving crack dealers out of employment since 2280."
+	icon_state = "coffee_dispenser"
+	ui_title = "Coffee Dispenser"
+	accept_drinking = 1
+
+/obj/machinery/chemical_dispenser/bar_coffee/full
+	spawn_cartridges = list(
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/coffee,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cafe_latte,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/soy_latte,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/hot_coco,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/milk,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cream,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tea,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ice
 		)

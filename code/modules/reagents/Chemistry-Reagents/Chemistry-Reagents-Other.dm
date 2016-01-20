@@ -278,10 +278,7 @@
 	touch_met = 50
 
 /datum/reagent/space_cleaner/touch_obj(var/obj/O)
-	if(istype(O, /obj/effect/decal/cleanable))
-		qdel(O)
-	else
-		O.clean_blood()
+	O.clean_blood()
 
 /datum/reagent/space_cleaner/touch_turf(var/turf/T)
 	if(volume >= 1)
@@ -331,16 +328,7 @@
 	if(!istype(T))
 		return
 	if(volume >= 1)
-		if(T.wet >= 2)
-			return
-		T.wet = 2
-		spawn(800)
-			if(!T || !istype(T))
-				return
-			T.wet = 0
-			if(T.wet_overlay)
-				T.overlays -= T.wet_overlay
-				T.wet_overlay = null
+		T.wet_floor(2)
 
 /datum/reagent/silicate
 	name = "Silicate"
@@ -382,3 +370,23 @@
 	id = "glue"
 	description = "An extremely powerful bonding agent."
 	color = "#FFFFCC"
+
+/datum/reagent/woodpulp
+	name = "Wood Pulp"
+	id = "woodpulp"
+	description = "A mass of wood fibers."
+	reagent_state = LIQUID
+	color = "#B97A57"
+
+/datum/reagent/luminol
+	name = "Luminol"
+	id = "luminol"
+	description = "A compound that interacts with blood on the molecular level."
+	reagent_state = LIQUID
+	color = "#F2F3F4"
+
+/datum/reagent/luminol/touch_obj(var/obj/O)
+	O.reveal_blood()
+
+/datum/reagent/luminol/touch_mob(var/mob/living/L)
+	L.reveal_blood()

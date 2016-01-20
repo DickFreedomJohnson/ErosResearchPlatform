@@ -98,7 +98,7 @@
 	maxm = 3
 	badness = 2
 	activate(var/mob/living/carbon/mob,var/multiplier)
-		mob.radiation += (2*multiplier)
+		mob.apply_effect(2*multiplier, IRRADIATE, check_protection = 0)
 
 /datum/disease2/effect/deaf
 	name = "Dead Ear Syndrome"
@@ -237,7 +237,7 @@
 	activate(var/mob/living/carbon/mob,var/multiplier)
 		if(istype(mob, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = mob
-			var/obj/item/organ/brain/B = H.internal_organs_by_name["brain"]
+			var/obj/item/organ/internal/brain/B = H.internal_organs_by_name["brain"]
 			if (B && B.damage < B.min_broken_damage)
 				B.take_damage(5)
 		else

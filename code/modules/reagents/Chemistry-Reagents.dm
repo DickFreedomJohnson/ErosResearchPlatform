@@ -1,3 +1,15 @@
+
+//Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id
+/proc/initialize_chemical_reagents()
+	var/paths = typesof(/datum/reagent) - /datum/reagent
+	chemical_reagents_list = list()
+	for(var/path in paths)
+		var/datum/reagent/D = new path()
+		if(!D.name)
+			continue
+		chemical_reagents_list[D.id] = D
+
+
 /datum/reagent
 	var/name = "Reagent"
 	var/id = "reagent"
@@ -18,6 +30,10 @@
 	var/glass_name = null
 	var/glass_desc = null
 	var/glass_center_of_mass = null
+	var/cup_icon_state = null
+	var/cup_name = null
+	var/cup_desc = null
+	var/cup_center_of_mass = null
 	var/color = "#000000"
 	var/color_weight = 1
 
@@ -103,10 +119,3 @@
 
 /datum/reagent/proc/reaction_mob(var/mob/target)
 	touch_mob(target)
-
-/datum/reagent/woodpulp
-	name = "Wood Pulp"
-	id = "woodpulp"
-	description = "A mass of wood fibers."
-	reagent_state = LIQUID
-	color = "#B97A57"

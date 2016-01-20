@@ -45,10 +45,9 @@
 		if(M == user)								//If you're eating it yourself
 			if(istype(M,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = M
-				if(H.species.flags & IS_SYNTHETIC)
-					H << "<span class='danger'>You have a monitor for a head, where do you think you're going to put that?</span>"
+				if(!H.check_has_mouth())
+					user << "Where do you intend to put \the [src]? You don't have a mouth!"
 					return
-
 				var/obj/item/blocked = H.check_mouth_coverage()
 				if(blocked)
 					user << "<span class='warning'>\The [blocked] is in the way!</span>"
@@ -68,10 +67,9 @@
 		else
 			if(istype(M,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = M
-				if(H.species.flags & IS_SYNTHETIC)
-					user << "<span class='danger'>They have a monitor for a head, where do you think you're going to put that?</span>"
+				if(!H.check_has_mouth())
+					user << "Where do you intend to put \the [src]? \The [H] doesn't have a mouth!"
 					return
-
 				var/obj/item/blocked = H.check_mouth_coverage()
 				if(blocked)
 					user << "<span class='warning'>\The [blocked] is in the way!</span>"
@@ -130,31 +128,31 @@
 	// Eating with forks
 	if(istype(W,/obj/item/weapon/material/kitchen/utensil))
 		var/obj/item/weapon/material/kitchen/utensil/U = W
+		if(U.scoop_food)
+			if(!U.reagents)
+				U.create_reagents(5)
 
-		if(!U.reagents)
-			U.create_reagents(5)
+			if (U.reagents.total_volume > 0)
+				user << "\red You already have something on your [U]."
+				return
 
-		if (U.reagents.total_volume > 0)
-			user << "\red You already have something on your [U]."
+			user.visible_message( \
+				"[user] scoops up some [src] with \the [U]!", \
+				"\blue You scoop up some [src] with \the [U]!" \
+			)
+
+			src.bitecount++
+			U.overlays.Cut()
+			U.loaded = "[src]"
+			var/image/I = new(U.icon, "loadedfood")
+			I.color = src.filling_color
+			U.overlays += I
+
+			reagents.trans_to_obj(U, min(reagents.total_volume,5))
+
+			if (reagents.total_volume <= 0)
+				qdel(src)
 			return
-
-		user.visible_message( \
-			"[user] scoops up some [src] with \the [U]!", \
-			"\blue You scoop up some [src] with \the [U]!" \
-		)
-
-		src.bitecount++
-		U.overlays.Cut()
-		U.loaded = "[src]"
-		var/image/I = new(U.icon, "loadedfood")
-		I.color = src.filling_color
-		U.overlays += I
-
-		reagents.trans_to_obj(U, min(reagents.total_volume,5))
-
-		if (reagents.total_volume <= 0)
-			qdel(src)
-		return
 
 	if (is_sliceable())
 		//these are used to allow hiding edge items in food that is not on a table/tray
@@ -465,6 +463,7 @@
 	desc = "An egg!"
 	icon_state = "egg"
 	filling_color = "#FDFFD1"
+	volume = 10
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/New()
 	..()
@@ -915,7 +914,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/pie/throw_impact(atom/hit_atom)
 	..()
 	new/obj/effect/decal/cleanable/pie_smudge(src.loc)
-	src.visible_message("\red [src.name] splats.","\red You hear a splat.")
+	src.visible_message("<span class='danger'>\The [src.name] splats.</span>","<span class='danger'>You hear a splat.</span>")
 	qdel(src)
 
 /obj/item/weapon/reagent_containers/food/snacks/berryclafoutis
@@ -1540,42 +1539,6 @@
 	attack_self(mob/user as mob)
 		if(wrapped)
 			Unwrap(user)
-
-	/*
-	On_Consume(var/mob/M)
-		M << "<span class = 'warning'>Something inside of you suddently expands!</span>"
-
-		if (istype(M, /mob/living/carbon/human))
-			//Do not try to understand.
-			var/obj/item/weapon/surprise = new/obj/item/weapon(M)
-			var/mob/ook = monkey_type
-			surprise.icon = initial(ook.icon)
-			surprise.icon_state = initial(ook.icon_state)
-			surprise.name = "malformed [initial(ook.name)]"
-			surprise.desc = "Looks like \a very deformed [initial(ook.name)], a little small for its kind. It shows no signs of life."
-			surprise.transform *= 0.6
-			surprise.add_blood(M)
-			var/mob/living/carbon/human/H = M
-			var/obj/item/organ/external/E = H.get_organ("chest")
-			E.fracture()
-			for (var/obj/item/organ/I in E.internal_organs)
-				I.take_damage(rand(I.min_bruised_damage, I.min_broken_damage+1))
-
-			if (!E.hidden && prob(60)) //set it snuggly
-				E.hidden = surprise
-				E.cavity = 0
-			else 		//someone is having a bad day
-				E.createwound(CUT, 30)
-				E.embed(surprise)
-		else if (issmall(M))
-			M.visible_message("<span class='danger'>[M] suddenly tears in half!</span>")
-			var/mob/living/carbon/monkey/ook = new monkey_type(M.loc)
-			ook.name = "malformed [ook.name]"
-			ook.transform *= 0.6
-			ook.add_blood(M)
-			M.gib()
-		..()
-	*/
 
 	proc/Expand()
 		src.visible_message("<span class='notice'>\The [src] expands!</span>")

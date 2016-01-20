@@ -1,15 +1,17 @@
 //Please use mob or src (not usr) in these procs. This way they can be called in the same fashion as procs.
-/client/verb/wiki()
+/client/verb/wiki(query as text)
 	set name = "wiki"
-	set desc = "Visit the wiki."
-	set hidden = 1
-	if( config.wikiurl )
-		if(alert("This will open the wiki in your browser. Are you sure?",,"Yes","No")=="No")
-			return
-		src << link(config.wikiurl)
+	set desc = "Type what you want to know about.  This will open the wiki on your web browser."
+	set category = "OOC"
+	if(config.wikiurl)
+		if(query)
+			var/output = config.wikiurl + "/index.php?title=Special%3ASearch&profile=default&search=" + query
+			src << link(output)
+		else
+			src << link(config.wikiurl)
 	else
-		src << "\red The wiki URL is not set in the server configuration."
-	return
+		src << "<span class='warning'>The wiki URL is not set in the server configuration.</span>"
+		return
 
 /client/verb/forum()
 	set name = "forum"
@@ -20,16 +22,47 @@
 			return
 		src << link(config.forumurl)
 	else
-		src << "\red The forum URL is not set in the server configuration."
-	return
+		src << "<span class='warning'>The forum URL is not set in the server configuration.</span>"
+		return
 
-#define RULES_FILE "config/rules.html"
 /client/verb/rules()
 	set name = "Rules"
 	set desc = "Show Server Rules."
 	set hidden = 1
-	src << browse(file(RULES_FILE), "window=rules;size=480x320")
-#undef RULES_FILE
+
+	if(config.rulesurl)
+		if(alert("This will open the rules in your browser. Are you sure?",,"Yes","No")=="No")
+			return
+		src << link(config.rulesurl)
+	else
+		src << "<span class='danger'>The rules URL is not set in the server configuration.</span>"
+	return
+
+/client/verb/map()
+	set name = "Map"
+	set desc = "See the map."
+	set hidden = 1
+
+	if(config.mapurl)
+		if(alert("This will open the map in your browser. Are you sure?",,"Yes","No")=="No")
+			return
+		src << link(config.mapurl)
+	else
+		src << "<span class='danger'>The map URL is not set in the server configuration.</span>"
+	return
+
+/client/verb/github()
+	set name = "GitHub"
+	set desc = "Visit the GitHub"
+	set hidden = 1
+
+	if(config.githuburl)
+		if(alert("This will open the GitHub in your browser. Are you sure?",,"Yes","No")=="No")
+			return
+		src << link(config.githuburl)
+	else
+		src << "<span class='danger'>The GitHub URL is not set in the server configuration.</span>"
+	return
 
 /client/verb/hotkeys_help()
 	set name = "hotkeys-help"
@@ -55,8 +88,6 @@ Hotkey-Mode: (hotkey-mode must be on)
 \tr = throw
 \tt = say
 \t5 = emote
-\ty = whisper
-\t6 = subtle emote
 \tx = swap-hand
 \tz = activate held object (or y)
 \tj = toggle-aiming-mode
@@ -79,18 +110,14 @@ Any-Mode: (hotkey doesn't need to be on)
 \tCtrl+q = drop
 \tCtrl+e = equip
 \tCtrl+r = throw
-\tCtrl+t = say
-\tCtrl+y = whisper
 \tCtrl+x = swap-hand
-\tCtrl+z = activate held object
+\tCtrl+z = activate held object (or Ctrl+y)
 \tCtrl+f = cycle-intents-left
 \tCtrl+g = cycle-intents-right
 \tCtrl+1 = help-intent
 \tCtrl+2 = disarm-intent
 \tCtrl+3 = grab-intent
 \tCtrl+4 = harm-intent
-\tCtrl+5 = emote (me)
-\tCtrl+6 = subtle emote
 \tF1 = adminhelp
 \tF2 = ooc
 \tF3 = say

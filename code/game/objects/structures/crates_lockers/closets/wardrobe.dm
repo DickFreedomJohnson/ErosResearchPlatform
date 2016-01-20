@@ -1,6 +1,6 @@
 /obj/structure/closet/wardrobe
 	name = "wardrobe"
-	desc = "It's a storage unit for standard-issue Nanotrasen attire."
+	desc = "It's a storage unit for standard-issue attire."
 	icon_state = "blue"
 	icon_closed = "blue"
 
@@ -11,6 +11,18 @@
 
 /obj/structure/closet/wardrobe/red/New()
 	..()
+	if(prob(50))
+		new /obj/item/weapon/storage/backpack/security(src)
+	else
+		new /obj/item/weapon/storage/backpack/satchel_sec(src)
+	if(prob(50))
+		new /obj/item/weapon/storage/backpack/security(src)
+	else
+		new /obj/item/weapon/storage/backpack/satchel_sec(src)
+	if(prob(50))
+		new /obj/item/weapon/storage/backpack/security(src)
+	else
+		new /obj/item/weapon/storage/backpack/satchel_sec(src)
 	new /obj/item/clothing/under/rank/security(src)
 	new /obj/item/clothing/under/rank/security(src)
 	new /obj/item/clothing/under/rank/security(src)
@@ -26,11 +38,47 @@
 	new /obj/item/clothing/head/beret/sec(src)
 	new /obj/item/clothing/head/beret/sec(src)
 	new /obj/item/clothing/head/beret/sec(src)
-	new /obj/item/clothing/head/beret/sec/alt(src)
-	new /obj/item/clothing/head/beret/sec/alt(src)
-	new /obj/item/clothing/head/beret/sec/alt(src)
+	new /obj/item/clothing/head/beret/sec/corporate/officer(src)
+	new /obj/item/clothing/head/beret/sec/corporate/officer(src)
+	new /obj/item/clothing/head/beret/sec/corporate/officer(src)
+	new /obj/item/clothing/mask/bandana/red(src)
+	new /obj/item/clothing/mask/bandana/red(src)
+	new /obj/item/clothing/mask/bandana/red(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
+	new /obj/item/clothing/accessory/armband(src)
+	new /obj/item/clothing/accessory/armband(src)
+	new /obj/item/clothing/accessory/armband(src)
+	new /obj/item/clothing/accessory/holster/waist(src)
+	new /obj/item/clothing/accessory/holster/waist(src)
+	new /obj/item/clothing/accessory/holster/waist(src)
 	return
 
+
+/obj/structure/closet/wardrobe/detective
+	name = "detective wardrobe"
+	icon_state = "cabinet_closed"
+	icon_closed = "cabinet_closed"
+	icon_opened = "cabinet_open"
+
+/obj/structure/closet/wardrobe/detective/New()
+	..()
+	new /obj/item/clothing/head/det(src)
+	new /obj/item/clothing/head/det(src)
+	new /obj/item/clothing/shoes/brown(src)
+	new /obj/item/clothing/shoes/brown(src)
+	new /obj/item/clothing/under/det(src)
+	new /obj/item/clothing/under/det(src)
+	new /obj/item/clothing/head/det/grey(src)
+	new /obj/item/clothing/head/det/grey(src)
+	new /obj/item/clothing/under/det/grey(src)
+	new /obj/item/clothing/under/det/grey(src)
+	new /obj/item/clothing/under/det/black(src)
+	new /obj/item/clothing/under/det/black(src)
+	new /obj/item/clothing/under/det/corporate(src)
+	new /obj/item/clothing/under/det/corporate(src)
+	return
 
 /obj/structure/closet/wardrobe/pink
 	name = "pink wardrobe"
@@ -63,12 +111,18 @@
 	new /obj/item/clothing/head/that(src)
 	new /obj/item/clothing/head/that(src)
 	new /obj/item/clothing/head/that(src)
+	new /obj/item/clothing/head/soft/black(src)
+	new /obj/item/clothing/head/soft/black(src)
+	new /obj/item/clothing/head/soft/black(src)
+	new /obj/item/clothing/mask/bandana(src)
+	new /obj/item/clothing/mask/bandana(src)
+	new /obj/item/clothing/mask/bandana(src)
 	return
 
 
 /obj/structure/closet/wardrobe/chaplain_black
 	name = "chapel wardrobe"
-	desc = "It's a storage unit for Nanotrasen-approved religious attire."
+	desc = "It's a storage unit for approved religious attire."
 	icon_state = "black"
 	icon_closed = "black"
 
@@ -98,9 +152,15 @@
 	new /obj/item/clothing/under/color/green(src)
 	new /obj/item/clothing/under/color/green(src)
 	new /obj/item/clothing/under/color/green(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/shoes/black(src)
+	new /obj/item/clothing/shoes/green(src)
+	new /obj/item/clothing/shoes/green(src)
+	new /obj/item/clothing/shoes/green(src)
+	new /obj/item/clothing/head/soft/green(src)
+	new /obj/item/clothing/head/soft/green(src)
+	new /obj/item/clothing/head/soft/green(src)
+	new /obj/item/clothing/mask/bandana/green(src)
+	new /obj/item/clothing/mask/bandana/green(src)
+	new /obj/item/clothing/mask/bandana/green(src)
 	return
 
 /obj/structure/closet/wardrobe/xenos
@@ -115,12 +175,16 @@
 	new /obj/item/clothing/shoes/sandal(src)
 	new /obj/item/clothing/shoes/sandal(src)
 	new /obj/item/clothing/shoes/sandal(src)
+	new /obj/item/clothing/shoes/winterboots(src)
+	new /obj/item/clothing/shoes/winterboots(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat(src)
 	return
 
 
 /obj/structure/closet/wardrobe/orange
 	name = "prison wardrobe"
-	desc = "It's a storage unit for Nanotrasen-regulation prisoner attire."
+	desc = "It's a storage unit for regulation prisoner attire."
 	icon_state = "orange"
 	icon_closed = "orange"
 
@@ -145,9 +209,15 @@
 	new /obj/item/clothing/under/color/yellow(src)
 	new /obj/item/clothing/under/color/yellow(src)
 	new /obj/item/clothing/under/color/yellow(src)
-	new /obj/item/clothing/shoes/orange(src)
-	new /obj/item/clothing/shoes/orange(src)
-	new /obj/item/clothing/shoes/orange(src)
+	new /obj/item/clothing/shoes/yellow(src)
+	new /obj/item/clothing/shoes/yellow(src)
+	new /obj/item/clothing/shoes/yellow(src)
+	new /obj/item/clothing/head/soft/yellow(src)
+	new /obj/item/clothing/head/soft/yellow(src)
+	new /obj/item/clothing/head/soft/yellow(src)
+	new /obj/item/clothing/mask/bandana/gold(src)
+	new /obj/item/clothing/mask/bandana/gold(src)
+	new /obj/item/clothing/mask/bandana/gold(src)
 	return
 
 
@@ -161,18 +231,25 @@
 	new /obj/item/clothing/under/rank/atmospheric_technician(src)
 	new /obj/item/clothing/under/rank/atmospheric_technician(src)
 	new /obj/item/clothing/under/rank/atmospheric_technician(src)
+	new /obj/item/clothing/under/rank/atmospheric_technician/skirt(src)
+	new /obj/item/clothing/under/rank/atmospheric_technician/skirt(src)
+	new /obj/item/clothing/under/rank/atmospheric_technician/skirt(src)
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/head/hardhat/red(src)
 	new /obj/item/clothing/head/hardhat/red(src)
 	new /obj/item/clothing/head/hardhat/red(src)
-	new /obj/item/clothing/head/beret/eng(src)
-	new /obj/item/clothing/head/beret/eng(src)
-	new /obj/item/clothing/head/beret/eng(src)
+	new /obj/item/clothing/head/beret/engineering(src)
+	new /obj/item/clothing/head/beret/engineering(src)
+	new /obj/item/clothing/head/beret/engineering(src)
+	new /obj/item/clothing/mask/bandana/gold(src)
+	new /obj/item/clothing/mask/bandana/gold(src)
+	new /obj/item/clothing/mask/bandana/gold(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering/atmos(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering/atmos(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering/atmos(src)
 	return
-
-
 
 /obj/structure/closet/wardrobe/engineering_yellow
 	name = "engineering wardrobe"
@@ -184,15 +261,24 @@
 	new /obj/item/clothing/under/rank/engineer(src)
 	new /obj/item/clothing/under/rank/engineer(src)
 	new /obj/item/clothing/under/rank/engineer(src)
+	new /obj/item/clothing/under/rank/engineer/skirt(src)
+	new /obj/item/clothing/under/rank/engineer/skirt(src)
+	new /obj/item/clothing/under/rank/engineer/skirt(src)
 	new /obj/item/clothing/shoes/orange(src)
 	new /obj/item/clothing/shoes/orange(src)
 	new /obj/item/clothing/shoes/orange(src)
 	new /obj/item/clothing/head/hardhat(src)
 	new /obj/item/clothing/head/hardhat(src)
 	new /obj/item/clothing/head/hardhat(src)
-	new /obj/item/clothing/head/beret/eng(src)
-	new /obj/item/clothing/head/beret/eng(src)
-	new /obj/item/clothing/head/beret/eng(src)
+	new /obj/item/clothing/head/beret/engineering(src)
+	new /obj/item/clothing/head/beret/engineering(src)
+	new /obj/item/clothing/head/beret/engineering(src)
+	new /obj/item/clothing/mask/bandana/gold(src)
+	new /obj/item/clothing/mask/bandana/gold(src)
+	new /obj/item/clothing/mask/bandana/gold(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering(src)
 	return
 
 
@@ -209,6 +295,9 @@
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/shoes/white(src)
+	new /obj/item/clothing/head/soft/mime(src)
+	new /obj/item/clothing/head/soft/mime(src)
+	new /obj/item/clothing/head/soft/mime(src)
 	return
 
 
@@ -235,11 +324,32 @@
 	icon_state = "white"
 	icon_closed = "white"
 
+/obj/structure/closet/wardrobe/science_white/New()
+	..()
+	new /obj/item/clothing/under/rank/scientist(src)
+	new /obj/item/clothing/under/rank/scientist(src)
+	new /obj/item/clothing/under/rank/scientist(src)
+	new /obj/item/clothing/under/rank/scientist/skirt(src)
+	new /obj/item/clothing/under/rank/scientist/skirt(src)
+	new /obj/item/clothing/suit/storage/toggle/labcoat(src)
+	new /obj/item/clothing/suit/storage/toggle/labcoat(src)
+	new /obj/item/clothing/suit/storage/toggle/labcoat(src)
+	new /obj/item/clothing/shoes/white(src)
+	new /obj/item/clothing/shoes/white(src)
+	new /obj/item/clothing/shoes/white(src)
+	new /obj/item/clothing/shoes/slippers(src)
+	new /obj/item/clothing/shoes/slippers(src)
+	new /obj/item/clothing/shoes/slippers(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/science(src)
+	return
+
 /obj/structure/closet/wardrobe/toxins_white/New()
 	..()
 	new /obj/item/clothing/under/rank/scientist(src)
 	new /obj/item/clothing/under/rank/scientist(src)
 	new /obj/item/clothing/under/rank/scientist(src)
+	new /obj/item/clothing/under/rank/scientist/skirt(src)
+	new /obj/item/clothing/under/rank/scientist/skirt(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat(src)
@@ -279,6 +389,8 @@
 	..()
 	new /obj/item/clothing/under/rank/chemist(src)
 	new /obj/item/clothing/under/rank/chemist(src)
+	new /obj/item/clothing/under/rank/chemist/skirt(src)
+	new /obj/item/clothing/under/rank/chemist/skirt(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/chemist(src)
@@ -295,6 +407,8 @@
 	..()
 	new /obj/item/clothing/under/rank/geneticist(src)
 	new /obj/item/clothing/under/rank/geneticist(src)
+	new /obj/item/clothing/under/rank/geneticist/skirt(src)
+	new /obj/item/clothing/under/rank/geneticist/skirt(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/genetics(src)
@@ -311,6 +425,8 @@
 	..()
 	new /obj/item/clothing/under/rank/virologist(src)
 	new /obj/item/clothing/under/rank/virologist(src)
+	new /obj/item/clothing/under/rank/virologist/skirt(src)
+	new /obj/item/clothing/under/rank/virologist/skirt(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/virologist(src)
@@ -329,15 +445,24 @@
 	..()
 	new /obj/item/clothing/under/rank/medical(src)
 	new /obj/item/clothing/under/rank/medical(src)
+	new /obj/item/clothing/under/rank/medical/skirt(src)
+	new /obj/item/clothing/under/rank/medical/skirt(src)
 	new /obj/item/clothing/under/rank/medical/blue(src)
 	new /obj/item/clothing/under/rank/medical/green(src)
 	new /obj/item/clothing/under/rank/medical/purple(src)
+	new /obj/item/clothing/under/rank/medical/black(src)
+	new /obj/item/clothing/head/surgery/purple(src)
+	new /obj/item/clothing/head/surgery/blue(src)
+	new /obj/item/clothing/head/surgery/green(src)
+	new /obj/item/clothing/head/surgery/black(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat(src)
 	new /obj/item/clothing/mask/surgical(src)
 	new /obj/item/clothing/mask/surgical(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/medical(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/medical(src)
 	return
 
 
@@ -370,7 +495,6 @@
 	new /obj/item/clothing/under/color/blue(src)
 	new /obj/item/clothing/under/color/yellow(src)
 	new /obj/item/clothing/under/color/green(src)
-	new /obj/item/clothing/under/color/orange(src)
 	new /obj/item/clothing/under/color/pink(src)
 	new /obj/item/clothing/under/dress/plaid_blue(src)
 	new /obj/item/clothing/under/dress/plaid_red(src)
@@ -378,10 +502,22 @@
 	new /obj/item/clothing/shoes/blue(src)
 	new /obj/item/clothing/shoes/yellow(src)
 	new /obj/item/clothing/shoes/green(src)
-	new /obj/item/clothing/shoes/orange(src)
 	new /obj/item/clothing/shoes/purple(src)
 	new /obj/item/clothing/shoes/red(src)
 	new /obj/item/clothing/shoes/leather(src)
+	new /obj/item/clothing/under/pants/classicjeans(src)
+	new /obj/item/clothing/under/pants/mustangjeans(src)
+	new /obj/item/clothing/under/pants/blackjeans(src)
+	new /obj/item/clothing/under/pants/youngfolksjeans(src)
+	new /obj/item/clothing/under/pants/white(src)
+	new /obj/item/clothing/under/pants/red(src)
+	new /obj/item/clothing/under/pants/black(src)
+	new /obj/item/clothing/under/pants/tan(src)
+	new /obj/item/clothing/under/pants/track(src)
+	new /obj/item/clothing/under/pants/jeans(src)
+	new /obj/item/clothing/under/pants/khaki(src)
+	new /obj/item/clothing/mask/bandana/blue(src)
+	new /obj/item/clothing/mask/bandana/blue(src)
 	return
 
 /obj/structure/closet/wardrobe/tactical
@@ -397,9 +533,34 @@
 	new /obj/item/clothing/head/helmet/tactical(src)
 	new /obj/item/clothing/mask/balaclava/tactical(src)
 	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
-	new /obj/item/weapon/storage/belt/security/tactical(src)
+	if(prob(25))
+		new /obj/item/weapon/storage/belt/security/tactical/bandolier(src)
+	else
+		new /obj/item/weapon/storage/belt/security/tactical(src)
+	if(prob(10))
+		new /obj/item/clothing/mask/bandana/skull(src)
 	new /obj/item/clothing/shoes/jackboots(src)
 	new /obj/item/clothing/gloves/black(src)
+	new /obj/item/clothing/under/pants/camo(src)
+	return
+
+/obj/structure/closet/wardrobe/ert
+	name = "emergency response team equipment"
+	icon_state = "syndicate1"
+	icon_closed = "syndicate1"
+	icon_opened = "syndicate1open"
+
+/obj/structure/closet/wardrobe/ert/New()
+	..()
+	new /obj/item/clothing/under/rank/centcom(src)
+	new /obj/item/clothing/under/ert(src)
+	new /obj/item/clothing/under/syndicate/combat(src)
+	new /obj/item/device/radio/headset/ert(src)
+	new /obj/item/clothing/glasses/sunglasses(src)
+	new /obj/item/clothing/shoes/swat(src)
+	new /obj/item/clothing/gloves/swat(src)
+	new /obj/item/clothing/mask/bandana/skull(src)
+	new /obj/item/clothing/mask/bandana/skull(src)
 	return
 
 /obj/structure/closet/wardrobe/suit

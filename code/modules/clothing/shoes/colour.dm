@@ -8,6 +8,7 @@
 	heat_protection = FEET
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 
+
 /obj/item/clothing/shoes/brown
 	name = "brown shoes"
 	desc = "A pair of brown shoes."
@@ -87,11 +88,6 @@
 	name = "orange flats"
 	desc = "Radiant orange flats."
 	icon_state = "flatsorange"
-
-/obj/item/clothing/shoes/flats/glass
-	name = "glass slippers"
-	desc = "Rather elegant slippers."
-	icon_state = "flatsglass"
 
 /obj/item/clothing/shoes/orange
 	name = "orange shoes"

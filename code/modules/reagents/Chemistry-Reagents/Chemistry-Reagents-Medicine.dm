@@ -255,10 +255,14 @@
 	M.eye_blind = max(M.eye_blind - 5, 0)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/eyes/E = H.internal_organs_by_name["eyes"]
-		if(E && istype(E))
+		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
+		if(istype(E))
+			if(E.status & ORGAN_ROBOT)
+				return
 			if(E.damage > 0)
 				E.damage = max(E.damage - 5 * removed, 0)
+			if(E.damage <= 5 && E.organ_tag == O_EYES)
+				H.sdisabilities &= ~BLIND
 
 /datum/reagent/peridaxon
 	name = "Peridaxon"
@@ -272,10 +276,13 @@
 /datum/reagent/peridaxon/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-
 		for(var/obj/item/organ/I in H.internal_organs)
-			if((I.damage > 0) && (I.robotic != 2)) //Peridaxon heals only non-robotic organs
+			if(I.status & ORGAN_ROBOT)
+				continue
+			if(I.damage > 0) //Peridaxon heals only non-robotic organs
 				I.damage = max(I.damage - removed, 0)
+			if(I.damage <= 5 && I.organ_tag == O_EYES)
+				H.sdisabilities &= ~BLIND
 
 /datum/reagent/ryetalyn
 	name = "Ryetalyn"
@@ -375,19 +382,27 @@
 /datum/reagent/sterilizine
 	name = "Sterilizine"
 	id = "sterilizine"
-	description = "Sterilizes wounds in preparation for surgery."
+	description = "Sterilizes wounds in preparation for surgery and thoroughly removes blood."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	touch_met = 5
 
 /datum/reagent/sterilizine/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	M.germ_level -= min(removed*20, M.germ_level)
+	for(var/obj/item/I in M.contents)
+		I.was_bloodied = null
+	M.was_bloodied = null
 
 /datum/reagent/sterilizine/touch_obj(var/obj/O)
 	O.germ_level -= min(volume*20, O.germ_level)
+	O.was_bloodied = null
 
 /datum/reagent/sterilizine/touch_turf(var/turf/T)
 	T.germ_level -= min(volume*20, T.germ_level)
+	for(var/obj/item/I in T.contents)
+		I.was_bloodied = null
+	for(var/obj/effect/decal/cleanable/blood/B in T)
+		qdel(B)
 
 /datum/reagent/leporazine
 	name = "Leporazine"

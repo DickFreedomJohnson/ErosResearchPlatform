@@ -72,6 +72,10 @@
 	name = "red tie"
 	icon_state = "redtie"
 
+/obj/item/clothing/accessory/black
+	name = "black tie"
+	icon_state = "blacktie"
+
 /obj/item/clothing/accessory/horrible
 	name = "horrible tie"
 	desc = "A neosilk clip-on tie. This one is disgusting."
@@ -95,33 +99,31 @@
 				var/sound = "heartbeat"
 				var/sound_strength = "cannot hear"
 				var/heartbeat = 0
-				if(M.species && M.species.has_organ["heart"])
-					var/obj/item/organ/heart/heart = M.internal_organs_by_name["heart"]
-					if(heart && !heart.robotic)
-						heartbeat = 1
+				var/obj/item/organ/internal/heart/heart = M.internal_organs_by_name[O_HEART]
+				if(heart && !(heart.status & ORGAN_ROBOT))
+					heartbeat = 1
 				if(M.stat == DEAD || (M.status_flags&FAKEDEATH))
 					sound_strength = "cannot hear"
 					sound = "anything"
 				else
 					switch(body_part)
-						if("chest")
+						if(BP_TORSO)
 							sound_strength = "hear"
 							sound = "no heartbeat"
 							if(heartbeat)
-								var/obj/item/organ/heart/heart = M.internal_organs_by_name["heart"]
 								if(heart.is_bruised() || M.getOxyLoss() > 50)
 									sound = "[pick("odd noises in","weak")] heartbeat"
 								else
 									sound = "healthy heartbeat"
 
-							var/obj/item/organ/heart/L = M.internal_organs_by_name["lungs"]
+							var/obj/item/organ/internal/heart/L = M.internal_organs_by_name[O_LUNGS]
 							if(!L || M.losebreath)
 								sound += " and no respiration"
 							else if(M.is_lung_ruptured() || M.getOxyLoss() > 50)
 								sound += " and [pick("wheezing","gurgling")] sounds"
 							else
 								sound += " and healthy respiration"
-						if("eyes","mouth")
+						if(O_EYES,O_MOUTH)
 							sound_strength = "cannot hear"
 							sound = "anything"
 						else
@@ -142,7 +144,7 @@
 
 /obj/item/clothing/accessory/medal/conduct
 	name = "distinguished conduct medal"
-	desc = "A bronze medal awarded for distinguished conduct. Whilst a great honor, this is most basic award given by Nanotrasen. It is often awarded by a captain to a member of their crew."
+	desc = "A bronze medal awarded for distinguished conduct. Whilst a great honor, this is most basic award on offer. It is often awarded by a captain to a member of their crew."
 
 /obj/item/clothing/accessory/medal/bronze_heart
 	name = "bronze heart medal"
@@ -164,7 +166,7 @@
 
 /obj/item/clothing/accessory/medal/silver/security
 	name = "robust security award"
-	desc = "An award for distinguished combat and sacrifice in defence of Nanotrasen's commercial interests. Often awarded to security staff."
+	desc = "An award for distinguished combat and sacrifice in defence of corporate commercial interests. Often awarded to security staff."
 
 /obj/item/clothing/accessory/medal/gold
 	name = "gold medal"
@@ -173,79 +175,70 @@
 
 /obj/item/clothing/accessory/medal/gold/captain
 	name = "medal of captaincy"
-	desc = "A golden medal awarded exclusively to those promoted to the rank of captain. It signifies the codified responsibilities of a captain to Nanotrasen, and their undisputable authority over their crew."
+	desc = "A golden medal awarded exclusively to those promoted to the rank of captain. It signifies the codified responsibilities of a captain, and their undisputable authority over their crew."
 
 /obj/item/clothing/accessory/medal/gold/heroism
 	name = "medal of exceptional heroism"
 	desc = "An extremely rare golden medal awarded only by CentComm. To recieve such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but commanders."
 
-/obj/item/clothing/accessory/collar_blk
-	name = "Silver tag collar"
-	desc = "A collar for your little pets... or the big ones."
-	slot_flags = SLOT_TIE | SLOT_OCLOTHING
-	icon_state = "collar_blk"
-	item_state = "collar_blk"
+//Scarves
 
-/obj/item/clothing/accessory/collar_gld
-	name = "Golden tag collar"
-	desc = "A collar for your little pets... or the big ones."
-	slot_flags = SLOT_TIE | SLOT_OCLOTHING
-	icon_state = "collar_gld"
-	item_state = "collar_gld"
+/obj/item/clothing/accessory/scarf
+	name = "scarf"
+	desc = "A stylish scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks."
 
-/obj/item/clothing/accessory/collar_bell
-	name = "Bell collar"
-	desc = "A collar with a tiny bell hanging from it, purrfect furr kitties."
-	slot_flags = SLOT_TIE | SLOT_OCLOTHING
-	icon_state = "collar_bell"
-	item_state = "collar_bell"
+/obj/item/clothing/accessory/scarf/red
+	name = "red scarf"
+	icon_state = "redscarf"
 
+/obj/item/clothing/accessory/scarf/green
+	name = "green scarf"
+	icon_state = "greenscarf"
 
-/obj/item/clothing/accessory/collar_spike
-	name = "Spiked collar"
-	desc = "A collar with spikes that look as sharp as your teeth."
-	slot_flags = SLOT_TIE | SLOT_OCLOTHING
-	icon_state = "collar_spik"
-	item_state = "collar_spik"
+/obj/item/clothing/accessory/scarf/darkblue
+	name = "dark blue scarf"
+	icon_state = "darkbluescarf"
 
-/obj/item/clothing/accessory/collar_pink
-	name = "Pink collar"
-	desc = "This collar will make your pets look FA-BU-LOUS."
-	slot_flags = SLOT_TIE | SLOT_OCLOTHING
-	icon_state = "collar_pnk"
-	item_state = "collar_pnk"
+/obj/item/clothing/accessory/scarf/purple
+	name = "purple scarf"
+	icon_state = "purplescarf"
 
-/obj/item/clothing/accessory/collar_steel
-	name = "Steel collar"
-	desc = "A durable industrial collar, show your pet how much they mean to YOU!"
-	slot_flags = SLOT_TIE | SLOT_OCLOTHING
-	icon_state = "collar_steel"
-	item_state = "collar_steel"
+/obj/item/clothing/accessory/scarf/yellow
+	name = "yellow scarf"
+	icon_state = "yellowscarf"
 
-//obj/item/clothing/accessory/collar_steel/attack_hand(mob/user as mob)
-//	if (istype(wear_suit, obj/item/clothing/accessory/collar_steel))
-//		user << "<span class='notice'>You need help taking this off!</span>"
-//		return
-//	..()
+/obj/item/clothing/accessory/scarf/orange
+	name = "orange scarf"
+	icon_state = "orangescarf"
 
-/obj/item/clothing/accessory/collar_holo
-	name = "Holo-collar"
-	desc = "An expensive holo-collar for the modern day pet."
-	slot_flags = SLOT_TIE | SLOT_OCLOTHING
-	icon_state = "collar_holo"
-	item_state = "collar_holo"
+/obj/item/clothing/accessory/scarf/lightblue
+	name = "light blue scarf"
+	icon_state = "lightbluescarf"
 
-/obj/item/clothing/accessory/collar_holo/attack_self(mob/user as mob)
-	user << "<span class='notice'>[name]'s interface is projected onto your hand.</span>"
+/obj/item/clothing/accessory/scarf/white
+	name = "white scarf"
+	icon_state = "whitescarf"
 
-	var/str = copytext(reject_bad_text(input(user,"Tag text?","Set tag","")),1,MAX_NAME_LEN)
+/obj/item/clothing/accessory/scarf/black
+	name = "black scarf"
+	icon_state = "blackscarf"
 
-	if(!str || !length(str))
-		user << "<span class='notice'>[name]'s tag set to be blank.</span>"
-		name = initial(name)
-		desc = initial(desc)
-	else
-		user << "<span class='notice'>You set the [name]'s tag to '[str]'.</span>"
-		name = initial(name) + " ([str])"
-		desc = initial(desc) + " The tag says \"[str]\"."
+/obj/item/clothing/accessory/scarf/zebra
+	name = "zebra scarf"
+	icon_state = "zebrascarf"
 
+/obj/item/clothing/accessory/scarf/christmas
+	name = "christmas scarf"
+	icon_state = "christmasscarf"
+
+/obj/item/clothing/accessory/stripedredscarf
+	name = "striped red scarf"
+	icon_state = "stripedredscarf"
+
+/obj/item/clothing/accessory/stripedgreenscarf
+	name = "striped green scarf"
+	icon_state = "stripedgreenscarf"
+
+/obj/item/clothing/accessory/stripedbluescarf
+	name = "striped blue scarf"
+	icon_state = "stripedbluescarf"

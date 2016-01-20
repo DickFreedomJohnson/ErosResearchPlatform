@@ -1,7 +1,6 @@
 /datum/species/human
 	name = "Human"
 	name_plural = "Humans"
-	language = "Sol Common"
 	primitive_form = "Monkey"
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite)
 	blurb = "Humanity originated in the Sol system, and over the last five centuries has spread \
@@ -9,21 +8,32 @@
 	While the central Sol government maintains control of its far-flung people, powerful corporate \
 	interests, rampant cyber and bio-augmentation and secretive factions make life on most human \
 	worlds tumultous at best."
+	num_alternate_languages = 2
+	secondary_langs = list("Sol Common")
+	name_language = null // Use the first-name last-name generator rather than a language scrambler
 
-	flags = CAN_JOIN | HAS_SKIN_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
+	spawn_flags = CAN_JOIN
+	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
+
+/datum/species/human/get_bodytype()
+	return "Human"
 
 /datum/species/unathi
 	name = "Unathi"
 	name_plural = "Unathi"
 	icobase = 'icons/mob/human_races/r_lizard.dmi'
 	deform = 'icons/mob/human_races/r_def_lizard.dmi'
-	language = "Sinta'unathi"
 	tail = "sogtail"
 	tail_animation = 'icons/mob/species/unathi/tail.dmi'
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	primitive_form = "Stok"
 	darksight = 3
 	gluttonous = 1
+	slowdown = 0.5
+	brute_mod = 0.8
+	num_alternate_languages = 2
+	secondary_langs = list("Sinta'unathi")
+	name_language = "Sinta'unathi"
 
 	blurb = "A heavily reptillian species, Unathi (or 'Sinta as they call themselves) hail from the \
 	Uuosa-Eso system, which roughly translates to 'burning mother'.<br/><br/>Coming from a harsh, radioactive \
@@ -39,7 +49,8 @@
 	heat_level_2 = 480 //Default 400
 	heat_level_3 = 1100 //Default 1000
 
-	flags = CAN_JOIN | IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+	spawn_flags = CAN_JOIN | IS_WHITELISTED
+	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	flesh_color = "#34AF10"
 
@@ -69,13 +80,17 @@
 	name_plural = "Tajaran"
 	icobase = 'icons/mob/human_races/r_tajaran.dmi'
 	deform = 'icons/mob/human_races/r_def_tajaran.dmi'
-	language = "Siik'tajr"
 	tail = "tajtail"
 	tail_animation = 'icons/mob/species/tajaran/tail.dmi'
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	darksight = 8
-	slowdown = -1
-	brute_mod = 1.2
+	slowdown = -0.5
+	brute_mod = 1.15
+	burn_mod =  1.15
+	gluttonous = 1
+	num_alternate_languages = 2
+	secondary_langs = list("Siik'tajr")
+	name_language = "Siik'tajr"
 
 	blurb = "The Tajaran race is a species of feline-like bipeds hailing from the planet of Ahdomai in the \
 	S'randarr system. They have been brought up into the space age by the Humans and Skrell, and have been \
@@ -85,7 +100,7 @@
 
 	cold_level_1 = 200 //Default 260
 	cold_level_2 = 140 //Default 200
-	cold_level_3 = 80 //Default 120
+	cold_level_3 = 80  //Default 120
 
 	heat_level_1 = 330 //Default 360
 	heat_level_2 = 380 //Default 400
@@ -93,7 +108,8 @@
 
 	primitive_form = "Farwa"
 
-	flags = CAN_JOIN | IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+	spawn_flags = CAN_JOIN | IS_WHITELISTED
+	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	flesh_color = "#AFA59E"
 	base_color = "#333333"
@@ -115,8 +131,6 @@
 	name_plural = "Skrell"
 	icobase = 'icons/mob/human_races/r_skrell.dmi'
 	deform = 'icons/mob/human_races/r_def_skrell.dmi'
-	eyes = "skrell_eyes_s"
-	language = "Skrellian"
 	primitive_form = "Neaera"
 	unarmed_types = list(/datum/unarmed_attack/punch)
 	blurb = "An amphibious species, Skrell come from the star system known as Qerr'Vallis, which translates to 'Star of \
@@ -124,14 +138,32 @@
 	of the Qerr'Katish, a caste within their society which keeps the empire of the Skrell running smoothly. Skrell are \
 	herbivores on the whole and tend to be co-operative with the other species of the galaxy, although they rarely reveal \
 	the secrets of their empire to their allies."
+	num_alternate_languages = 2
+	secondary_langs = list("Skrellian")
+	name_language = null
 
-	flags = CAN_JOIN | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR
+	spawn_flags = CAN_JOIN | IS_WHITELISTED
+	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR
 
 	flesh_color = "#8CD7A3"
 	blood_color = "#1D2CBF"
 	base_color = "#006666"
 
 	reagent_tag = IS_SKRELL
+
+	has_limbs = list(
+		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
+		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/skrell),
+		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
+		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
+		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),
+		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right),
+		BP_L_HAND = list("path" = /obj/item/organ/external/hand),
+		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right),
+		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
+		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
+		)
 
 /datum/species/diona
 	name = "Diona"
@@ -145,9 +177,9 @@
 	rarity_value = 3
 	hud_type = /datum/hud_data/diona
 	siemens_coefficient = 0.3
-	eyes = "blank_eyes"
 	show_ssd = "completely quiescent"
-
+	num_alternate_languages = 1
+	name_language = "Rootspeak"
 
 	blurb = "Commonly referred to (erroneously) as 'plant people', the Dionaea are a strange space-dwelling collective \
 	species hailing from Epsilon Ursae Minoris. Each 'diona' is a cluster of numerous cat-sized organisms called nymphs; \
@@ -158,26 +190,26 @@
 	water and other radiation."
 
 	has_organ = list(
-		"nutrient channel" =   /obj/item/organ/diona/nutrients,
-		"neural strata" =      /obj/item/organ/diona/strata,
-		"response node" =      /obj/item/organ/diona/node,
-		"gas bladder" =        /obj/item/organ/diona/bladder,
-		"polyp segment" =      /obj/item/organ/diona/polyp,
-		"anchoring ligament" = /obj/item/organ/diona/ligament
+		O_NUTRIENT = /obj/item/organ/internal/diona/nutrients,
+		O_STRATA =   /obj/item/organ/internal/diona/strata,
+		O_RESPONSE = /obj/item/organ/internal/diona/node,
+		O_GBLADDER = /obj/item/organ/internal/diona/bladder,
+		O_POLYP =    /obj/item/organ/internal/diona/polyp,
+		O_ANCHOR =   /obj/item/organ/internal/diona/ligament
 		)
 
 	has_limbs = list(
-		"chest" =  list("path" = /obj/item/organ/external/diona/chest),
-		"groin" =  list("path" = /obj/item/organ/external/diona/groin),
-		"head" =   list("path" = /obj/item/organ/external/diona/head),
-		"l_arm" =  list("path" = /obj/item/organ/external/diona/arm),
-		"r_arm" =  list("path" = /obj/item/organ/external/diona/arm/right),
-		"l_leg" =  list("path" = /obj/item/organ/external/diona/leg),
-		"r_leg" =  list("path" = /obj/item/organ/external/diona/leg/right),
-		"l_hand" = list("path" = /obj/item/organ/external/diona/hand),
-		"r_hand" = list("path" = /obj/item/organ/external/diona/hand/right),
-		"l_foot" = list("path" = /obj/item/organ/external/diona/foot),
-		"r_foot" = list("path" = /obj/item/organ/external/diona/foot/right)
+		BP_TORSO =  list("path" = /obj/item/organ/external/diona/chest),
+		BP_GROIN =  list("path" = /obj/item/organ/external/diona/groin),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/no_eyes/diona),
+		BP_L_ARM =  list("path" = /obj/item/organ/external/diona/arm),
+		BP_R_ARM =  list("path" = /obj/item/organ/external/diona/arm/right),
+		BP_L_LEG =  list("path" = /obj/item/organ/external/diona/leg),
+		BP_R_LEG =  list("path" = /obj/item/organ/external/diona/leg/right),
+		BP_L_HAND = list("path" = /obj/item/organ/external/diona/hand),
+		BP_R_HAND = list("path" = /obj/item/organ/external/diona/hand/right),
+		BP_L_FOOT = list("path" = /obj/item/organ/external/diona/foot),
+		BP_R_FOOT = list("path" = /obj/item/organ/external/diona/foot/right)
 		)
 
 	inherent_verbs = list(
@@ -197,7 +229,8 @@
 
 	body_temperature = T0C + 15		//make the plant people have a bit lower body temperature, why not
 
-	flags = CAN_JOIN | NO_BREATHE | NO_SCAN | IS_PLANT | NO_BLOOD | NO_PAIN | NO_SLIP | REGENERATES_LIMBS | HAS_UNDERWEAR
+	flags = NO_SCAN | IS_PLANT | NO_PAIN | NO_SLIP | NO_MINOR_CUT
+	spawn_flags = CAN_JOIN | IS_WHITELISTED
 
 	blood_color = "#004400"
 	flesh_color = "#907E4A"
@@ -221,48 +254,20 @@
 	return ..()
 
 /datum/species/diona/handle_death(var/mob/living/carbon/human/H)
-	H.diona_split_into_nymphs(0)
 
-/datum/species/machine
-	name = "Machine"
-	name_plural = "machines"
+	var/mob/living/carbon/alien/diona/S = new(get_turf(H))
 
-	icobase = 'icons/mob/human_races/r_machine.dmi'
-	deform = 'icons/mob/human_races/r_machine.dmi'
-	language = "Tradeband"
-	unarmed_types = list(/datum/unarmed_attack/punch)
-	rarity_value = 2
+	if(H.mind)
+		H.mind.transfer_to(S)
 
-	eyes = "blank_eyes"
-	brute_mod = 0.5
-	burn_mod = 1
-	show_ssd = "flashing a 'system offline' glyph on their monitor"
+	if(H.isSynthetic())
+		H.visible_message("<span class='danger'>\The [H] collapses into parts, revealing a solitary diona nymph at the core.</span>")
+		return
 
-	warning_low_pressure = 50
-	hazard_low_pressure = 0
+	for(var/mob/living/carbon/alien/diona/D in H.contents)
+		if(D.client)
+			D.forceMove(get_turf(H))
+		else
+			qdel(D)
 
-	cold_level_1 = 50
-	cold_level_2 = -1
-	cold_level_3 = -1
-
-	heat_level_1 = 500		//gives them about 25 seconds in space before taking damage
-	heat_level_2 = 1000
-	heat_level_3 = 2000
-
-	synth_temp_gain = 10 //this should cause IPCs to stabilize at ~80 C in a 20 C environment.
-
-	flags = CAN_JOIN | NO_BREATHE | NO_SCAN | NO_BLOOD | NO_PAIN | IS_SYNTHETIC | HAS_UNDERWEAR
-
-	blood_color = "#1F181F"
-	flesh_color = "#575757"
-
-	has_organ = list() //TODO: Positronic brain.
-
-/datum/species/machine/equip_survival_gear(var/mob/living/carbon/human/H)
-
-/datum/species/machine/handle_death(var/mob/living/carbon/human/H)
-	..()
-	if(flags & IS_SYNTHETIC)
-		H.h_style = ""
-		spawn(100)
-			if(H) H.update_hair()
+	H.visible_message("<span class='danger'>\The [H] splits apart with a wet slithering noise!</span>")

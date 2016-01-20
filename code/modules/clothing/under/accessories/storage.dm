@@ -3,6 +3,8 @@
 	desc = "Used to hold things when you don't have enough hands."
 	icon_state = "webbing"
 	slot = "utility"
+	show_messages = 1
+
 	var/slots = 3
 	var/obj/item/weapon/storage/internal/hold
 	w_class = 3.0
@@ -32,10 +34,6 @@
 
 /obj/item/clothing/accessory/storage/emp_act(severity)
 	hold.emp_act(severity)
-	..()
-
-/obj/item/clothing/accessory/storage/hear_talk(mob/M, var/msg, verb, datum/language/speaking)
-	hold.hear_talk(M, msg, verb, speaking)
 	..()
 
 /obj/item/clothing/accessory/storage/attack_self(mob/user as mob)

@@ -14,6 +14,10 @@
 /obj/item/weapon/spellbook/attack_self(mob/user = usr)
 	if(!user)
 		return
+	if((user.mind && !wizards.is_antagonist(user.mind)))
+		usr << "<span class='warning'>You stare at the book but cannot make sense of the markings!</span>"
+		return
+
 	user.set_machine(src)
 	var/dat
 	if(temp)
@@ -59,9 +63,6 @@
 			<B>Artefacts:</B><BR>
 			Powerful items imbued with eldritch magics. Summoning one will count towards your maximum number of spells.<BR>
 			It is recommended that only experienced wizards attempt to wield such artefacts.<BR>
-			<HR>
-			<A href='byond://?src=\ref[src];spell_choice=staffchange'>Staff of Change</A><BR>
-			<I>An artefact that spits bolts of coruscating energy which cause the target's very form to reshape itself.</I><BR>
 			<HR>
 			<A href='byond://?src=\ref[src];spell_choice=mentalfocus'>Mental Focus</A><BR>
 			<I>An artefact that channels the will of the user into destructive bolts of force.</I><BR>
@@ -205,11 +206,6 @@
 							feedback_add_details("wizard_spell_learned","HH") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
 							H.add_spell(new/spell/targeted/equip_item/horsemask)
 							temp = "You have learned curse of the horseman."
-						if("staffchange")
-							feedback_add_details("wizard_spell_learned","ST") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							new /obj/item/weapon/gun/energy/staff(get_turf(H))
-							temp = "You have purchased a staff of change."
-							max_uses--
 						if("mentalfocus")
 							feedback_add_details("wizard_spell_learned","MF") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
 							new /obj/item/weapon/gun/energy/staff/focus(get_turf(H))
@@ -242,7 +238,7 @@
 								H.sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
 								H.see_in_dark = 8
 								H.see_invisible = SEE_INVISIBLE_LEVEL_TWO
-								H << "span class='notice'>The walls suddenly disappear.</span>"
+								H << "<span class='notice'>The walls suddenly disappear.</span>"
 							temp = "You have purchased a scrying orb, and gained x-ray vision."
 							max_uses--
 		else

@@ -119,14 +119,6 @@ macro "borghotkeymode"
 		name = "A+REP"
 		command = ".west"
 		is-disabled = false
- 	elem 
-		name = "CTRL+5"
-		command = ".me"
-		is-disabled = false
-	elem 
-		name = "CTRL+6"
-		command = "Subtle"
-		is-disabled = false		
 	elem 
 		name = "CTRL+A+REP"
 		command = ".west"
@@ -213,7 +205,7 @@ macro "borghotkeymode"
 		is-disabled = false
 	elem 
 		name = "CTRL+Y"
-		command = "Whisper"
+		command = "Activate-Held-Object"
 		is-disabled = false
 	elem 
 		name = "Z"
@@ -583,18 +575,6 @@ macro "hotkeymode"
 		name = "5"
 		command = ".me"
 		is-disabled = false
- 	elem 
-		name = "CTRL+5"
-		command = ".me"
-		is-disabled = false
-	elem 
-		name = "6"
-		command = "Subtle"
-		is-disabled = false
-	elem 
-		name = "CTRL+6"
-		command = "Subtle"
-		is-disabled = false		
 	elem 
 		name = "A+REP"
 		command = ".west"
@@ -697,11 +677,11 @@ macro "hotkeymode"
 		is-disabled = false
 	elem 
 		name = "Y"
-		command = "Whisper"
+		command = "Activate-Held-Object"
 		is-disabled = false
 	elem 
 		name = "CTRL+Y"
-		command = "Whisper"
+		command = "Activate-Held-Object"
 		is-disabled = false
 	elem 
 		name = "Z"
@@ -1016,8 +996,17 @@ menu "menu"
 		is-disabled = false
 		saved-params = "is-checked"
 	elem "icon64"
-		name = "&64x64 (2x)"
+		name = "&64x64"
 		command = ".winset \"mapwindow.map.icon-size=64\""
+		category = "&Icons"
+		is-checked = false
+		can-check = true
+		group = "size"
+		is-disabled = false
+		saved-params = "is-checked"
+	elem "icon48"
+		name = "&48x48"
+		command = ".winset \"mapwindow.map.icon-size=48\""
 		category = "&Icons"
 		is-checked = false
 		can-check = true
@@ -1995,7 +1984,7 @@ window "rpane"
 		on-close = ""
 	elem "rpanewindow"
 		type = CHILD
-		pos = 0,0
+		pos = 0,-3
 		size = 640x499
 		anchor1 = 0,0
 		anchor2 = 100,100
@@ -2019,9 +2008,65 @@ window "rpane"
 		splitter = 50
 		show-splitter = true
 		lock = none
+	elem "github"
+		type = BUTTON
+		pos = 392,0
+		size = 60x16
+		anchor1 = none
+		anchor2 = none
+		font-family = ""
+		font-size = 0
+		font-style = ""
+		text-color = #000000
+		background-color = none
+		is-visible = true
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = "is-checked"
+		on-size = ""
+		text = "GitHub"
+		image = ""
+		command = "github"
+		is-flat = false
+		stretch = false
+		is-checked = false
+		group = "rpanemode"
+		button-type = pushbutton
+	elem "mapb"
+		type = BUTTON
+		pos = 332,0
+		size = 60x16
+		anchor1 = none
+		anchor2 = none
+		font-family = ""
+		font-size = 0
+		font-style = ""
+		text-color = #000000
+		background-color = none
+		is-visible = true
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = "is-checked"
+		on-size = ""
+		text = "Map"
+		image = ""
+		command = "map"
+		is-flat = false
+		stretch = false
+		is-checked = false
+		group = "rpanemode"
+		button-type = pushbutton
 	elem "rulesb"
 		type = BUTTON
-		pos = 278,0
+		pos = 272,0
 		size = 60x16
 		anchor1 = none
 		anchor2 = none
@@ -2049,7 +2094,7 @@ window "rpane"
 		button-type = pushbutton
 	elem "changelog"
 		type = BUTTON
-		pos = 341,0
+		pos = 488,0
 		size = 67x16
 		anchor1 = none
 		anchor2 = none
@@ -2077,7 +2122,7 @@ window "rpane"
 		button-type = pushbutton
 	elem "forumb"
 		type = BUTTON
-		pos = 215,0
+		pos = 212,0
 		size = 60x16
 		anchor1 = none
 		anchor2 = none
@@ -2161,7 +2206,7 @@ window "rpane"
 		button-type = pushbox
 	elem "browseb"
 		type = BUTTON
-		pos = 464,0
+		pos = 560,0
 		size = 60x16
 		anchor1 = none
 		anchor2 = none

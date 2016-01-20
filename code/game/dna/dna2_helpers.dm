@@ -148,12 +148,13 @@
 		H.b_eyes   = dna.GetUIValueRange(DNA_UI_EYES_B,    255)
 		H.update_eyes()
 
-//		H.s_tone   = 35 - dna.GetUIValueRange(DNA_UI_SKIN_TONE, 220) // Value can be negative.
+		H.s_tone   = 35 - dna.GetUIValueRange(DNA_UI_SKIN_TONE, 220) // Value can be negative.
 
-		if (dna.GetUIState(DNA_UI_GENDER))
-			H.gender = FEMALE
-		else
-			H.gender = MALE
+		if(H.gender != NEUTER)
+			if (dna.GetUIState(DNA_UI_GENDER))
+				H.gender = FEMALE
+			else
+				H.gender = MALE
 
 		//Hair
 		var/hair = dna.GetUIValueRange(DNA_UI_HAIR_STYLE,hair_styles_list.len)

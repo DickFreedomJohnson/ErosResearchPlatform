@@ -48,18 +48,3 @@
 	name = "Hacking Guide"
 	desc = "This poster details the internal workings of the common Nanotrasen airlock."
 	icon_state="poster10"
-
-/datum/poster/goldstar
-	name = "Award of Sufficiency"
-	desc = "The mere sight of it makes you very proud."
-	icon_state = "goldstar"
-
-/datum/poster/beach
-	name = "Award of Sufficiency"
-	desc = "A calming beach, could use more babes."
-	icon_state = "beach"
-
-/datum/poster/b_girl
-	name = "Award of Sufficiency"
-	desc = "There is a bodacious babe standing in front of a scenic beach landscape."
-	icon_state = "b_girl"

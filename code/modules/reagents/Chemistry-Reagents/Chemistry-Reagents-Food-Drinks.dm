@@ -32,16 +32,23 @@
 		return
 	..()
 
-/datum/reagent/nutriment/egg // Also bad for skrell. Not a child of protein because it might mess up, not sure.
+/datum/reagent/nutriment/protein/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien && alien == IS_SKRELL)
+		M.adjustToxLoss(2 * removed)
+		return
+	..()
+
+/datum/reagent/nutriment/protein/egg // Also bad for skrell.
 	name = "egg yolk"
 	id = "egg"
 	color = "#FFFFAA"
 
-/datum/reagent/nutriment/egg/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien && alien == IS_SKRELL)
-		M.adjustToxLoss(0.5 * removed)
-		return
-	..()
+/datum/reagent/nutriment/honey
+	name = "Honey"
+	id = "honey"
+	description = "A golden yellow syrup, loaded with sugary sweetness."
+	nutriment_factor = 10
+	color = "#FFFF00"
 
 /datum/reagent/nutriment/flour
 	name = "flour"
@@ -116,24 +123,7 @@
 		qdel(hotspot)
 
 	if(volume >= 3)
-		if(T.wet >= 1)
-			return
-		T.wet = 1
-		if(T.wet_overlay)
-			T.overlays -= T.wet_overlay
-			T.wet_overlay = null
-		T.wet_overlay = image('icons/effects/water.dmi',T,"wet_floor")
-		T.overlays += T.wet_overlay
-
-		spawn(800) // This is terrible and needs to be changed when possible.
-			if(!T || !istype(T))
-				return
-			if(T.wet >= 2)
-				return
-			T.wet = 0
-			if(T.wet_overlay)
-				T.overlays -= T.wet_overlay
-				T.wet_overlay = null
+		T.wet_floor()
 
 /datum/reagent/nutriment/virus_food
 	name = "Virus Food"
@@ -219,10 +209,6 @@
 	description = "This is what makes chilis hot."
 	reagent_state = LIQUID
 	color = "#B31008"
-	var/agony_dose = 5
-	var/agony_amount = 2
-	var/discomfort_message = "<span class='danger'>Your insides feel uncomfortably hot!</span>"
-	var/slime_temp_adj = 10
 
 /datum/reagent/capsaicin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -234,81 +220,95 @@
 		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.species && (H.species.flags & (NO_PAIN | IS_SYNTHETIC)))
+		if(!H.can_feel_pain())
 			return
-	if(dose < agony_dose)
-		if(prob(5) || dose == metabolism) //dose == metabolism is a very hacky way of forcing the message the first time this procs
-			M << discomfort_message
-	else
-		M.apply_effect(agony_amount, AGONY, 0)
+
+	if(dose < 5 && (dose == metabolism || prob(5)))
+		M << "<span class='danger'>Your insides feel uncomfortably hot!</span>"
+	if(dose >= 5)
+		M.apply_effect(2, AGONY, 0)
 		if(prob(5))
-			M.custom_emote(2, "[pick("dry heaves!","coughs!","splutters!")]")
-			M << "<span class='danger'>You feel like your insides are burning!</span>"
+			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", "<span class='danger'>You feel like your insides are burning!</span>")
 	if(istype(M, /mob/living/carbon/slime))
-		M.bodytemperature += rand(0, 15) + slime_temp_adj
+		M.bodytemperature += rand(10, 25)
 	holder.remove_reagent("frostoil", 5)
 
-/datum/reagent/capsaicin/condensed
+/datum/reagent/condensedcapsaicin
 	name = "Condensed Capsaicin"
 	id = "condensedcapsaicin"
 	description = "A chemical agent used for self-defense and in police work."
 	reagent_state = LIQUID
 	touch_met = 50 // Get rid of it quickly
 	color = "#B31008"
-	agony_dose = 0.5
-	agony_amount = 4
-	discomfort_message = "<span class='danger'>You feel like your insides are burning!</span>"
-	slime_temp_adj = 15
 
-/datum/reagent/capsaicin/condensed/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/condensedcapsaicin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_DIONA)
+		return
+	M.adjustToxLoss(0.5 * removed)
+
+/datum/reagent/condensedcapsaicin/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	var/eyes_covered = 0
 	var/mouth_covered = 0
-	var/no_pain = 0
-	var/obj/item/eye_protection = null
-	var/obj/item/face_protection = null
-
-	var/list/protection
+	var/obj/item/safe_thing = null
 	if(istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		protection = list(H.head, H.glasses, H.wear_mask)
-		if(H.species && (H.species.flags & NO_PAIN))
-			no_pain = 1 //TODO: living-level can_feel_pain() proc
-	else
-		protection = list(M.wear_mask)
-
-	for(var/obj/item/I in protection)
-		if(I)
-			if(I.flags & MASKCOVERSEYES)
+		if(!H.can_feel_pain())
+			return
+		if(H.head)
+			if(H.head.body_parts_covered & EYES)
 				eyes_covered = 1
-				eye_protection = I.name
-			if(I.flags & MASKCOVERSMOUTH)
+				safe_thing = H.head
+			if((H.head.body_parts_covered & FACE) && !(H.head.item_flags & FLEXIBLEMATERIAL))
 				mouth_covered = 1
-				face_protection = I.name
-
-	var/message = null
-	if(eyes_covered)
-		if(!mouth_covered)
-			message = "<span class='warning'>Your [eye_protection] protects your eyes from the pepperspray!</span>"
-	else
-		message = "<span class='warning'>The pepperspray gets in your eyes!</span>"
-		if(mouth_covered)
-			M.eye_blurry = max(M.eye_blurry, 15)
-			M.eye_blind = max(M.eye_blind, 5)
-		else
-			M.eye_blurry = max(M.eye_blurry, 25)
-			M.eye_blind = max(M.eye_blind, 10)
-
-	if(mouth_covered)
-		if(!message)
-			message = "<span class='warning'>Your [face_protection] protects you from the pepperspray!</span>"
-	else if(!no_pain)
-		message = "<span class='danger'>Your face and throat burn!</span>"
-		if(prob(25))
-			M.custom_emote(2, "[pick("coughs!","coughs hysterically!","splutters!")]")
+				safe_thing = H.head
+		if(H.wear_mask)
+			if(!eyes_covered && H.wear_mask.body_parts_covered & EYES)
+				eyes_covered = 1
+				safe_thing = H.wear_mask
+			if(!mouth_covered && (H.wear_mask.body_parts_covered & FACE) && !(H.wear_mask.item_flags & FLEXIBLEMATERIAL))
+				mouth_covered = 1
+				safe_thing = H.wear_mask
+		if(H.glasses && H.glasses.body_parts_covered & EYES)
+			if(!eyes_covered)
+				eyes_covered = 1
+				if(!safe_thing)
+					safe_thing = H.glasses
+	if(eyes_covered && mouth_covered)
+		M << "<span class='warning'>Your [safe_thing] protects you from the pepperspray!</span>"
+		return
+	else if(eyes_covered)
+		M << "<span class='warning'>Your [safe_thing] protect you from most of the pepperspray!</span>"
+		M.eye_blurry = max(M.eye_blurry, 15)
+		M.eye_blind = max(M.eye_blind, 5)
 		M.Stun(5)
 		M.Weaken(5)
+		return
+	else if (mouth_covered) // Mouth cover is better than eye cover
+		M << "<span class='warning'>Your [safe_thing] protects your face from the pepperspray!</span>"
+		M.eye_blurry = max(M.eye_blurry, 5)
+		return
+	else // Oh dear :D
+		M << "<span class='warning'>You're sprayed directly in the eyes with pepperspray!</span>"
+		M.eye_blurry = max(M.eye_blurry, 25)
+		M.eye_blind = max(M.eye_blind, 10)
+		M.Stun(5)
+		M.Weaken(5)
+		return
 
-	M << message
+/datum/reagent/condensedcapsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(!H.can_feel_pain())
+			return
+	if(dose == metabolism)
+		M << "<span class='danger'>You feel like your insides are burning!</span>"
+	else
+		M.apply_effect(4, AGONY, 0)
+		if(prob(5))
+			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", "<span class='danger'>You feel like your insides are burning!</span>")
+	if(istype(M, /mob/living/carbon/slime))
+		M.bodytemperature += rand(15, 30)
+	holder.remove_reagent("frostoil", 5)
 
 /* Drinks */
 
@@ -486,6 +486,10 @@
 	glass_name = "glass of milk"
 	glass_desc = "White and nutritious goodness!"
 
+	cup_icon_state = "cup_cream"
+	cup_name = "cup of milk"
+	cup_desc = "White and nutritious goodness!"
+
 /datum/reagent/drink/milk/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	if(alien == IS_DIONA)
@@ -503,6 +507,10 @@
 	glass_name = "glass of cream"
 	glass_desc = "Ewwww..."
 
+	cup_icon_state = "cup_cream"
+	cup_name = "cup of cream"
+	cup_desc = "Ewwww..."
+
 /datum/reagent/drink/milk/soymilk
 	name = "Soy Milk"
 	id = "soymilk"
@@ -512,6 +520,10 @@
 	glass_icon_state = "glass_white"
 	glass_name = "glass of soy milk"
 	glass_desc = "White and nutritious soy goodness!"
+
+	cup_icon_state = "cup_cream"
+	cup_name = "cup of milk"
+	cup_desc = "White and nutritious goodness!"
 
 /datum/reagent/drink/tea
 	name = "Tea"
@@ -557,19 +569,36 @@
 	overdose = 45
 
 	glass_icon_state = "hot_coffee"
-	glass_name = "cup of coffee"
-	glass_desc = "Don't drop it, or you'll send scalding liquid and glass shards everywhere."
+	glass_name = "mug of coffee"
+	glass_desc = "Don't drop it, or you'll send scalding liquid and porcelain shards everywhere."
+
+	cup_icon_state = "cup_coffee"
+	cup_name = "cup of coffee"
+	cup_desc = "Don't drop it, or you'll send scalding liquid and porcelain shards everywhere."
 
 /datum/reagent/drink/coffee/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
 	if(alien == IS_DIONA)
 		return
+	..()
+	if(alien == IS_TAJARA)
+		M.adjustToxLoss(0.5 * removed)
+		M.make_jittery(4) //extra sensitive to caffine
 	if(adj_temp > 0)
 		holder.remove_reagent("frostoil", 10 * removed)
+
+/datum/reagent/nutriment/coffee/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(alien == IS_TAJARA)
+		M.adjustToxLoss(2 * removed)
+		M.make_jittery(4)
+		return
 
 /datum/reagent/drink/coffee/overdose(var/mob/living/carbon/M, var/alien)
 	if(alien == IS_DIONA)
 		return
+	if(alien == IS_TAJARA)
+		M.adjustToxLoss(4 * REM)
+		M.apply_effect(3, STUTTER)
 	M.make_jittery(5)
 
 /datum/reagent/drink/coffee/icecoffee
@@ -592,8 +621,12 @@
 
 	glass_icon_state = "soy_latte"
 	glass_name = "glass of soy latte"
-	glass_desc = "A nice and refrshing beverage while you are reading."
+	glass_desc = "A nice and refreshing beverage while you are reading."
 	glass_center_of_mass = list("x"=15, "y"=9)
+
+	cup_icon_state = "cup_latte"
+	cup_name = "cup of soy latte"
+	cup_desc = "A nice and refreshing beverage while you are reading."
 
 /datum/reagent/drink/coffee/soy_latte/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -611,6 +644,10 @@
 	glass_desc = "A nice, strong and refreshing beverage while you are reading."
 	glass_center_of_mass = list("x"=15, "y"=9)
 
+	cup_icon_state = "cup_latte"
+	cup_name = "cup of cafe latte"
+	cup_desc = "A nice and refreshing beverage while you are reading."
+
 /datum/reagent/drink/coffee/cafe_latte/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	M.heal_organ_damage(0.5 * removed, 0)
@@ -627,6 +664,10 @@
 	glass_icon_state = "chocolateglass"
 	glass_name = "glass of hot chocolate"
 	glass_desc = "Made with love! And cocoa beans."
+
+	cup_icon_state = "cup_coco"
+	cup_name = "cup of hot chocolate"
+	cup_desc = "Made with love! And cocoa beans."
 
 /datum/reagent/drink/sodawater
 	name = "Soda Water"
@@ -913,9 +954,6 @@
 	glass_desc = "Wormwood, anise, oh my."
 	glass_center_of_mass = list("x"=16, "y"=5)
 
-/datum/reagent/ethanol/absinthe/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 /datum/reagent/ethanol/ale
 	name = "Ale"
 	id = "ale"
@@ -927,10 +965,6 @@
 	glass_name = "glass of ale"
 	glass_desc = "A freezing pint of delicious ale"
 	glass_center_of_mass = list("x"=16, "y"=8)
-
-/datum/reagent/ethanol/ale/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/beer
 	name = "Beer"
@@ -944,10 +978,6 @@
 	glass_name = "glass of beer"
 	glass_desc = "A freezing pint of beer"
 	glass_center_of_mass = list("x"=16, "y"=8)
-
-/datum/reagent/beer/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/beer/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -967,10 +997,6 @@
 	glass_desc = "Exotically blue, fruity drink, distilled from oranges."
 	glass_center_of_mass = list("x"=16, "y"=5)
 
-/datum/reagent/ethanol/bluecuraco/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/cognac
 	name = "Cognac"
 	id = "cognac"
@@ -983,10 +1009,6 @@
 	glass_desc = "Damn, you feel like some kind of French aristocrat just by holding this."
 	glass_center_of_mass = list("x"=16, "y"=6)
 
-/datum/reagent/ethanol/cognac/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/deadrum
 	name = "Deadrum"
 	id = "deadrum"
@@ -998,9 +1020,6 @@
 	glass_name = "glass of rum"
 	glass_desc = "Now you want to Pray for a pirate suit, don't you?"
 	glass_center_of_mass = list("x"=16, "y"=12)
-
-/datum/reagent/ethanol/deadrum/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
 
 /datum/reagent/ethanol/deadrum/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -1020,11 +1039,39 @@
 	glass_desc = "A crystal clear glass of Griffeater gin."
 	glass_center_of_mass = list("x"=16, "y"=12)
 
-/datum/reagent/ethanol/gin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
+//Base type for alchoholic drinks containing coffee
+/datum/reagent/ethanol/coffee
+	overdose = 45
 
+/datum/reagent/ethanol/coffee/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_DIONA)
+		return
+	..()
+	M.dizziness = max(0, M.dizziness - 5)
+	M.drowsyness = max(0, M.drowsyness - 3)
+	M.sleeping = max(0, M.sleeping - 2)
+	if(M.bodytemperature > 310)
+		M.bodytemperature = max(310, M.bodytemperature - (5 * TEMPERATURE_DAMAGE_COEFFICIENT))
+	if(alien == IS_TAJARA)
+		M.adjustToxLoss(0.5 * removed)
+		M.make_jittery(4) //extra sensitive to caffine
 
-/datum/reagent/ethanol/kahlua
+/datum/reagent/ethanol/coffee/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_TAJARA)
+		M.adjustToxLoss(2 * removed)
+		M.make_jittery(4)
+		return
+	..()
+
+/datum/reagent/ethanol/coffee/overdose(var/mob/living/carbon/M, var/alien)
+	if(alien == IS_DIONA)
+		return
+	if(alien == IS_TAJARA)
+		M.adjustToxLoss(4 * REM)
+		M.apply_effect(3, STUTTER)
+	M.make_jittery(5)
+
+/datum/reagent/ethanol/coffee/kahlua
 	name = "Kahlua"
 	id = "kahlua"
 	description = "A widely known, Mexican coffee-flavoured liqueur. In production since 1936!"
@@ -1035,21 +1082,6 @@
 	glass_name = "glass of RR coffee liquor"
 	glass_desc = "DAMN, THIS THING LOOKS ROBUST"
 	glass_center_of_mass = list("x"=15, "y"=7)
-
-/datum/reagent/ethanol/kahlue/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
-/datum/reagent/ethanol/kahlua/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
-	if(alien == IS_DIONA)
-		return
-	M.dizziness = max(0, M.dizziness - 5)
-	M.drowsyness = max(0, M.drowsyness - 3)
-	M.sleeping = max(0, M.sleeping - 2)
-	if(M.bodytemperature > 310)
-		M.bodytemperature = max(310, M.bodytemperature - (5 * TEMPERATURE_DAMAGE_COEFFICIENT))
-	M.make_jittery(5)
 
 /datum/reagent/ethanol/melonliquor
 	name = "Melon Liquor"
@@ -1063,10 +1095,6 @@
 	glass_desc = "A relatively sweet and fruity 46 proof liquor."
 	glass_center_of_mass = list("x"=16, "y"=5)
 
-/datum/reagent/ethanol/melonliquor/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/rum
 	name = "Rum"
 	id = "rum"
@@ -1078,10 +1106,6 @@
 	glass_name = "glass of rum"
 	glass_desc = "Now you want to Pray for a pirate suit, don't you?"
 	glass_center_of_mass = list("x"=16, "y"=12)
-
-/datum/reagent/ethanol/rum/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/sake
 	name = "Sake"
@@ -1095,10 +1119,6 @@
 	glass_desc = "A glass of sake."
 	glass_center_of_mass = list("x"=16, "y"=12)
 
-/datum/reagent/ethanol/sake/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/tequilla
 	name = "Tequila"
 	id = "tequilla"
@@ -1111,10 +1131,6 @@
 	glass_desc = "Now all that's missing is the weird colored shades!"
 	glass_center_of_mass = list("x"=16, "y"=12)
 
-/datum/reagent/ethanol/tequila/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/thirteenloko
 	name = "Thirteen Loko"
 	id = "thirteenloko"
@@ -1126,10 +1142,6 @@
 	glass_icon_state = "thirteen_loko_glass"
 	glass_name = "glass of Thirteen Loko"
 	glass_desc = "This is a glass of Thirteen Loko, it appears to be of the highest quality. The drink, not the glass."
-
-/datum/reagent/ethanol/thirteenloko/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/thirteenloko/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -1152,10 +1164,6 @@
 	glass_desc = "You wonder why you're even drinking this straight."
 	glass_center_of_mass = list("x"=16, "y"=12)
 
-/datum/reagent/ethanol/vermouth/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/vodka
 	name = "Vodka"
 	id = "vodka"
@@ -1168,13 +1176,9 @@
 	glass_desc = "The glass contain wodka. Xynta."
 	glass_center_of_mass = list("x"=16, "y"=12)
 
-/datum/reagent/ethanol/vodka/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/vodka/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	M.radiation = max(M.radiation - 1 * removed, 0)
+	M.apply_effect(max(M.radiation - 1 * removed, 0), IRRADIATE, check_protection = 0)
 
 /datum/reagent/ethanol/whiskey
 	name = "Whiskey"
@@ -1188,10 +1192,6 @@
 	glass_desc = "The silky, smokey whiskey goodness inside the glass makes the drink look very classy."
 	glass_center_of_mass = list("x"=16, "y"=12)
 
-/datum/reagent/ethanol/whiskey/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/wine
 	name = "Wine"
 	id = "wine"
@@ -1203,10 +1203,6 @@
 	glass_name = "glass of wine"
 	glass_desc = "A very classy looking drink."
 	glass_center_of_mass = list("x"=15, "y"=7)
-
-/datum/reagent/ethanol/wine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 // Cocktails
 
@@ -1220,12 +1216,8 @@
 
 	glass_icon_state = "acidspitglass"
 	glass_name = "glass of Acid Spit"
-	glass_desc = "A drink from Nanotrasen. Made from live aliens."
+	glass_desc = "A drink from the company archives. Made from live aliens."
 	glass_center_of_mass = list("x"=16, "y"=7)
-
-/datum/reagent/ethanol/acid_spit/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/alliescocktail
 	name = "Allies Cocktail"
@@ -1239,10 +1231,6 @@
 	glass_desc = "A drink made from your allies."
 	glass_center_of_mass = list("x"=17, "y"=8)
 
-/datum/reagent/ethanol/alliescocktail/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/aloe
 	name = "Aloe"
 	id = "aloe"
@@ -1255,14 +1243,10 @@
 	glass_desc = "Very, very, very good."
 	glass_center_of_mass = list("x"=17, "y"=8)
 
-/datum/reagent/ethanol/aloe/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/amasec
 	name = "Amasec"
 	id = "amasec"
-	description = "Official drink of the NanoTrasen Gun-Club!"
+	description = "Official drink of the Gun Club!"
 	reagent_state = LIQUID
 	color = "#664300"
 	strength = 25
@@ -1271,10 +1255,6 @@
 	glass_name = "glass of Amasec"
 	glass_desc = "Always handy before COMBAT!!!"
 	glass_center_of_mass = list("x"=16, "y"=9)
-
-/datum/reagent/ethanol/amasec/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/andalusia
 	name = "Andalusia"
@@ -1287,10 +1267,6 @@
 	glass_name = "glass of Andalusia"
 	glass_desc = "A nice, strange named drink."
 	glass_center_of_mass = list("x"=16, "y"=9)
-
-/datum/reagent/ethanol/andalusia/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/antifreeze
 	name = "Anti-freeze"
@@ -1306,10 +1282,6 @@
 	glass_desc = "The ultimate refreshment."
 	glass_center_of_mass = list("x"=16, "y"=8)
 
-/datum/reagent/ethanol/antifreeze/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/atomicbomb
 	name = "Atomic Bomb"
 	id = "atomicbomb"
@@ -1321,14 +1293,10 @@
 
 	glass_icon_state = "atomicbombglass"
 	glass_name = "glass of Atomic Bomb"
-	glass_desc = "Nanotrasen cannot take legal responsibility for your actions after imbibing."
+	glass_desc = "We cannot take legal responsibility for your actions after imbibing."
 	glass_center_of_mass = list("x"=15, "y"=7)
 
-/datum/reagent/ethanol/atomicbomb/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
-/datum/reagent/ethanol/b52
+/datum/reagent/ethanol/coffee/b52
 	name = "B-52"
 	id = "b52"
 	description = "Coffee, Irish Cream, and cognac. You will get bombed."
@@ -1338,10 +1306,6 @@
 	glass_icon_state = "b52glass"
 	glass_name = "glass of B-52"
 	glass_desc = "Kahlua, Irish cream, and congac. You will get bombed."
-
-/datum/reagent/ethanol/b52/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/bahama_mama
 	name = "Bahama mama"
@@ -1354,10 +1318,6 @@
 	glass_name = "glass of Bahama Mama"
 	glass_desc = "Tropical cocktail"
 	glass_center_of_mass = list("x"=16, "y"=5)
-
-/datum/reagent/ethanol/bahama_mama/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/bananahonk
 	name = "Banana Mama"
@@ -1372,10 +1332,6 @@
 	glass_desc = "A drink from Banana Heaven."
 	glass_center_of_mass = list("x"=16, "y"=8)
 
-/datum/reagent/ethanol/bananahonk/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/barefoot
 	name = "Barefoot"
 	id = "barefoot"
@@ -1387,10 +1343,6 @@
 	glass_name = "glass of Barefoot"
 	glass_desc = "Barefoot and pregnant"
 	glass_center_of_mass = list("x"=17, "y"=8)
-
-/datum/reagent/ethanol/barefoot/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/beepsky_smash
 	name = "Beepsky Smash"
@@ -1404,10 +1356,6 @@
 	glass_name = "Beepsky Smash"
 	glass_desc = "Heavy, hot and strong. Just like the Iron fist of the LAW."
 	glass_center_of_mass = list("x"=18, "y"=10)
-
-/datum/reagent/ethanol/beepsky_smash/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/beepsky_smash/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -1425,10 +1373,6 @@
 	glass_name = "glass of bilk"
 	glass_desc = "A brew of milk and beer. For those alcoholics who fear osteoporosis."
 
-/datum/reagent/ethanol/bilk/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/black_russian
 	name = "Black Russian"
 	id = "blackrussian"
@@ -1441,10 +1385,6 @@
 	glass_desc = "For the lactose-intolerant. Still as classy as a White Russian."
 	glass_center_of_mass = list("x"=16, "y"=9)
 
-/datum/reagent/ethanol/black_russian/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/bloody_mary
 	name = "Bloody Mary"
 	id = "bloodymary"
@@ -1455,10 +1395,6 @@
 	glass_icon_state = "bloodymaryglass"
 	glass_name = "glass of Bloody Mary"
 	glass_desc = "Tomato juice, mixed with Vodka and a lil' bit of lime. Tastes like liquid murder."
-
-/datum/reagent/ethanol/bloody_mary/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/booger
 	name = "Booger"
@@ -1471,11 +1407,7 @@
 	glass_name = "glass of Booger"
 	glass_desc = "Ewww..."
 
-/datum/reagent/ethanol/booger/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
-/datum/reagent/ethanol/brave_bull
+/datum/reagent/ethanol/coffee/brave_bull
 	name = "Brave Bull"
 	id = "bravebull"
 	description = "It's just as effective as Dutch-Courage!"
@@ -1487,10 +1419,6 @@
 	glass_desc = "Tequilla and coffee liquor, brought together in a mouthwatering mixture. Drink up."
 	glass_center_of_mass = list("x"=15, "y"=8)
 
-/datum/reagent/ethanol/brave_bull/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/changelingsting
 	name = "Changeling Sting"
 	id = "changelingsting"
@@ -1501,10 +1429,6 @@
 	glass_icon_state = "changelingsting"
 	glass_name = "glass of Changeling Sting"
 	glass_desc = "A stingy drink."
-
-/datum/reagent/ethanol/changelingsting/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/martini
 	name = "Classic Martini"
@@ -1518,10 +1442,6 @@
 	glass_desc = "Damn, the bartender even stirred it, not shook it."
 	glass_center_of_mass = list("x"=17, "y"=8)
 
-/datum/reagent/ethanol/martini/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/cuba_libre
 	name = "Cuba Libre"
 	id = "cubalibre"
@@ -1533,10 +1453,6 @@
 	glass_name = "glass of Cuba Libre"
 	glass_desc = "A classic mix of rum and cola."
 	glass_center_of_mass = list("x"=16, "y"=8)
-
-/datum/reagent/ethanol/cuba_libre/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/demonsblood
 	name = "Demons Blood"
@@ -1550,10 +1466,6 @@
 	glass_desc = "Just looking at this thing makes the hair at the back of your neck stand up."
 	glass_center_of_mass = list("x"=16, "y"=2)
 
-/datum/reagent/ethanol/demonsblood/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/devilskiss
 	name = "Devils Kiss"
 	id = "devilskiss"
@@ -1565,10 +1477,6 @@
 	glass_name = "glass of Devil's Kiss"
 	glass_desc = "Creepy time!"
 	glass_center_of_mass = list("x"=16, "y"=8)
-
-/datum/reagent/ethanol/devilskiss/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/driestmartini
 	name = "Driest Martini"
@@ -1583,10 +1491,6 @@
 	glass_desc = "Only for the experienced. You think you see sand floating in the glass."
 	glass_center_of_mass = list("x"=17, "y"=8)
 
-/datum/reagent/ethanol/driestmartini/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/ginfizz
 	name = "Gin Fizz"
 	id = "ginfizz"
@@ -1599,14 +1503,10 @@
 	glass_desc = "Refreshingly lemony, deliciously dry."
 	glass_center_of_mass = list("x"=16, "y"=7)
 
-/datum/reagent/ethanol/ginfizz/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/grog
 	name = "Grog"
 	id = "grog"
-	description = "Watered down rum, NanoTrasen approves!"
+	description = "Watered-down rum, pirate approved!"
 	reagent_state = LIQUID
 	color = "#664300"
 	strength = 100
@@ -1614,10 +1514,6 @@
 	glass_icon_state = "grogglass"
 	glass_name = "glass of grog"
 	glass_desc = "A fine and cepa drink for Space."
-
-/datum/reagent/ethanol/grog/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/erikasurprise
 	name = "Erika Surprise"
@@ -1630,10 +1526,6 @@
 	glass_name = "glass of Erika Surprise"
 	glass_desc = "The surprise is, it's green!"
 	glass_center_of_mass = list("x"=16, "y"=9)
-
-/datum/reagent/ethanol/erikasuprise/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/gargle_blaster
 	name = "Pan-Galactic Gargle Blaster"
@@ -1648,10 +1540,6 @@
 	glass_desc = "Does... does this mean that Arthur and Ford are on the station? Oh joy."
 	glass_center_of_mass = list("x"=17, "y"=6)
 
-/datum/reagent/ethanol/gargle_blaster/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/gintonic
 	name = "Gin and Tonic"
 	id = "gintonic"
@@ -1664,10 +1552,6 @@
 	glass_desc = "A mild but still great cocktail. Drink up, like a true Englishman."
 	glass_center_of_mass = list("x"=16, "y"=7)
 
-/datum/reagent/ethanol/gintonic/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/goldschlager
 	name = "Goldschlager"
 	id = "goldschlager"
@@ -1679,10 +1563,6 @@
 	glass_name = "glass of Goldschlager"
 	glass_desc = "100 proof that teen girls will drink anything with gold in it."
 	glass_center_of_mass = list("x"=16, "y"=12)
-
-/datum/reagent/ethanol/goldschlager/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/hippies_delight
 	name = "Hippies' Delight"
@@ -1698,10 +1578,6 @@
 	glass_desc = "A drink enjoyed by people during the 1960's."
 	glass_center_of_mass = list("x"=16, "y"=8)
 
-/datum/reagent/ethanol/hippies_delight/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/hooch
 	name = "Hooch"
 	id = "hooch"
@@ -1713,10 +1589,6 @@
 	glass_icon_state = "glass_brown2"
 	glass_name = "glass of Hooch"
 	glass_desc = "You've really hit rock bottom now... your liver packed its bags and left last night."
-
-/datum/reagent/ethanol/hooch/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/iced_beer
 	name = "Iced Beer"
@@ -1732,10 +1604,6 @@
 	glass_desc = "A beer so frosty, the air around it freezes."
 	glass_center_of_mass = list("x"=16, "y"=7)
 
-/datum/reagent/ethanol/iced_beer/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/irishcarbomb
 	name = "Irish Car Bomb"
 	id = "irishcarbomb"
@@ -1748,11 +1616,7 @@
 	glass_desc = "An irish car bomb."
 	glass_center_of_mass = list("x"=16, "y"=8)
 
-/datum/reagent/ethanol/irishcarbomb/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
-/datum/reagent/ethanol/irishcoffee
+/datum/reagent/ethanol/coffee/irishcoffee
 	name = "Irish Coffee"
 	id = "irishcoffee"
 	description = "Coffee, and alcohol. More fun than a Mimosa to drink in the morning."
@@ -1763,10 +1627,6 @@
 	glass_name = "glass of Irish coffee"
 	glass_desc = "Coffee and alcohol. More fun than a Mimosa to drink in the morning."
 	glass_center_of_mass = list("x"=15, "y"=10)
-
-/datum/reagent/ethanol/irishcoffee/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/irish_cream
 	name = "Irish Cream"
@@ -1780,10 +1640,6 @@
 	glass_desc = "It's cream, mixed with whiskey. What else would you expect from the Irish?"
 	glass_center_of_mass = list("x"=16, "y"=9)
 
-/datum/reagent/ethanol/irishcream/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/longislandicedtea
 	name = "Long Island Iced Tea"
 	id = "longislandicedtea"
@@ -1796,10 +1652,6 @@
 	glass_desc = "The liquor cabinet, brought together in a delicious mix. Intended for middle-aged alcoholic women only."
 	glass_center_of_mass = list("x"=16, "y"=8)
 
-/datum/reagent/longislandicetea/gin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/manhattan
 	name = "Manhattan"
 	id = "manhattan"
@@ -1811,10 +1663,6 @@
 	glass_name = "glass of Manhattan"
 	glass_desc = "The Detective's undercover drink of choice. He never could stomach gin..."
 	glass_center_of_mass = list("x"=17, "y"=8)
-
-/datum/reagent/ethanol/manhattan/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/manhattan_proj
 	name = "Manhattan Project"
@@ -1829,10 +1677,6 @@
 	glass_desc = "A scienitst drink of choice, for thinking how to blow up the station."
 	glass_center_of_mass = list("x"=17, "y"=8)
 
-/datum/reagent/ethanol/manhattan_proj/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/manly_dorf
 	name = "The Manly Dorf"
 	id = "manlydorf"
@@ -1843,10 +1687,6 @@
 	glass_icon_state = "manlydorfglass"
 	glass_name = "glass of The Manly Dorf"
 	glass_desc = "A manly concotion made from Ale and Beer. Intended for true men only."
-
-/datum/reagent/ethanol/manly_dorf/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/margarita
 	name = "Margarita"
@@ -1859,10 +1699,6 @@
 	glass_name = "glass of margarita"
 	glass_desc = "On the rocks with salt on the rim. Arriba~!"
 	glass_center_of_mass = list("x"=16, "y"=8)
-
-/datum/reagent/ethanol/margarita/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/mead
 	name = "Mead"
@@ -1878,10 +1714,6 @@
 	glass_desc = "A Viking's beverage, though a cheap one."
 	glass_center_of_mass = list("x"=17, "y"=10)
 
-/datum/reagent/ethanol/mead/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/moonshine
 	name = "Moonshine"
 	id = "moonshine"
@@ -1892,10 +1724,6 @@
 	glass_icon_state = "glass_clear"
 	glass_name = "glass of moonshine"
 	glass_desc = "You've really hit rock bottom now... your liver packed its bags and left last night."
-
-/datum/reagent/ethanol/moonshine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/neurotoxin
 	name = "Neurotoxin"
@@ -1909,10 +1737,6 @@
 	glass_name = "glass of Neurotoxin"
 	glass_desc = "A drink that is guaranteed to knock you silly."
 	glass_center_of_mass = list("x"=16, "y"=8)
-
-/datum/reagent/ethanol/neurotoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/neurotoxin/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -1930,10 +1754,6 @@
 	glass_desc = "Drinking patron in the bar, with all the subpar ladies."
 	glass_center_of_mass = list("x"=7, "y"=8)
 
-/datum/reagent/ethanol/patron/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/pwine
 	name = "Poison Wine"
 	id = "pwine"
@@ -1948,17 +1768,13 @@
 	glass_desc = "A black ichor with an oily purple sheer on top. Are you sure you should drink this?"
 	glass_center_of_mass = list("x"=16, "y"=5)
 
-/datum/reagent/ethanol/pwine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/pwine/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	if(dose > 30)
 		M.adjustToxLoss(2 * removed)
 	if(dose > 60 && ishuman(M) && prob(5))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/heart/L = H.internal_organs_by_name["heart"]
+		var/obj/item/organ/internal/heart/L = H.internal_organs_by_name[O_HEART]
 		if (L && istype(L))
 			if(dose < 120)
 				L.take_damage(10 * removed, 0)
@@ -1977,10 +1793,6 @@
 	glass_desc = "A true Viking's beverage, though its color is strange."
 	glass_center_of_mass = list("x"=17, "y"=10)
 
-/datum/reagent/ethanol/red_mead/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/sbiten
 	name = "Sbiten"
 	id = "sbiten"
@@ -1995,10 +1807,6 @@
 	glass_desc = "A spicy mix of Vodka and Spice. Very hot."
 	glass_center_of_mass = list("x"=17, "y"=8)
 
-/datum/reagent/ethanol/sbiten/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/screwdrivercocktail
 	name = "Screwdriver"
 	id = "screwdrivercocktail"
@@ -2010,10 +1818,6 @@
 	glass_name = "glass of Screwdriver"
 	glass_desc = "A simple, yet superb mixture of Vodka and orange juice. Just the thing for the tired engineer."
 	glass_center_of_mass = list("x"=15, "y"=10)
-
-/datum/reagent/ethanol/screwdrivercocktail/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/silencer
 	name = "Silencer"
@@ -2028,10 +1832,6 @@
 	glass_desc = "A drink from mime Heaven."
 	glass_center_of_mass = list("x"=16, "y"=9)
 
-/datum/reagent/ethanol/silencer/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/singulo
 	name = "Singulo"
 	id = "singulo"
@@ -2043,10 +1843,6 @@
 	glass_name = "glass of Singulo"
 	glass_desc = "A blue-space beverage."
 	glass_center_of_mass = list("x"=17, "y"=4)
-
-/datum/reagent/ethanol/singulo/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/snowwhite
 	name = "Snow White"
@@ -2060,10 +1856,6 @@
 	glass_desc = "A cold refreshment."
 	glass_center_of_mass = list("x"=16, "y"=8)
 
-/datum/reagent/ethanol/snowwhite/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/suidream
 	name = "Sui Dream"
 	id = "suidream"
@@ -2075,10 +1867,6 @@
 	glass_name = "glass of Sui Dream"
 	glass_desc = "A froofy, fruity, and sweet mixed drink. Understanding the name only brings shame."
 	glass_center_of_mass = list("x"=16, "y"=5)
-
-/datum/reagent/ethanol/suidream/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/syndicatebomb
 	name = "Syndicate Bomb"
@@ -2092,10 +1880,6 @@
 	glass_desc = "Tastes like terrorism!"
 	glass_center_of_mass = list("x"=16, "y"=4)
 
-/datum/reagent/ethanol/syndicatebomb/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/tequilla_sunrise
 	name = "Tequila Sunrise"
 	id = "tequillasunrise"
@@ -2106,10 +1890,6 @@
 	glass_icon_state = "tequillasunriseglass"
 	glass_name = "glass of Tequilla Sunrise"
 	glass_desc = "Oh great, now you feel nostalgic about sunrises back on Terra..."
-
-/datum/reagent/ethanol/tequila_sunrise/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/threemileisland
 	name = "Three Mile Island Iced Tea"
@@ -2123,10 +1903,6 @@
 	glass_name = "glass of Three Mile Island iced tea"
 	glass_desc = "A glass of this is sure to prevent a meltdown."
 	glass_center_of_mass = list("x"=16, "y"=2)
-
-/datum/reagent/ethanol/threemileisland/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/toxins_special
 	name = "Toxins Special"
@@ -2142,10 +1918,6 @@
 	glass_name = "glass of Toxins Special"
 	glass_desc = "Whoah, this thing is on FIRE"
 
-/datum/reagent/ethanol/toxins_special/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/vodkamartini
 	name = "Vodka Martini"
 	id = "vodkamartini"
@@ -2157,10 +1929,6 @@
 	glass_name = "glass of vodka martini"
 	glass_desc ="A bastardisation of the classic martini. Still great."
 	glass_center_of_mass = list("x"=17, "y"=8)
-
-/datum/reagent/ethanol/vodkamartini/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/vodkatonic
 	name = "Vodka and Tonic"
@@ -2174,10 +1942,6 @@
 	glass_desc = "For when a gin and tonic isn't Russian enough."
 	glass_center_of_mass = list("x"=16, "y"=7)
 
-/datum/reagent/ethanol/vodkatonic/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/white_russian
 	name = "White Russian"
 	id = "whiterussian"
@@ -2189,10 +1953,6 @@
 	glass_name = "glass of White Russian"
 	glass_desc = "A very nice looking drink. But that's just, like, your opinion, man."
 	glass_center_of_mass = list("x"=16, "y"=9)
-
-/datum/reagent/ethanol/white_russian/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
 
 /datum/reagent/ethanol/whiskey_cola
 	name = "Whiskey Cola"
@@ -2206,10 +1966,6 @@
 	glass_desc = "An innocent-looking mixture of cola and Whiskey. Delicious."
 	glass_center_of_mass = list("x"=16, "y"=9)
 
-/datum/reagent/ethanol/whiskey_cola/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/whiskeysoda
 	name = "Whiskey Soda"
 	id = "whiskeysoda"
@@ -2222,22 +1978,14 @@
 	glass_desc = "Ultimate refreshment."
 	glass_center_of_mass = list("x"=16, "y"=9)
 
-/datum/reagent/ethanol/whiskey_soda/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-
-
 /datum/reagent/ethanol/specialwhiskey // I have no idea what this is and where it comes from
 	name = "Special Blend Whiskey"
 	id = "specialwhiskey"
-	description = "Just when you thought regular station whiskey was good... This silky, amber goodness has to come along and ruin everything."
-	color = "#664300"
-	strength = 25
+	description = "Just when you thought regular station whiskey was good... This silky, amber goodness has to come along and ruin everything. The smell of it singes your nostrils."
+	color = "#523600"
+	strength = 7
 
 	glass_icon_state = "whiskeyglass"
 	glass_name = "glass of special blend whiskey"
-	glass_desc = "Just when you thought regular station whiskey was good... This silky, amber goodness has to come along and ruin everything."
+	glass_desc = "Just when you thought regular station whiskey was good... This silky, amber goodness has to come along and ruin everything. The smell of it singes your nostrils."
 	glass_center_of_mass = list("x"=16, "y"=12)
-
-/datum/reagent/ethanol/specialwhiskey/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
-

@@ -14,6 +14,7 @@
 	force_divisor = 0.1 // 6 when wielded with hardness 60 (steel)
 	thrown_force_divisor = 0.25 // 5 when thrown with weight 20 (steel)
 	var/loaded      //Descriptive string for currently loaded food object.
+	var/scoop_food = 1
 
 /obj/item/weapon/material/kitchen/utensil/New()
 	..()
@@ -27,7 +28,7 @@
 		return ..()
 
 	if(user.a_intent != I_HELP)
-		if(user.zone_sel.selecting == "head" || user.zone_sel.selecting == "eyes")
+		if(user.zone_sel.selecting == BP_HEAD || user.zone_sel.selecting == O_EYES)
 			if((CLUMSY in user.mutations) && prob(50))
 				M = user
 			return eyestab(M,user)
@@ -44,8 +45,7 @@
 		overlays.Cut()
 		return
 	else
-		user << "<span class='warning'>You don't have anything on \the [src].</span>"	//if we have help intent and no food scooped up DON'T STAB OURSELVES WITH THE FORK GODDAMNIT
-		return
+		..()
 
 /obj/item/weapon/material/kitchen/utensil/fork
 	name = "fork"
@@ -75,17 +75,29 @@
 	desc = "A knife for eating with. Can cut through any food."
 	icon_state = "knife"
 	force_divisor = 0.1 // 6 when wielded with hardness 60 (steel)
+	scoop_food = 0
+
+// Identical to the tactical knife but nowhere near as stabby.
+// Kind of like the toy esword compared to the real thing.
+/obj/item/weapon/material/kitchen/utensil/knife/boot
+	name = "boot knife"
+	desc = "A small fixed-blade knife for putting inside a boot."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "tacknife"
+	item_state = "knife"
+	applies_material_colour = 0
+	unbreakable = 1
 
 /obj/item/weapon/material/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		user << "<span class='warning'>You accidentally cut yourself with \the [src].</span>"
+		user << "<span class='warning'>You accidentally cut yourself with the [src].</span>"
 		user.take_organ_damage(20)
 		return
 	return ..()
 
 /obj/item/weapon/material/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		user << "<span class='warning'>You somehow managed to cut yourself with \the [src].</span>"
+		user << "<span class='warning'>You somehow managed to cut yourself with the [src].</span>"
 		user.take_organ_damage(20)
 		return
 	return ..()
@@ -108,7 +120,7 @@
 
 /obj/item/weapon/material/kitchen/rollingpin/attack(mob/living/M as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		user << "<span class='warning'>\The [src] slips out of your hand and hits your head.</span>"
+		user << "<span class='warning'>The [src] slips out of your hand and hits your head.</span>"
 		user.take_organ_damage(10)
 		user.Paralyse(2)
 		return

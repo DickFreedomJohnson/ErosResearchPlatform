@@ -57,6 +57,10 @@
 		name = "Short Hair"	  // try to capatilize the names please~
 		icon_state = "hair_a" // you do not need to define _s or _l sub-states, game automatically does this for you
 
+	short2
+		name = "Short Hair 2"
+		icon_state = "hair_shorthair3"
+
 	cut
 		name = "Cut Hair"
 		icon_state = "hair_c"
@@ -112,7 +116,6 @@
 	ponytail2
 		name = "Ponytail 2"
 		icon_state = "hair_pa"
-		gender = FEMALE
 
 	ponytail3
 		name = "Ponytail 3"
@@ -121,12 +124,34 @@
 	ponytail4
 		name = "Ponytail 4"
 		icon_state = "hair_ponytail4"
-		gender = FEMALE
+
+	ponytail5
+		name = "Ponytail 5"
+		icon_state = "hair_ponytail5"
+
+	ponytail6
+		name = "Ponytail 6"
+		icon_state = "hair_ponytail6"
 
 	sideponytail
 		name = "Side Ponytail"
 		icon_state = "hair_stail"
-		gender = FEMALE
+
+	sideponytail4 //Not happy about this... but it's for the save files.
+		name = "Side Ponytail 2"
+		icon_state = "hair_ponytailf"
+
+	sideponytail2
+		name = "One Shoulder"
+		icon_state = "hair_oneshoulder"
+
+	sideponytail3
+		name = "Tress Shoulder"
+		icon_state = "hair_tressshoulder"
+
+	wisp
+		name = "Wisp"
+		icon_state = "hair_wisp"
 
 	parted
 		name = "Parted"
@@ -135,12 +160,10 @@
 	pompadour
 		name = "Pompadour"
 		icon_state = "hair_pompadour"
-		gender = MALE
 
 	quiff
 		name = "Quiff"
 		icon_state = "hair_quiff"
-		gender = MALE
 
 	bedhead
 		name = "Bedhead"
@@ -157,55 +180,57 @@
 	beehive
 		name = "Beehive"
 		icon_state = "hair_beehive"
-		gender = FEMALE
 
 	beehive2
 		name = "Beehive 2"
 		icon_state = "hair_beehive2"
-		gender = FEMALE
 
 	bobcurl
 		name = "Bobcurl"
 		icon_state = "hair_bobcurl"
-		gender = FEMALE
 		species_allowed = list("Human","Unathi")
 
 	bob
 		name = "Bob"
 		icon_state = "hair_bobcut"
-		gender = FEMALE
 		species_allowed = list("Human","Unathi")
+
+	bun
+		name = "Bun"
+		icon_state = "hair_bun"
+
+	bun2
+		name = "Bun 2"
+		icon_state = "hair_bun2"
+
+	bun3
+		name = "Bun 3"
+		icon_state = "hair_bun3"
 
 	bowl
 		name = "Bowl"
 		icon_state = "hair_bowlcut"
-		gender = MALE
 
 	buzz
 		name = "Buzzcut"
 		icon_state = "hair_buzzcut"
-		gender = MALE
 		species_allowed = list("Human","Unathi")
 
 	crew
 		name = "Crewcut"
 		icon_state = "hair_crewcut"
-		gender = MALE
 
 	combover
 		name = "Combover"
 		icon_state = "hair_combover"
-		gender = MALE
 
 	father
 		name = "Father"
 		icon_state = "hair_father"
-		gender = MALE
 
 	reversemohawk
 		name = "Reverse Mohawk"
 		icon_state = "hair_reversemohawk"
-		gender = MALE
 
 	devillock
 		name = "Devil Lock"
@@ -230,12 +255,10 @@
 	afro_large
 		name = "Big Afro"
 		icon_state = "hair_bigafro"
-		gender = MALE
 
 	sargeant
 		name = "Flat Top"
 		icon_state = "hair_sargeant"
-		gender = MALE
 
 	emo
 		name = "Emo"
@@ -244,7 +267,18 @@
 	longemo
 		name = "Long Emo"
 		icon_state = "hair_emolong"
-		gender = FEMALE
+
+	fringeemo
+		name = "Emo Fringe"
+		icon_state = "hair_emofringe"
+
+	veryshortovereyealternate
+		name = "Overeye Very Short, Alternate"
+		icon_state = "hair_veryshortovereyealternate"
+
+	veryshortovereye
+		name = "Overeye Very Short"
+		icon_state = "hair_veryshortovereye"
 
 	shortovereye
 		name = "Overeye Short"
@@ -265,31 +299,29 @@
 	hitop
 		name = "Hitop"
 		icon_state = "hair_hitop"
-		gender = MALE
 
 	mohawk
 		name = "Mohawk"
 		icon_state = "hair_d"
 		species_allowed = list("Human","Unathi")
+
 	jensen
 		name = "Adam Jensen Hair"
 		icon_state = "hair_jensen"
-		gender = MALE
 
 	gelled
 		name = "Gelled Back"
 		icon_state = "hair_gelled"
-		gender = FEMALE
 
 	gentle
 		name = "Gentle"
 		icon_state = "hair_gentle"
-		gender = FEMALE
 
 	spiky
 		name = "Spiky"
 		icon_state = "hair_spikey"
 		species_allowed = list("Human","Unathi")
+
 	kusangi
 		name = "Kusanagi Hair"
 		icon_state = "hair_kusanagi"
@@ -297,42 +329,34 @@
 	kagami
 		name = "Pigtails"
 		icon_state = "hair_kagami"
-		gender = FEMALE
 
 	himecut
 		name = "Hime Cut"
 		icon_state = "hair_himecut"
-		gender = FEMALE
 
 	braid
 		name = "Floorlength Braid"
-		icon_state = "hair_braid"
-		gender = FEMALE
+		icon_state = "bald" //Trust me, it's better this way.
 
 	mbraid
 		name = "Medium Braid"
 		icon_state = "hair_shortbraid"
-		gender = FEMALE
 
 	braid2
 		name = "Long Braid"
 		icon_state = "hair_hbraid"
-		gender = FEMALE
 
 	odango
 		name = "Odango"
 		icon_state = "hair_odango"
-		gender = FEMALE
 
 	ombre
 		name = "Ombre"
 		icon_state = "hair_ombre"
-		gender = FEMALE
 
 	updo
 		name = "Updo"
 		icon_state = "hair_updo"
-		gender = FEMALE
 
 	skinhead
 		name = "Skinhead"
@@ -346,136 +370,70 @@
 	familyman
 		name = "The Family Man"
 		icon_state = "hair_thefamilyman"
-		gender = MALE
 
 	mahdrills
 		name = "Drillruru"
 		icon_state = "hair_drillruru"
-		gender = FEMALE
 
 	dandypomp
 		name = "Dandy Pompadour"
 		icon_state = "hair_dandypompadour"
-		gender = MALE
 
 	poofy
 		name = "Poofy"
 		icon_state = "hair_poofy"
-		gender = FEMALE
 
 	crono
 		name = "Chrono"
 		icon_state = "hair_toriyama"
-		gender = MALE
 
 	vegeta
 		name = "Vegeta"
 		icon_state = "hair_toriyama2"
-		gender = MALE
 
 	cia
 		name = "CIA"
 		icon_state = "hair_cia"
-		gender = MALE
 
 	mulder
 		name = "Mulder"
 		icon_state = "hair_mulder"
-		gender = MALE
 
 	scully
 		name = "Scully"
 		icon_state = "hair_scully"
-		gender = FEMALE
 
 	nitori
 		name = "Nitori"
 		icon_state = "hair_nitori"
-		gender = FEMALE
 
 	joestar
 		name = "Joestar"
 		icon_state = "hair_joestar"
-		gender = MALE
+
+	volaju
+		name = "Volaju"
+		icon_state = "hair_volaju"
+
+	eighties
+		name = "80's"
+		icon_state = "hair_80s"
+
+	nia
+		name = "Nia"
+		icon_state = "hair_nia"
+
+	unkept
+		name = "Unkept"
+		icon_state = "hair_unkept"
+
+	modern
+		name = "Modern"
+		icon_state = "hair_modern"
 
 	bald
 		name = "Bald"
 		icon_state = "bald"
-
-	icp_screen_pink
-		name = "pink IPC screen"
-		icon_state = "ipc_pink"
-		species_allowed = list("Machine")
-
-	icp_screen_red
-		name = "red IPC screen"
-		icon_state = "ipc_red"
-		species_allowed = list("Machine")
-
-	icp_screen_green
-		name = "green IPC screen"
-		icon_state = "ipc_green"
-		species_allowed = list("Machine")
-
-	icp_screen_blue
-		name = "blue IPC screen"
-		icon_state = "ipc_blue"
-		species_allowed = list("Machine")
-
-	icp_screen_breakout
-		name = "breakout IPC screen"
-		icon_state = "ipc_breakout"
-		species_allowed = list("Machine")
-
-	icp_screen_eight
-		name = "eight IPC screen"
-		icon_state = "ipc_eight"
-		species_allowed = list("Machine")
-
-	icp_screen_goggles
-		name = "goggles IPC screen"
-		icon_state = "ipc_goggles"
-		species_allowed = list("Machine")
-
-	icp_screen_heart
-		name = "heart IPC screen"
-		icon_state = "ipc_heart"
-		species_allowed = list("Machine")
-
-	icp_screen_monoeye
-		name = "monoeye IPC screen"
-		icon_state = "ipc_monoeye"
-		species_allowed = list("Machine")
-
-	icp_screen_nature
-		name = "nature IPC screen"
-		icon_state = "ipc_nature"
-		species_allowed = list("Machine")
-
-	icp_screen_orange
-		name = "orange IPC screen"
-		icon_state = "ipc_orange"
-		species_allowed = list("Machine")
-
-	icp_screen_purple
-		name = "purple IPC screen"
-		icon_state = "ipc_purple"
-		species_allowed = list("Machine")
-
-	icp_screen_shower
-		name = "shower IPC screen"
-		icon_state = "ipc_shower"
-		species_allowed = list("Machine")
-
-	icp_screen_static
-		name = "static IPC screen"
-		icon_state = "ipc_static"
-		species_allowed = list("Machine")
-
-	icp_screen_yellow
-		name = "yellow IPC screen"
-		icon_state = "ipc_yellow"
-		species_allowed = list("Machine")
 
 /*
 ///////////////////////////////////
@@ -556,6 +514,10 @@
 	jensen
 		name = "Adam Jensen Beard"
 		icon_state = "facial_jensen"
+
+	volaju
+		name = "Volaju"
+		icon_state = "facial_volaju"
 
 	dwarf
 		name = "Dwarf Beard"

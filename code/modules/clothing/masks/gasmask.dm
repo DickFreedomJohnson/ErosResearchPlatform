@@ -2,7 +2,7 @@
 	name = "gas mask"
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
 	icon_state = "gas_alt"
-	flags = MASKCOVERSMOUTH | MASKCOVERSEYES | BLOCK_GAS_SMOKE_EFFECT | AIRTIGHT
+	item_flags = BLOCK_GAS_SMOKE_EFFECT | AIRTIGHT
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE
 	body_parts_covered = FACE|EYES
 	w_class = 3.0
@@ -34,7 +34,7 @@
 	icon_state = "plaguedoctor"
 	item_state = "gas_mask"
 	armor = list(melee = 0, bullet = 0, laser = 2,energy = 2, bomb = 0, bio = 90, rad = 0)
-	body_parts_covered = HEAD|FACE
+	body_parts_covered = HEAD|FACE|EYES
 
 /obj/item/clothing/mask/gas/swat
 	name = "\improper SWAT mask"
@@ -46,7 +46,7 @@
 /obj/item/clothing/mask/gas/swat/vox
 	name = "\improper alien mask"
 	desc = "Clearly not designed for a human face."
-	body_parts_covered = 0 //Hack to allow vox to eat while wearing this mask.
+	body_parts_covered = 0 //Hack to allow vox to eat while wearing this mask. 
 	species_restricted = list("Vox")
 
 /obj/item/clothing/mask/gas/syndicate
@@ -72,25 +72,6 @@
 	desc = "The traditional mime's mask. It has an eerie facial posture."
 	icon_state = "mime"
 	item_state = "mime"
-
-/obj/item/clothing/mask/gas/shyguy
-	name = "shyguy mask"
-	desc = "Wallflower's choice!"
-	icon_state = "shyguy"
-	item_state = "shyguy"
-
-
-/obj/item/clothing/mask/gas/shygal
-	name = "shygal mask"
-	desc = "Wallflower's choice!"
-	icon_state = "shygal"
-	item_state = "shygal"
-
-/obj/item/clothing/mask/gas/shygal_h
-	name = "shygal mask (hair)"
-	desc = "Wallflower's choice!"
-	icon_state = "shygal"
-	item_state = "shygal"
 
 /obj/item/clothing/mask/gas/monkeymask
 	name = "monkey mask"
@@ -120,3 +101,4 @@
 	name = "owl mask"
 	desc = "Twoooo!"
 	icon_state = "owl"
+	body_parts_covered = HEAD|FACE|EYES

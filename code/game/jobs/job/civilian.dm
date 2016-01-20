@@ -5,12 +5,13 @@
 	department = "Civilian"
 	department_flag = CIVILIAN
 	faction = "Station"
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
-	access = list(access_hydroponics, access_bar, access_kitchen, access_morgue)
+	access = list(access_hydroponics, access_bar, access_kitchen)
 	minimal_access = list(access_bar)
+	alt_titles = list("Barista")
 
 
 	equip(var/mob/living/carbon/human/H)
@@ -37,7 +38,7 @@
 	spawn_positions = 2
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
-	access = list(access_hydroponics, access_bar, access_kitchen, access_morgue)
+	access = list(access_hydroponics, access_bar, access_kitchen)
 	minimal_access = list(access_kitchen)
 	alt_titles = list("Cook")
 
@@ -64,8 +65,8 @@
 	spawn_positions = 1
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
-	access = list(access_hydroponics, access_bar, access_kitchen, access_morgue) // Removed tox and chem access because STOP PISSING OFF THE CHEMIST GUYS // //Removed medical access because WHAT THE FUCK YOU AREN'T A DOCTOR YOU GROW WHEAT //Given Morgue access because they have a viable means of cloning.
-	minimal_access = list(access_hydroponics, access_morgue) // Removed tox and chem access because STOP PISSING OFF THE CHEMIST GUYS // //Removed medical access because WHAT THE FUCK YOU AREN'T A DOCTOR YOU GROW WHEAT //Given Morgue access because they have a viable means of cloning.
+	access = list(access_hydroponics, access_bar, access_kitchen)
+	minimal_access = list(access_hydroponics)
 	alt_titles = list("Hydroponicist")
 
 
@@ -97,8 +98,11 @@
 	spawn_positions = 1
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
+	economic_modifier = 5
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
 	minimal_access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
+
+	ideal_character_age = 40
 
 
 	equip(var/mob/living/carbon/human/H)
@@ -149,6 +153,7 @@
 	spawn_positions = 3
 	supervisors = "the quartermaster and the head of personnel"
 	selection_color = "#dddddd"
+	economic_modifier = 5
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
 	minimal_access = list(access_mining, access_mining_station, access_mailsorting)
 	alt_titles = list("Drill Technician","Prospector")
@@ -260,9 +265,9 @@
 	spawn_positions = 1
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
-	access = list(access_janitor, access_maint_tunnels, access_engine, access_research, access_sec_doors, access_medical)
-	minimal_access = list(access_janitor, access_maint_tunnels, access_engine, access_research, access_sec_doors, access_medical)
-	alt_titles = list("Maid","Sexy Maid")
+	access = list(access_janitor, access_maint_tunnels)
+	minimal_access = list(access_janitor, access_maint_tunnels)
+
 
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
@@ -270,13 +275,8 @@
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/janitor(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/device/pda/janitor(H), slot_belt)
-		if (H.mind.role_alt_title)
-			switch(H.mind.role_alt_title)
-				if("Maid")
-					H.equip_to_slot_or_del(new /obj/item/clothing/under/maid(H), slot_w_uniform)
-				else
-					H.equip_to_slot_or_del(new /obj/item/clothing/under/maid_sexy(H), slot_w_uniform)
 		return 1
+
 
 
 //More or less assistants
@@ -314,10 +314,11 @@
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "Nanotrasen officials and Corporate Regulations"
+	supervisors = "company officials and Corporate Regulations"
 	selection_color = "#dddddd"
-	access = list(access_lawyer, access_court, access_sec_doors, access_maint_tunnels, access_heads)
-	minimal_access = list(access_lawyer, access_court, access_sec_doors, access_heads)
+	economic_modifier = 7
+	access = list(access_lawyer, access_sec_doors, access_maint_tunnels, access_heads)
+	minimal_access = list(access_lawyer, access_sec_doors, access_heads)
 
 
 	equip(var/mob/living/carbon/human/H)

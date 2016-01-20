@@ -3,20 +3,23 @@
 	desc = "To stop that awful noise."
 	icon_state = "muzzle"
 	item_state = "muzzle"
-	flags = MASKCOVERSMOUTH
-	body_parts_covered = 0
+	body_parts_covered = FACE
 	w_class = 2
 	gas_transfer_coefficient = 0.90
+	voicechange = 1
 
-/obj/item/clothing/mask/ballgag
-	name = "ballgag"
-	desc = "To stop that awful noise."
-	icon_state = "ballgag"
-	item_state = "ballgag"
-	flags = MASKCOVERSMOUTH
-	body_parts_covered = 0
-	w_class = 2
-	gas_transfer_coefficient = 0.90
+/obj/item/clothing/mask/muzzle/tape
+	name = "length of tape"
+	desc = "It's a robust DIY muzzle!"
+	icon = 'icons/obj/bureaucracy.dmi'
+	icon_state = "tape_cross"
+	item_state = null
+	w_class = 1
+
+/obj/item/clothing/mask/muzzle/New()
+    ..()
+    say_messages = list("Mmfph!", "Mmmf mrrfff!", "Mmmf mnnf!")
+    say_verbs = list("mumbles", "says")
 
 // Clumsy folks can't take the mask off themselves.
 /obj/item/clothing/mask/muzzle/attack_hand(mob/user as mob)
@@ -30,8 +33,8 @@
 	icon_state = "sterile"
 	item_state = "sterile"
 	w_class = 2
-	flags = MASKCOVERSMOUTH
-	body_parts_covered = 0
+	body_parts_covered = FACE
+	item_flags = FLEXIBLEMATERIAL
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.01
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 60, rad = 0)
@@ -51,13 +54,14 @@
 	body_parts_covered = 0
 
 //scarves (fit in in mask slot)
-
+//None of these actually have on-mob sprites...
 /obj/item/clothing/mask/bluescarf
 	name = "blue neck scarf"
 	desc = "A blue neck scarf."
 	icon_state = "blueneckscarf"
 	item_state = "blueneckscarf"
-	flags = MASKCOVERSMOUTH
+	body_parts_covered = FACE
+	item_flags = FLEXIBLEMATERIAL
 	w_class = 2
 	gas_transfer_coefficient = 0.90
 
@@ -66,7 +70,8 @@
 	desc = "A red and white checkered neck scarf."
 	icon_state = "redwhite_scarf"
 	item_state = "redwhite_scarf"
-	flags = MASKCOVERSMOUTH
+	body_parts_covered = FACE
+	item_flags = FLEXIBLEMATERIAL
 	w_class = 2
 	gas_transfer_coefficient = 0.90
 
@@ -75,7 +80,8 @@
 	desc = "A green neck scarf."
 	icon_state = "green_scarf"
 	item_state = "green_scarf"
-	flags = MASKCOVERSMOUTH
+	body_parts_covered = FACE
+	item_flags = FLEXIBLEMATERIAL
 	w_class = 2
 	gas_transfer_coefficient = 0.90
 
@@ -84,7 +90,8 @@
 	desc = "A stealthy, dark scarf."
 	icon_state = "ninja_scarf"
 	item_state = "ninja_scarf"
-	flags = MASKCOVERSMOUTH
+	body_parts_covered = FACE
+	item_flags = FLEXIBLEMATERIAL
 	w_class = 2
 	gas_transfer_coefficient = 0.90
 	siemens_coefficient = 0
@@ -94,8 +101,7 @@
 	desc = "A rubber pig mask."
 	icon_state = "pig"
 	item_state = "pig"
-	flags = BLOCKHAIR
-	flags_inv = HIDEFACE
+	flags_inv = HIDEFACE|BLOCKHAIR
 	w_class = 2
 	siemens_coefficient = 0.9
 	body_parts_covered = HEAD|FACE|EYES
@@ -105,12 +111,16 @@
 	desc = "A mask made of soft vinyl and latex, representing the head of a horse."
 	icon_state = "horsehead"
 	item_state = "horsehead"
-	flags = BLOCKHAIR
-	flags_inv = HIDEFACE
+	flags_inv = HIDEFACE|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
 	w_class = 2
-	var/voicechange = 0
 	siemens_coefficient = 0.9
+
+/obj/item/clothing/mask/horsehead/New()
+    ..()
+    // The horse mask doesn't cause voice changes by default, the wizard spell changes the flag as necessary
+    say_messages = list("NEEIIGGGHHHH!", "NEEEIIIIGHH!", "NEIIIGGHH!", "HAAWWWWW!", "HAAAWWW!")
+    say_verbs = list("whinnies", "neighs", "says")
 
 /obj/item/clothing/mask/ai
 	name = "camera MIU"
@@ -142,3 +152,37 @@
 
 		eye.owner.eyeobj = null
 		eye.owner = null
+
+/obj/item/clothing/mask/bandana
+	name = "black bandana"
+	desc = "A fine black bandana with nanotech lining."
+	w_class = 1
+	flags_inv = HIDEFACE
+	slot_flags = SLOT_MASK
+	icon_state = "bandblack"
+	item_state = null
+
+/obj/item/clothing/mask/bandana/red
+	name = "red bandana"
+	desc = "A fine red bandana with nanotech lining."
+	icon_state = "bandred"
+
+/obj/item/clothing/mask/bandana/blue
+	name = "blue bandana"
+	desc = "A fine blue bandana with nanotech lining."
+	icon_state = "bandblue"
+
+/obj/item/clothing/mask/bandana/green
+	name = "green bandana"
+	desc = "A fine green bandana with nanotech lining."
+	icon_state = "bandgreen"
+
+/obj/item/clothing/mask/bandana/gold
+	name = "gold bandana"
+	desc = "A fine gold bandana with nanotech lining."
+	icon_state = "bandgold"
+
+/obj/item/clothing/mask/bandana/skull
+	name = "skull bandana"
+	desc = "A fine black bandana with nanotech lining and a skull emblem."
+	icon_state = "bandskull"

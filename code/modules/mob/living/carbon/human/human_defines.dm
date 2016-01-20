@@ -16,7 +16,7 @@
 	var/g_eyes = 0
 	var/b_eyes = 0
 
-//	var/s_tone = 0	//Skin tone
+	var/s_tone = 0	//Skin tone
 
 	//Skin colour
 	var/r_skin = 0
@@ -34,7 +34,9 @@
 
 	var/underwear = 1	//Which underwear the player wants
 	var/undershirt = 0	//Which undershirt the player wants.
+	var/socks = 0		//Which socks the player wants.
 	var/backbag = 2		//Which backpack type the player has chosen. Nothing, Satchel or Backpack.
+	var/pdachoice = 1	//Which PDA type the player has chosen. Default, Slim, or Old.
 
 	// General information
 	var/home_system = ""
@@ -71,8 +73,6 @@
 	var/miming = null //Toggle for the mime's abilities.
 	var/special_voice = "" // For changing our voice. Used by a symptom.
 
-	var/failed_last_breath = 0 //This is used to determine if the mob failed a breath. If they did fail a brath, they will attempt to breathe each tick, otherwise just once per 4 ticks.
-
 	var/last_dam = -1	//Used for determining if we need to process all organs or just some or even none.
 	var/list/bad_external_organs = list()// organs we check until they are good.
 
@@ -82,6 +82,10 @@
 	var/hand_blood_color
 
 	var/list/flavor_texts = list()
+	var/gunshot_residue
+	var/pulling_punches    // Are you trying not to hurt your opponent?
+	var/full_prosthetic    // We are a robutt.
+	var/robolimb_count = 0 // Number of robot limbs.
 
 	mob_bump_flag = HUMAN
 	mob_push_flags = ~HEAVY

@@ -14,7 +14,6 @@ var/global/list/seen_religions = list()
 
 var/global/list/citizenship_choices = list(
 	"Earth",
-	"Eros",
 	"Mars",
 	"Moghes",
 	"Ahdomai",
@@ -23,9 +22,10 @@ var/global/list/citizenship_choices = list(
 
 var/global/list/home_system_choices = list(
 	"Sol",
+	"Vir",
 	"Nyx",
 	"Tau Ceti",
-	"Epsilon Ursae Minoris",
+	"Epsilon Ursae Majoris",
 	"S'randarr"
 	)
 

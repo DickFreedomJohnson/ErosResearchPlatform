@@ -54,12 +54,16 @@
 	var/datum/changeling/changeling		//changeling holder
 
 	var/rev_cooldown = 0
+	var/tcrystals = 0
 
 	// the world.time since the mob has been brigged, or -1 if not at all
 	var/brigged_since = -1
 
 	//put this here for easier tracking ingame
 	var/datum/money_account/initial_account
+	
+	//used for antag tcrystal trading, more info in code\game\objects\items\telecrystals.dm
+	var/accept_tcrystals = 0
 
 /datum/mind/New(var/key)
 	src.key = key
@@ -318,10 +322,10 @@
 						if(I in organs.implants)
 							qdel(I)
 							break
-				H << "<span class='notice'><font size =3><B>Your loyalty implant has been deactivated.</font></span>"
+				H << "<span class='notice'><font size =3><B>Your loyalty implant has been deactivated.</B></font></span>"
 				log_admin("[key_name_admin(usr)] has de-loyalty implanted [current].")
 			if("add")
-				H << "<span class='danger'><font size =3>You somehow have become the recepient of a loyalty transplant, and it just activated!</font>"
+				H << "<span class='danger'><font size =3>You somehow have become the recepient of a loyalty transplant, and it just activated!</font></span>"
 				H.implant_loyalty(H, override = TRUE)
 				log_admin("[key_name_admin(usr)] has loyalty implanted [current].")
 			else
@@ -375,14 +379,12 @@
 				memory = null//Remove any memory they may have had.
 			if("crystals")
 				if (usr.client.holder.rights & R_FUN)
-					var/obj/item/device/uplink/hidden/suplink = find_syndicate_uplink()
+				//	var/obj/item/device/uplink/hidden/suplink = find_syndicate_uplink() No longer needed, uses stored in mind
 					var/crystals
-					if (suplink)
-						crystals = suplink.uses
-					crystals = input("Amount of telecrystals for [key]","Operative uplink", crystals) as null|num
+					crystals = tcrystals
+					crystals = input("Amount of telecrystals for [key]", crystals) as null|num
 					if (!isnull(crystals))
-						if (suplink)
-							suplink.uses = crystals
+						tcrystals = crystals
 
 	else if (href_list["obj_announce"])
 		var/obj_count = 1

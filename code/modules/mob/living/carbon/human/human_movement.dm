@@ -16,7 +16,7 @@
 	var/health_deficiency = (100 - health)
 	if(health_deficiency >= 40) tally += (health_deficiency / 25)
 
-	if (!(species && (species.flags & NO_PAIN)))
+	if(can_feel_pain())
 		if(halloss >= 10) tally += (halloss / 10) //halloss shouldn't slow you down if you can't even feel it
 
 	var/hungry = (500 - nutrition)/5 // So overeat would be 100 and default level would be 80
@@ -26,9 +26,9 @@
 		tally += wear_suit.slowdown
 
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
-		for(var/organ_name in list("l_hand","r_hand","l_arm","r_arm"))
+		for(var/organ_name in list(BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM))
 			var/obj/item/organ/external/E = get_organ(organ_name)
-			if(!E || E.is_stump())
+			if(!E || (E.status & ORGAN_DESTROYED))
 				tally += 4
 			if(E.status & ORGAN_SPLINTED)
 				tally += 0.5
@@ -38,9 +38,9 @@
 		if(shoes)
 			tally += shoes.slowdown
 
-		for(var/organ_name in list("l_foot","r_foot","l_leg","r_leg"))
+		for(var/organ_name in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT))
 			var/obj/item/organ/external/E = get_organ(organ_name)
-			if(!E || E.is_stump())
+			if(!E || (E.status & ORGAN_DESTROYED))
 				tally += 4
 			else if(E.status & ORGAN_SPLINTED)
 				tally += 0.5
@@ -48,6 +48,8 @@
 				tally += 1.5
 
 	if(shock_stage >= 10) tally += 3
+
+	if(aiming && aiming.aiming_at) tally += 5 // Iron sights make you slower, it's a well-known fact.
 
 	if(FAT in src.mutations)
 		tally += 1.5
@@ -97,7 +99,7 @@
 		prob_slip = 0 // Changing this to zero to make it line up with the comment, and also, make more sense.
 
 	//Do we have magboots or such on if so no slip
-	if(istype(shoes, /obj/item/clothing/shoes/magboots) && (shoes.flags & NOSLIP))
+	if(istype(shoes, /obj/item/clothing/shoes/magboots) && (shoes.item_flags & NOSLIP))
 		prob_slip = 0
 
 	//Check hands and mod slip

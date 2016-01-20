@@ -9,7 +9,6 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 	allowed = list(/obj/item/device/analyzer,/obj/item/stack/medical,/obj/item/weapon/dnainjector,/obj/item/weapon/reagent_containers/dropper,/obj/item/weapon/reagent_containers/syringe,/obj/item/weapon/reagent_containers/hypospray,/obj/item/device/healthanalyzer,/obj/item/device/flashlight/pen,/obj/item/weapon/reagent_containers/glass/bottle,/obj/item/weapon/reagent_containers/glass/beaker,/obj/item/weapon/reagent_containers/pill,/obj/item/weapon/storage/pill_bottle,/obj/item/weapon/paper)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 0)
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
 /obj/item/clothing/suit/storage/toggle/labcoat/red
 	name = "red labcoat"
@@ -50,6 +49,22 @@
 	item_state = "green_labcoat"
 	icon_open = "green_labcoat_open"
 	icon_closed = "green_labcoat"
+
+/obj/item/clothing/suit/storage/toggle/labcoat/yellow
+	name = "yellow labcoat"
+	desc = "A suit that protects against minor chemical spills. This one is yellow."
+	icon_state = "yellow_labcoat_open"
+	item_state = "yellow_labcoat"
+	icon_open = "yellow_labcoat_open"
+	icon_closed = "yellow_labcoat"
+
+/obj/item/clothing/suit/storage/toggle/labcoat/pink
+	name = "pink labcoat"
+	desc = "A suit that protects against minor chemical spills. This one is pink."
+	icon_state = "pink_labcoat_open"
+	item_state = "pink_labcoat"
+	icon_open = "pink_labcoat_open"
+	icon_closed = "pink_labcoat"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/cmo
 	name = "chief medical officer's labcoat"
@@ -102,3 +117,11 @@
 	icon_state = "labcoat_tox_open"
 	icon_open = "labcoat_tox_open"
 	icon_closed = "labcoat_tox"
+
+/obj/item/clothing/suit/storage/toggle/labcoat/emt
+	name = "EMT's labcoat"
+	desc = "A dark blue labcoat with reflective strips for emergency medical technicians."
+	icon_state = "labcoat_emt_open"
+	item_state = "labcoat_emt"
+	icon_open = "labcoat_emt_open"
+	icon_closed = "labcoat_emt"

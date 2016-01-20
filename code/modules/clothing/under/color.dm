@@ -31,7 +31,7 @@
 
 /obj/item/clothing/under/color/orange
 	name = "orange jumpsuit"
-	desc = "It's standardised Nanotrasen prisoner-wear. Its suit sensors are stuck in the \"Fully On\" position."
+	desc = "It's standardised prisoner-wear. Its suit sensors are stuck in the \"Fully On\" position."
 	icon_state = "orange"
 	item_state = "o_suit"
 	worn_state = "orange"
@@ -145,10 +145,3 @@
 	icon_state = "darkred"
 	item_state = "r_suit"
 	worn_state = "darkred"
-
-/obj/item/clothing/under/piplad
-	name = "Pip-Suit"
-	desc = "Looks like it could survive anything!"
-	icon_state = "piplad"
-	item_state = "b_suit"
-	worn_state = "piplad"

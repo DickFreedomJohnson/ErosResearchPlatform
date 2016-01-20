@@ -1,6 +1,6 @@
 /obj/item/weapon/spacecash
-	name = "0 credt"
-	desc = "It's worth 0 credts."
+	name = "0 Thaler"
+	desc = "It's worth 0 Thalers."
 	gender = PLURAL
 	icon = 'icons/obj/items.dmi'
 	icon_state = "spacecash1"
@@ -36,13 +36,13 @@
 			h_user.drop_from_inventory(src)
 			h_user.drop_from_inventory(bundle)
 			h_user.put_in_hands(bundle)
-		user << "<span class='notice'>You add [src.worth] credts worth of money to the bundles.<br>It holds [bundle.worth] credts now.</span>"
+		user << "<span class='notice'>You add [src.worth] Thalers worth of money to the bundles.<br>It holds [bundle.worth] Thalers now.</span>"
 		qdel(src)
 
 /obj/item/weapon/spacecash/bundle
-	name = "pile of credts"
+	name = "pile of thalers"
 	icon_state = ""
-	desc = "They are worth 0 credts."
+	desc = "They are worth 0 Thalers."
 	worth = 0
 
 /obj/item/weapon/spacecash/bundle/update_icon()
@@ -59,17 +59,17 @@
 			M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
 			banknote.transform = M
 			src.overlays += banknote
-	if(num == 0) // Less than one credt, let's just make it look like 1 for ease
+	if(num == 0) // Less than one thaler, let's just make it look like 1 for ease
 		var/image/banknote = image('icons/obj/items.dmi', "spacecash1")
 		var/matrix/M = matrix()
 		M.Translate(rand(-6, 6), rand(-4, 8))
 		M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
 		banknote.transform = M
 		src.overlays += banknote
-	src.desc = "They are worth [worth] credts."
+	src.desc = "They are worth [worth] Thalers."
 
 /obj/item/weapon/spacecash/bundle/attack_self()
-	var/amount = input(usr, "How many credts do you want to take? (0 to [src.worth])", "Take Money", 20) as num
+	var/amount = input(usr, "How many Thalers do you want to take? (0 to [src.worth])", "Take Money", 20) as num
 	amount = round(Clamp(amount, 0, src.worth))
 	if(amount==0) return 0
 
@@ -90,51 +90,51 @@
 		qdel(src)
 
 /obj/item/weapon/spacecash/c1
-	name = "1 credt"
+	name = "1 Thaler"
 	icon_state = "spacecash1"
 	desc = "It's worth 1 credit."
 	worth = 1
 
 /obj/item/weapon/spacecash/c10
-	name = "10 credt"
+	name = "10 Thaler"
 	icon_state = "spacecash10"
-	desc = "It's worth 10 credts."
+	desc = "It's worth 10 Thalers."
 	worth = 10
 
 /obj/item/weapon/spacecash/c20
-	name = "20 credt"
+	name = "20 Thaler"
 	icon_state = "spacecash20"
-	desc = "It's worth 20 credts."
+	desc = "It's worth 20 Thalers."
 	worth = 20
 
 /obj/item/weapon/spacecash/c50
-	name = "50 credt"
+	name = "50 Thaler"
 	icon_state = "spacecash50"
-	desc = "It's worth 50 credts."
+	desc = "It's worth 50 Thalers."
 	worth = 50
 
 /obj/item/weapon/spacecash/c100
-	name = "100 credt"
+	name = "100 Thaler"
 	icon_state = "spacecash100"
-	desc = "It's worth 100 credts."
+	desc = "It's worth 100 Thalers."
 	worth = 100
 
 /obj/item/weapon/spacecash/c200
-	name = "200 credt"
+	name = "200 Thaler"
 	icon_state = "spacecash200"
-	desc = "It's worth 200 credts."
+	desc = "It's worth 200 Thalers."
 	worth = 200
 
 /obj/item/weapon/spacecash/c500
-	name = "500 credt"
+	name = "500 Thaler"
 	icon_state = "spacecash500"
-	desc = "It's worth 500 credts."
+	desc = "It's worth 500 Thalers."
 	worth = 500
 
 /obj/item/weapon/spacecash/c1000
-	name = "1000 credt"
+	name = "1000 Thaler"
 	icon_state = "spacecash1000"
-	desc = "It's worth 1000 credts."
+	desc = "It's worth 1000 Thalers."
 	worth = 1000
 
 proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
@@ -160,4 +160,4 @@ proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 /obj/item/weapon/spacecash/ewallet/examine(mob/user)
 	..(user)
 	if (!(user in view(2)) && user!=src.loc) return
-	user << "\blue Charge card's owner: [src.owner_name]. credts remaining: [src.worth]."
+	user << "\blue Charge card's owner: [src.owner_name]. Thalers remaining: [src.worth]."

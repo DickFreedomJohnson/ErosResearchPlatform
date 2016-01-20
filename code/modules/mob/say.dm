@@ -31,7 +31,6 @@
 /mob/verb/me_verb(message as text)
 	set name = "Me"
 	set category = "IC"
-	set desc = "Emote to nearby people"
 
 	if(say_disabled)	//This is here to try to identify lag problems
 		usr << "\red Speech is currently admin-disabled."
@@ -44,23 +43,6 @@
 		usr.emote("me",usr.emote_type,message)
 	else
 		usr.emote(message)
-
-/mob/verb/me_verb_subtle(message as text)
- 	set name = "Subtle"
- 	set category = "IC"
- 	set desc = "Emote to nearby people (and your pred/prey)"
-
- 	if(say_disabled)	//This is here to try to identify lag problems
- 			usr << "\red Speech is currently admin-disabled."
- 			return
-
- 	message = strip_html_properly(message)
-
- 	set_typing_indicator(0)
- 	if(use_me)
- 			usr.emote("me",4,message) //Hardcoded message type 4 for subtle
- 	else
- 			usr.emote(message)
 
 /mob/proc/say_dead(var/message)
 	if(say_disabled)	//This is here to try to identify lag problems
@@ -165,11 +147,12 @@
 //parses the language code (e.g. :j) from text, such as that supplied to say.
 //returns the language object only if the code corresponds to a language that src can speak, otherwise null.
 /mob/proc/parse_language(var/message)
-	if(length(message) >= 1 && copytext(message,1,2) == "!")
+	var/prefix = copytext(message,1,2)
+	if(length(message) >= 1 && prefix == "!")
 		return all_languages["Noise"]
 
-	if(length(message) >= 2)
-		var/language_prefix = lowertext(copytext(message, 1 ,3))
+	if(length(message) >= 2 && is_language_prefix(prefix))
+		var/language_prefix = lowertext(copytext(message, 2 ,3))
 		var/datum/language/L = language_keys[language_prefix]
 		if (can_speak(L))
 			return L

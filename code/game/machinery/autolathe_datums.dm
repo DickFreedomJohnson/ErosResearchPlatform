@@ -37,6 +37,11 @@
 	path = /obj/item/device/flashlight
 	category = "General"
 
+/datum/autolathe/recipe/floor_light
+	name = "floor light"
+	path = /obj/machinery/floor_light
+	category = "General"
+
 /datum/autolathe/recipe/extinguisher
 	name = "extinguisher"
 	path = /obj/item/weapon/extinguisher
@@ -100,6 +105,11 @@
 /datum/autolathe/recipe/radio_bounced
 	name = "station bounced radio"
 	path = /obj/item/device/radio/off
+	category = "General"
+
+/datum/autolathe/recipe/suit_cooler
+	name = "suit cooling unit"
+	path = /obj/item/device/suit_cooling_unit
 	category = "General"
 
 /datum/autolathe/recipe/weldermask
@@ -332,8 +342,8 @@
 	category = "Arms and Ammunition"
 
 /datum/autolathe/recipe/magazine_c20r
-	name = "ammunition (12mm)"
-	path = /obj/item/ammo_magazine/a12mm
+	name = "ammunition (10mm)"
+	path = /obj/item/ammo_magazine/a10mm
 	hidden = 1
 	category = "Arms and Ammunition"
 
@@ -409,4 +419,8 @@
 	hidden = 1
 	category = "General"
 
-
+/datum/autolathe/recipe/knuckledusters
+	name = "knuckle dusters"
+	path = /obj/item/weapon/material/knuckledusters
+	hidden = 1
+	category = "Arms and Ammunition"

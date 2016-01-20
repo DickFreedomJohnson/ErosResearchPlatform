@@ -80,7 +80,7 @@
 
 	if(user.species.can_shred(user) && !(stat & BROKEN))
 		playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1, -1)
-		visible_message("\red <B>[user] has slashed at [src]!</B>")
+		visible_message("<span class='danger'>[user] has slashed at [src]!</span>")
 		src.take_damage(15)
 	return
 
@@ -266,15 +266,15 @@
 	else
 		A = new /obj/item/projectile/energy/electrode( loc )
 		use_power(200)
-	
+
 	//Turrets aim for the center of mass by default.
 	//If the target is grabbing someone then the turret smartly aims for extremities
 	var/obj/item/weapon/grab/G = locate() in target
 	if(G && G.state >= GRAB_NECK) //works because mobs are currently not allowed to upgrade to NECK if they are grabbing two people.
-		A.def_zone = pick("head", "l_hand", "r_hand", "l_foot", "r_foot", "l_arm", "r_arm", "l_leg", "r_leg")
+		A.def_zone = pick(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_FOOT, BP_R_FOOT, BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
 	else
-		A.def_zone = pick("chest", "groin")
-	
+		A.def_zone = pick(BP_TORSO, BP_GROIN)
+
 	A.current = T
 	A.starting = T
 	A.yo = U.y - T.y
@@ -405,10 +405,6 @@
 		return
 
 	emp_act()
-		qdel(src)
-		return
-
-	meteorhit()
 		qdel(src)
 		return
 
