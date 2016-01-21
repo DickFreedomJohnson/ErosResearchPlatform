@@ -11,7 +11,7 @@
 	selection_color = "#dddddd"
 	access = list(access_hydroponics, access_bar, access_kitchen)
 	minimal_access = list(access_bar)
-	alt_titles = list("Barista")
+	alt_titles = list("Barista","Mixologist","Barkeep","Barmaid")
 
 
 	equip(var/mob/living/carbon/human/H)
@@ -40,7 +40,7 @@
 	selection_color = "#dddddd"
 	access = list(access_hydroponics, access_bar, access_kitchen)
 	minimal_access = list(access_kitchen)
-	alt_titles = list("Cook")
+	alt_titles = list("Cook","Culinary Artist","Baker","Waiter","Waitress")
 
 
 	equip(var/mob/living/carbon/human/H)
@@ -67,7 +67,7 @@
 	selection_color = "#dddddd"
 	access = list(access_hydroponics, access_bar, access_kitchen)
 	minimal_access = list(access_hydroponics)
-	alt_titles = list("Hydroponicist")
+	alt_titles = list("Hydroponicist","Botanist","Farmer")
 
 
 	equip(var/mob/living/carbon/human/H)
@@ -156,7 +156,7 @@
 	economic_modifier = 5
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
 	minimal_access = list(access_mining, access_mining_station, access_mailsorting)
-	alt_titles = list("Drill Technician","Prospector")
+	alt_titles = list("Drill Technician","Prospector","Miner")
 
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
@@ -228,7 +228,6 @@
 	access = list(access_mime, access_theatre, access_maint_tunnels)
 	minimal_access = list(access_mime, access_theatre)
 
-
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
 		if(H.backbag == 2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), slot_back)
@@ -267,6 +266,7 @@
 	selection_color = "#dddddd"
 	access = list(access_janitor, access_maint_tunnels)
 	minimal_access = list(access_janitor, access_maint_tunnels)
+	alt_titles = list("Custodian")
 
 
 	equip(var/mob/living/carbon/human/H)
@@ -292,7 +292,7 @@
 	selection_color = "#dddddd"
 	access = list(access_library, access_maint_tunnels)
 	minimal_access = list(access_library)
-	alt_titles = list("Journalist")
+	alt_titles = list("Journalist","Writer","Bookkeeper","Curator","Archivist","Author")
 
 
 	equip(var/mob/living/carbon/human/H)
@@ -319,6 +319,7 @@
 	economic_modifier = 7
 	access = list(access_lawyer, access_sec_doors, access_maint_tunnels, access_heads)
 	minimal_access = list(access_lawyer, access_sec_doors, access_heads)
+	alt_titles = list("Lawyer","Attorney")
 
 
 	equip(var/mob/living/carbon/human/H)
