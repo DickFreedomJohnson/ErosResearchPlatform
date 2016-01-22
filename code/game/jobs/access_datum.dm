@@ -266,7 +266,11 @@
 	desc = "Surgery"
 	region = ACCESS_REGION_MEDBAY
 
-// /var/const/free_access_id = 46
+/var/const/access_theatre = 46
+/datum/access/theatre
+	id = access_theatre
+	desc = "Theatre"
+	region = ACCESS_REGION_GENERAL
 
 /var/const/access_research = 47
 /datum/access/research
