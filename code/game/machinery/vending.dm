@@ -974,7 +974,7 @@
 	//everything after the power cell had no amounts, I improvised.  -Sayu
 
 //from vg
-/obj/machinery/vending/cola
+/obj/machinery/vending/groans
 	name = "Groans Soda"
 	desc = "A soda machine owned by the infamous 'Groans' franchise."
 	product_slogans = "Groans: Drink up!;Sponsored by Discount Dan!;Take a sip!;Just one sip, do it!"
@@ -996,7 +996,7 @@
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
 
-/obj/machinery/vending/cola
+/obj/machinery/vending/discount
 	name = "Discount Dan's"
 	desc = "A snack machine owned by the infamous 'Discount Dan' franchise."
 	product_slogans = "Discount Dan, he's the man!;There 'aint nothing better in this world then a bite of mystery.;Don't listen to those other machines, buy my product!;Quantity over Quality!;Don't listen to those eggheads at the CDC, buy now!;Discount Dan's: We're good for you! Nope, couldn't say it with a straight face.;Discount Dan's: Only the best quality produ-*BZZT*"

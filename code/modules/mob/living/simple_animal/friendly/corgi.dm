@@ -202,3 +202,21 @@
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					set_dir(i)
 					sleep(1)
+
+
+
+//Special Corgis
+
+
+
+/mob/living/simple_animal/corgi/rainbow
+	name = "Rainbow Corgi"
+	real_name = "Rainbow Corgi"	//Intended to hold the name without altering it.
+	gender = MALE
+	desc = "It's... beautiful..."
+	var/turns_since_scan = 0
+	var/obj/movement_target
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
+
