@@ -129,7 +129,7 @@
 	center_of_mass = list("x"=15, "y"=10)
 	New()
 		..()
-		reagents.add_reagent("coffee", 30)
+		reagents.add_reagent("coffee", 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/tea
 	name = "Duke Purple Tea"
@@ -139,7 +139,7 @@
 	center_of_mass = list("x"=16, "y"=14)
 	New()
 		..()
-		reagents.add_reagent("tea", 30)
+		reagents.add_reagent("tea", 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/ice
 	name = "Ice Cup"
@@ -148,7 +148,7 @@
 	center_of_mass = list("x"=15, "y"=10)
 	New()
 		..()
-		reagents.add_reagent("ice", 30)
+		reagents.add_reagent("ice", 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/h_chocolate
 	name = "Dutch Hot Coco"
@@ -158,7 +158,7 @@
 	center_of_mass = list("x"=15, "y"=13)
 	New()
 		..()
-		reagents.add_reagent("hot_coco", 30)
+		reagents.add_reagent("hot_coco", 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/dry_ramen
 	name = "Cup Ramen"
@@ -184,6 +184,154 @@
 			icon_state = "water_cup"
 		else
 			icon_state = "water_cup_e"
+
+
+/obj/item/weapon/reagent_containers/food/drinks/groans
+	name = "Groans Soda"
+	desc = "Groans Soda: We'll make you groan"
+	icon_state = "groans"
+	center_of_mass = list("x"=15, "y"=13)
+	New()
+/obj/item/weapon/reagent_containers/food/drinks/groans/New()
+	..()
+	switch(pick(1,2,3,4,5))
+		if(1)
+			name = "Groans Soda: Cuban Spice Flavor"
+			desc = "Warning: Long exposure to liquid inside may cause you to follow the rumba beat."
+			icon_state += "_hot"
+			reagents.add_reagent("condensedcapsaicin", 10)
+			reagents.add_reagent("rum", 10)
+		if(2)
+			name = "Groans Soda: Icey Cold Flavor"
+			desc = "Cold in a can. Er, bottle."
+			icon_state += "_cold"
+			reagents.add_reagent("frostoil", 10)
+			reagents.add_reagent("ice", 10)
+		if(3)
+			name = "Groans Soda: Zero Calories"
+			desc = "Zero Point Calories. That's right, we fit even MORE nutriment in this thing."
+			icon_state += "_nutriment"
+			reagents.add_reagent("nutriment", 20)
+		if(4)
+			name = "Groans Soda: Energy Shot"
+			desc = "Warning: The Groans Energy Blend(tm), may be toxic to those without constant exposure to chemical waste. Drink responsibly."
+			icon_state += "_energy"
+			reagents.add_reagent("sugar", 10)
+			reagents.add_reagent("chemical_waste", 10)
+		if(5)
+			name = "Groans Soda: Double Dan"
+			desc = "Just when you thought you've had enough Dan, The 'Double Dan' strikes back with this wonderful mixture of too many flavors. Bring a barf bag, Drink responsibly."
+			icon_state += "_doubledew"
+			reagents.add_reagent("discount", 20)
+	reagents.add_reagent("discount", 10)
+
+
+/obj/item/weapon/reagent_containers/food/drinks/filk
+	name = "Filk"
+	desc = "Only the best Filk for your crew."
+	icon_state = "filk"
+	center_of_mass = list("x"=16, "y"=11)
+	New()
+/obj/item/weapon/reagent_containers/food/drinks/filk/New()
+	..()
+	switch(pick(1,2,3,4,5))
+		if(1)
+			name = "Filk: Chocolate Edition"
+			reagents.add_reagent("hot_coco", 10)
+		if(2)
+			name = "Filk: Scripture Edition"
+			reagents.add_reagent("holywater", 30)
+		if(3)
+			name = "Filk: Carribean Edition"
+			reagents.add_reagent("rum", 30)
+		if(4)
+			name = "Filk: Sugar Blast Editon"
+			reagents.add_reagent("sugar", 30)
+			reagents.add_reagent("radium", 10) // le epik fallout may mays
+			reagents.add_reagent("toxicwaste", 10)
+		if(5)
+			name = "Filk: Pure Filk Edition"
+			reagents.add_reagent("discount", 20)
+	reagents.add_reagent("discount", 10)
+
+/obj/item/weapon/reagent_containers/food/drinks/grifeo
+	name = "Grifeo"
+	desc = "A quality drink."
+	icon_state = "griefo"
+	center_of_mass = list("x"=16, "y"=11)
+	New()
+/obj/item/weapon/reagent_containers/food/drinks/grifeo/New()
+	..()
+	switch(pick(1,2,3,4,5))
+		if(1)
+			name = "Grifeo: Spicy"
+			reagents.add_reagent("condensedcapsaicin", 30)
+		if(2)
+			name = "Grifeo: Frozen"
+			reagents.add_reagent("frostoil", 30)
+		if(3)
+			name = "Grifeo: Crystallic"
+			reagents.add_reagent("sugar", 20)
+			reagents.add_reagent("ice", 20)
+			reagents.add_reagent("space_drugs", 20)
+		if(4)
+			name = "Grifeo: Rich"
+			reagents.add_reagent("tequila", 10)
+			reagents.add_reagent("chemical_waste", 10)
+		if(5)
+			name = "Grifeo: Pure"
+			reagents.add_reagent("discount", 20)
+	reagents.add_reagent("discount", 10)
+
+
+/obj/item/weapon/reagent_containers/food/drinks/groansbanned
+	name = "Groans: Banned Edition"
+	desc = "Banned literally everywhere."
+	icon_state = "groansevil"
+	center_of_mass = list("x"=16, "y"=11)
+	New()
+/obj/item/weapon/reagent_containers/food/drinks/groansbanned/New()
+	..()
+	switch(pick(1,2,3,4,5))
+		if(1)
+			name = "Groans Banned Soda: Fish Suprise"
+			reagents.add_reagent("carpotoxin", 10)
+		if(2)
+			name = "Groans Banned Soda: Bitter Suprise"
+			reagents.add_reagent("toxin", 20)
+		if(3)
+			name = "Groans Banned Soda: Sour Suprise"
+			reagents.add_reagent("pacid", 20)
+		if(4)
+			name = "Groans Banned Soda: Sleepy Suprise"
+			reagents.add_reagent("stoxin", 10)
+		if(5)
+			name = "Groans Banned Soda: Quadruple Dan"
+			reagents.add_reagent("discount", 40)
+	reagents.add_reagent("discount", 10)
+
+
+/obj/item/weapon/reagent_containers/food/drinks/sportdrink
+	name = "Brawndo"
+	icon_state = "brawndo"
+	desc = "It has what plants crave! Electrolytes!"
+	center_of_mass = list("x"=16, "y"=11)
+	New()
+/obj/item/weapon/reagent_containers/food/drinks/sportdrink/New()
+	..()
+	reagents.add_reagent("sportdrink", 30)
+
+/obj/item/weapon/reagent_containers/food/drinks/mannsdrink
+	name = "Mann's Drink"
+	desc = "The only thing a <B>REAL MAN</B> needs."
+	icon_state = "mannsdrink"
+	center_of_mass = list("x"=16, "y"=11)
+	New()
+/obj/item/weapon/reagent_containers/food/drinks/mannsdrink/New()
+	..()
+	reagents.add_reagent("discount", 30)
+	reagents.add_reagent("water", 20)
+
 
 
 //////////////////////////drinkingglass and shaker//

@@ -248,7 +248,7 @@ var/global/list/damage_icon_parts = list()
 	if(gender == FEMALE)
 		g = "female"
 
-	var/icon_key = "[species.race_key][g][s_tone][r_skin][g_skin][b_skin]"
+	var/icon_key = "[species.race_key][g][r_skin][g_skin][b_skin]"
 	if(lip_style)
 		icon_key += "[lip_style]"
 	else
@@ -272,7 +272,6 @@ var/global/list/damage_icon_parts = list()
 		if(part)
 			icon_key += "[part.species.race_key]"
 			icon_key += "[part.dna.GetUIState(DNA_UI_GENDER)]"
-			icon_key += "[part.dna.GetUIValue(DNA_UI_SKIN_TONE)]"
 			if(part.s_col && part.s_col.len >= 3)
 				icon_key += "[rgb(part.s_col[1],part.s_col[2],part.s_col[3])]"
 			if(part.body_hair && part.h_col && part.h_col.len >= 3)

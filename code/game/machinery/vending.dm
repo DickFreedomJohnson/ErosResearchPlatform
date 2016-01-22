@@ -973,3 +973,42 @@
 					/obj/item/weapon/screwdriver = 5,/obj/item/weapon/crowbar = 5)
 	//everything after the power cell had no amounts, I improvised.  -Sayu
 
+//from vg
+/obj/machinery/vending/cola
+	name = "Groans Soda"
+	desc = "A soda machine owned by the infamous 'Groans' franchise."
+	product_slogans = "Groans: Drink up!;Sponsored by Discount Dan!;Take a sip!;Just one sip, do it!"
+	product_ads = "Try our new 'Double Dan' flavor!"
+	vend_reply = "No refunds."
+	icon_state = "groans"
+	products = list(/obj/item/weapon/reagent_containers/food/drinks/groans = 10,
+		/obj/item/weapon/reagent_containers/food/drinks/filk = 10,
+		/obj/item/weapon/reagent_containers/food/drinks/grifeo = 10,
+		/obj/item/weapon/reagent_containers/food/drinks/mannsdrink = 10,
+		/obj/item/weapon/reagent_containers/food/drinks/sportdrink = 10,)
+	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/groansbanned = 10,)
+	prices = list(/obj/item/weapon/reagent_containers/food/drinks/groans = 20,
+		/obj/item/weapon/reagent_containers/food/drinks/filk = 20,
+		/obj/item/weapon/reagent_containers/food/drinks/grifeo = 30,
+		/obj/item/weapon/reagent_containers/food/drinks/mannsdrink = 10,
+		/obj/item/weapon/reagent_containers/food/drinks/sportdrink = 50,
+		/obj/item/weapon/reagent_containers/food/drinks/groansbanned = 50,)
+	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+
+
+/obj/machinery/vending/cola
+	name = "Discount Dan's"
+	desc = "A snack machine owned by the infamous 'Discount Dan' franchise."
+	product_slogans = "Discount Dan, he's the man!;There 'aint nothing better in this world then a bite of mystery.;Don't listen to those other machines, buy my product!;Quantity over Quality!;Don't listen to those eggheads at the CDC, buy now!;Discount Dan's: We're good for you! Nope, couldn't say it with a straight face.;Discount Dan's: Only the best quality produ-*BZZT*"
+	product_ads = "Discount Dan(tm) is not responsible for any damages caused by misuse of his product."
+	vend_reply = "No refunds."
+	icon_state = "discount"
+	products = list(/obj/item/weapon/reagent_containers/food/drinks/cans/cola = 10,/obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb = 10,/obj/item/weapon/reagent_containers/food/drinks/cans/starkist = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 10,/obj/item/weapon/reagent_containers/food/drinks/cans/space_up = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea = 10, /obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice = 10)
+	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/cans/thirteenloko = 5, /obj/item/weapon/reagent_containers/food/snacks/liquidfood = 6)
+	prices = list(/obj/item/weapon/reagent_containers/food/drinks/cans/cola = 1,/obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb = 1,/obj/item/weapon/reagent_containers/food/drinks/cans/starkist = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 2,/obj/item/weapon/reagent_containers/food/drinks/cans/space_up = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea = 1,/obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice = 1)

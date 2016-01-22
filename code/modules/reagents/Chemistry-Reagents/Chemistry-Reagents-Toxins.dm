@@ -528,3 +528,22 @@
 
 /datum/reagent/xenomicrobes/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.contract_disease(new /datum/disease/xeno_transformation(0), 1)
+
+/datum/reagent/discount
+	name = "Discount Dan's Special Sauce"
+	id = "discount"
+	description = "You can almost feel your liver failing, just by looking at it."
+	reagent_state = LIQUID
+	color = "#6F884F" //rgb: 255, 255, 255
+	data = 1 //Used as a tally
+/datum/reagent/discount/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+ 	if(alien == IS_DIONA)
+  		return
+ 			M.add_chemical_effect(CE_ALCOHOL_TOXIC , 1)
+
+/datum/reagent/toxicwaste
+	name = "Toxic Waste"
+	id = "toxicwaste"
+	description = "Yum!"
+	reagent_state = LIQUID
+	color = "#6F884F" //rgb: 255,255,255 //to-do

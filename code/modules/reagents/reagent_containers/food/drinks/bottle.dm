@@ -471,7 +471,7 @@
 	center_of_mass = list("x"=16, "y"=12)
 	New()
 		..()
-		reagents.add_reagent("beer", 30)
+		reagents.add_reagent("beer", 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale
 	name = "\improper Magm-Ale"
@@ -481,4 +481,4 @@
 	center_of_mass = list("x"=16, "y"=10)
 	New()
 		..()
-		reagents.add_reagent("ale", 30)
+		reagents.add_reagent("ale", 50)

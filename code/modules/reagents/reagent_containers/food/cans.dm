@@ -12,7 +12,7 @@
 	center_of_mass = list("x"=16, "y"=10)
 	New()
 		..()
-		reagents.add_reagent("cola", 30)
+		reagents.add_reagent("cola", 40)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle
 	name = "bottled water"
@@ -21,7 +21,7 @@
 	center_of_mass = list("x"=15, "y"=8)
 	New()
 		..()
-		reagents.add_reagent("water", 30)
+		reagents.add_reagent("water", 40)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind
 	name = "\improper Space Mountain Wind"
@@ -30,7 +30,7 @@
 	center_of_mass = list("x"=16, "y"=10)
 	New()
 		..()
-		reagents.add_reagent("spacemountainwind", 30)
+		reagents.add_reagent("spacemountainwind", 40)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/thirteenloko
 	name = "\improper Thirteen Loko"
@@ -39,7 +39,7 @@
 	center_of_mass = list("x"=16, "y"=8)
 	New()
 		..()
-		reagents.add_reagent("thirteenloko", 30)
+		reagents.add_reagent("thirteenloko", 40)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb
 	name = "\improper Dr. Gibb"
@@ -48,7 +48,7 @@
 	center_of_mass = list("x"=16, "y"=10)
 	New()
 		..()
-		reagents.add_reagent("dr_gibb", 30)
+		reagents.add_reagent("dr_gibb", 40)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/starkist
 	name = "\improper Star-kist"
@@ -57,7 +57,7 @@
 	center_of_mass = list("x"=16, "y"=10)
 	New()
 		..()
-		reagents.add_reagent("brownstar", 30)
+		reagents.add_reagent("brownstar", 40)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/space_up
 	name = "\improper Space-Up"
@@ -66,7 +66,7 @@
 	center_of_mass = list("x"=16, "y"=10)
 	New()
 		..()
-		reagents.add_reagent("space_up", 30)
+		reagents.add_reagent("space_up", 40)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/lemon_lime
 	name = "\improper Lemon-Lime"
@@ -75,7 +75,7 @@
 	center_of_mass = list("x"=16, "y"=10)
 	New()
 		..()
-		reagents.add_reagent("lemon_lime", 30)
+		reagents.add_reagent("lemon_lime", 40)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea
 	name = "\improper Vrisk Serket Iced Tea"
@@ -84,7 +84,7 @@
 	center_of_mass = list("x"=16, "y"=10)
 	New()
 		..()
-		reagents.add_reagent("icetea", 30)
+		reagents.add_reagent("icetea", 40)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice
 	name = "\improper Grapel Juice"
@@ -93,7 +93,7 @@
 	center_of_mass = list("x"=16, "y"=10)
 	New()
 		..()
-		reagents.add_reagent("grapejuice", 30)
+		reagents.add_reagent("grapejuice", 40)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/tonic
 	name = "\improper T-Borg's Tonic Water"

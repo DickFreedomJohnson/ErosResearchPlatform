@@ -390,3 +390,9 @@
 
 /datum/reagent/luminol/touch_mob(var/mob/living/L)
 	L.reveal_blood()
+
+/datum/reagent/drink/sportdrink
+	name = "Sport Drink"
+	id = "sportdrink"
+	description = "You like sports, and you don't care who knows."
+	color = "#CCFF66" //rgb: 204, 255, 51

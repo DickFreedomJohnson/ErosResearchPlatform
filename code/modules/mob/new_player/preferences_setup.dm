@@ -2,7 +2,6 @@ datum/preferences
 	//The mob should have a gender you want before running this proc. Will run fine without H
 	proc/randomize_appearance_for(var/mob/living/carbon/human/H)
 		gender = pick(MALE, FEMALE)
-		s_tone = random_skin_tone()
 
 		var/use_head_species
 		var/obj/item/organ/external/head/temp_head = H.get_organ(BP_HEAD)
@@ -221,25 +220,14 @@ datum/preferences
 				limb_icon = new /icon(icobase, "[name]")
 			// Skin color
 			if(current_species && (current_species.appearance_flags & HAS_SKIN_COLOR))
-				limb_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
-			// Skin tone
-			if(current_species && (current_species.appearance_flags & HAS_SKIN_TONE))
-				if (s_tone >= 0)
-					limb_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
-				else
-					limb_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
+				limb_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_MULTIPLY)
 			preview_icon.Blend(limb_icon, ICON_OVERLAY)
 
 		//Tail
 		if(current_species && (current_species.tail))
 			var/icon/temp = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[current_species.tail]_s")
 			if(current_species && (current_species.appearance_flags & HAS_SKIN_COLOR))
-				temp.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
-			if(current_species && (current_species.appearance_flags & HAS_SKIN_TONE))
-				if (s_tone >= 0)
-					temp.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
-				else
-					temp.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
+				temp.Blend(rgb(r_skin, g_skin, b_skin), ICON_MULTIPLY)
 			preview_icon.Blend(temp, ICON_OVERLAY)
 
 		// This is absolute garbage but whatever. It will do until this entire file can be rewritten without crashes.
