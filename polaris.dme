@@ -10,6 +10,7 @@
 #define DEBUG
 // END_PREFERENCES
 // BEGIN_INCLUDE
+#include "Eros-0.dmm"
 #include "code\_macros.dm"
 #include "code\global.dm"
 #include "code\hub.dm"
@@ -1899,6 +1900,7 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
+#include "maps\Eros-1.dmm"
 #include "maps\polaris-1.dmm"
 #include "maps\polaris-2.dmm"
 #include "maps\polaris-3.dmm"
