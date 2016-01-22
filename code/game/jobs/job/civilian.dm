@@ -211,7 +211,7 @@
 					H.equip_to_slot_or_del(new /obj/item/clothing/under/dress/dress_saloon(H), slot_w_uniform)
 					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/flats(H), slot_shoes)
 				else
-					H.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket/red(H), slot_w_uniform)
+					H.equip_to_slot_or_del(new /obj/item/clothing/under/color/black(H), slot_w_uniform)
 					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
 					return 1
 
