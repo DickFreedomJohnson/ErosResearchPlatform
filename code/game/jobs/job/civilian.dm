@@ -183,36 +183,68 @@
 		return 1
 
 
-//Griff //BS12 EDIT
-/*
 /datum/job/clown
-	title = "Clown"
+	title = "Entertainer"
 	flag = CLOWN
 	department_flag = CIVILIAN
 	faction = "Station"
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 3
+	spawn_positions = 3
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
 	access = list(access_clown, access_theatre, access_maint_tunnels)
 	minimal_access = list(access_clown, access_theatre)
-
-
+	alt_titles = list("Stripper","Exotic Dancer","Escort","Whore","Manwhore","Slut","Performer","Singer","Comedian","'Sexy' Clown","Clown")
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/clown(H), slot_back)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/clown(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/clown_shoes(H), slot_shoes)
-		H.equip_to_slot_or_del(new /obj/item/device/pda/clown(H), slot_belt)
-		H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/clown_hat(H), slot_wear_mask)
-		H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/snacks/grown/banana(H), slot_in_backpack)
-		H.equip_to_slot_or_del(new /obj/item/weapon/bikehorn(H), slot_in_backpack)
-		H.equip_to_slot_or_del(new /obj/item/weapon/stamp/clown(H), slot_in_backpack)
-		H.equip_to_slot_or_del(new /obj/item/weapon/pen/crayon/rainbow(H), slot_in_backpack)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/fancy/crayons(H), slot_in_backpack)
-		H.equip_to_slot_or_del(new /obj/item/toy/waterflower(H), slot_in_backpack)
-		H.mutations.Add(CLUMSY)
-		return 1
+		if (H.mind.role_alt_title)
+			switch(H.mind.role_alt_title)
+				if("Stripper")
+					H.equip_to_slot_or_del(new /obj/item/clothing/suit/stripper/stripper_pink(H), slot_w_uniform)
+					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/flats/white(H), slot_shoes)
+				if("Escort")
+					H.equip_to_slot_or_del(new /obj/item/clothing/suit/stripper/stripper_green(H), slot_w_uniform)
+					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/flats(H), slot_shoes)
+				if("Exotic Dancer")
+					H.equip_to_slot_or_del(new /obj/item/clothing/under/dress/dress_saloon(H), slot_w_uniform)
+					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/flats(H), slot_shoes)
+				if("Whore")
+					H.equip_to_slot_or_del(new /obj/item/clothing/under/croptop/red(H), slot_w_uniform)
+					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/flats/red(H), slot_shoes)
+				if("Manwhore")
+					H.equip_to_slot_or_del(new /obj/item/clothing/under/stripper/mankini(H), slot_w_uniform)
+					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/green(H), slot_shoes)
+				if("Slut")
+					H.equip_to_slot_or_del(new /obj/item/clothing/under/harness(H), slot_w_uniform)
+					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H), slot_shoes)
+				if("'Sexy' Clown")
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/clown(H), slot_back)
+					H.equip_to_slot_or_del(new /obj/item/clothing/under/sexyclown(H), slot_w_uniform)
+					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/clown_shoes(H), slot_shoes)
+					H.equip_to_slot_or_del(new /obj/item/device/pda/clown(H), slot_belt)
+					H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/sexyclown(H), slot_wear_mask)
+					H.equip_to_slot_or_del(new /obj/item/weapon/bikehorn(H), slot_in_backpack)
+					H.equip_to_slot_or_del(new /obj/item/weapon/stamp/clown(H), slot_in_backpack)
+					H.equip_to_slot_or_del(new /obj/item/weapon/pen/crayon/rainbow(H), slot_in_backpack)
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/fancy/crayons(H), slot_in_backpack)
+					H.equip_to_slot_or_del(new /obj/item/toy/waterflower(H), slot_in_backpack)
+					H.mutations.Add(CLUMSY)
+				if("Clown")
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/clown(H), slot_back)
+					H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/clown(H), slot_w_uniform)
+					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/clown_shoes(H), slot_shoes)
+					H.equip_to_slot_or_del(new /obj/item/device/pda/clown(H), slot_belt)
+					H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/clown_hat(H), slot_wear_mask)
+					H.equip_to_slot_or_del(new /obj/item/weapon/bikehorn(H), slot_in_backpack)
+					H.equip_to_slot_or_del(new /obj/item/weapon/stamp/clown(H), slot_in_backpack)
+					H.equip_to_slot_or_del(new /obj/item/weapon/pen/crayon/rainbow(H), slot_in_backpack)
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/fancy/crayons(H), slot_in_backpack)
+					H.equip_to_slot_or_del(new /obj/item/toy/waterflower(H), slot_in_backpack)
+					H.mutations.Add(CLUMSY)
+				else
+					H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/vice(H), slot_w_uniform)
+					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+					return 1
 
 
 
@@ -251,7 +283,7 @@
 		H.mind.special_verbs += /client/proc/mimewall
 		H.miming = 1
 		return 1
-*/
+
 
 
 /datum/job/janitor
