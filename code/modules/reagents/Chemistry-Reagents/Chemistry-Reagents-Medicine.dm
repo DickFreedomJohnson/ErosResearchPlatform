@@ -506,3 +506,4 @@
 	if(dose > 10)
 		M.make_dizzy(5)
 		M.make_jittery(5)
+
