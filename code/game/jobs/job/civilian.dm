@@ -333,7 +333,7 @@
 	selection_color = "#dddddd"
 	access = list(access_janitor, access_maint_tunnels)
 	minimal_access = list(access_janitor, access_maint_tunnels)
-	alt_titles = list("Custodian")
+	alt_titles = list("Custodian","Maid","Sexy Maid")
 
 
 	equip(var/mob/living/carbon/human/H)
@@ -342,7 +342,14 @@
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/janitor(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/device/pda/janitor(H), slot_belt)
-		return 1
++		if (H.mind.role_alt_title)
++			switch(H.mind.role_alt_title)
++				if("Maid")
++					H.equip_to_slot_or_del(new /obj/item/clothing/under/maid(H), slot_w_uniform)
++				if ("Sexy Maid")
++					H.equip_to_slot_or_del(new /obj/item/clothing/under/maid_sexy(H), slot_w_uniform)
+				else
+ 		return 1
 
 
 
