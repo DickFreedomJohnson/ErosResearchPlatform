@@ -384,8 +384,8 @@ datum/uplink_item/dd_SortValue()
 	name = "Operations Funding"
 	item_cost = 3
 	path = /obj/item/weapon/storage/secure/briefcase/money
-	desc = "A briefcase with 10,000 untraceable thalers for funding your sneaky activities."
-	
+	desc = "A briefcase with 10,000 untraceable credits for funding your sneaky activities."
+
 /datum/uplink_item/item/tools/crystal
 	name = "Tradable Crystal"
 	item_cost = 1
