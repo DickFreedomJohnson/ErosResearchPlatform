@@ -339,9 +339,9 @@
 		if (H.mind.role_alt_title)
 			switch(H.mind.role_alt_title)
 				if("Maid")
-					H.equip_to_slot_or_del(new /obj/item/clothing/under/maid(H), slot_w_uniform)
+					H.equip_to_slot_or_del(new /obj/item/clothing/under/janimaid(H), slot_w_uniform)
 				if ("Sexy Maid")
-					H.equip_to_slot_or_del(new /obj/item/clothing/under/maid_sexy(H), slot_w_uniform)
+					H.equip_to_slot_or_del(new /obj/item/clothing/under/maid(H), slot_w_uniform)
 				else
 					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), slot_l_ear)
 					H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/janitor(H), slot_w_uniform)

@@ -608,3 +608,24 @@
 	icon_state = "gear_harness"
 	worn_state = "gear_harness"
 	body_parts_covered = 0
+
+/obj/item/clothing/under/birthdaysuit
+	name = "birthdaysuit"
+	desc = "It's like I'm wearin nothin at all!"
+	icon_state = "birthdaysuit"
+	worn_state = "birthdaysuit"
+	body_parts_covered = 0
+
+/obj/item/clothing/under/janimaid
+	name = "janimaid"
+	desc = "Usually seen on their knees."
+	icon_state = "janimaid"
+	worn_state = "janimaid"
+	body_parts_covered = 0
+
+/obj/item/clothing/under/maid
+	name = "maid"
+	desc = "Usually seen on their knees."
+	icon_state = "maid"
+	worn_state = "maid"
+	body_parts_covered = 0

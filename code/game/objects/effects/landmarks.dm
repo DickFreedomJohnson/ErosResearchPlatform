@@ -130,6 +130,7 @@
 /obj/effect/landmark/costume/nyangirl/New()
 	new /obj/item/clothing/under/schoolgirl(src.loc)
 	new /obj/item/clothing/head/kitty(src.loc)
+	new /obj/item/clothing/glasses/sunglasses/blindfold(src.loc)
 	qdel(src)
 
 /obj/effect/landmark/costume/maid/New()
