@@ -209,7 +209,7 @@
 
 
 
-/mob/living/simple_animal/corgi/rainbow
+/mob/living/simple_animal/corgi/corgirainbow
 	name = "Rainbow Corgi"
 	real_name = "Rainbow Corgi"	//Intended to hold the name without altering it.
 	gender = MALE
@@ -219,4 +219,287 @@
 	response_help  = "pets"
 	response_disarm = "bops"
 	response_harm   = "kicks"
+	icon_state = "corgirainbow"
+	icon_living = "corgirainbow"
+	icon_dead = "corgirainbow_dead"
+
+/mob/living/simple_animal/corgi/corgighost
+	name = "Ghost Corgi"
+	real_name = "Ghost Corgi"	//Intended to hold the name without altering it.
+	gender = MALE
+	desc = "Aw...! At least its kept its spirits up."
+	var/turns_since_scan = 0
+	var/obj/movement_target
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
+	icon_state = "corgighost"
+	icon_living = "corgighost"
+	icon_dead = "corgighost_dead"
+
+/mob/living/simple_animal/corgi/corgihalo
+	name = "Holy Corgi"
+	real_name = "Holy Corgi"	//Intended to hold the name without altering it.
+	gender = MALE
+	desc = "Wow. This corgi is glowing with a divine light."
+	var/turns_since_scan = 0
+	var/obj/movement_target
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
+	icon_state = "corgihalo"
+	icon_living = "corgihalo"
+	icon_dead = "corgihalo_dead"
+
+/mob/living/simple_animal/corgi/corgiangel
+	name = "Angelic Corgi"
+	real_name = "Angelic Corgi"	//Intended to hold the name without altering it.
+	gender = MALE
+	desc = "This corgi has been blessed by the space gods themselves."
+	var/turns_since_scan = 0
+	var/obj/movement_target
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
+	icon_state = "corgiangel"
+	icon_living = "corgiangel"
+	icon_dead = "corgiangel_dead"
+
+/mob/living/simple_animal/corgi/corgievil
+	name = "Demonic Corgi"
+	real_name = "Demonic Corgi"	//Intended to hold the name without altering it.
+	gender = MALE
+	desc = "This corgi emits a downright evil aura...!"
+	var/turns_since_scan = 0
+	var/obj/movement_target
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
+	icon_state = "corgievil"
+	icon_living = "corgievil"
+	icon_dead = "corgievil_dead"
+
+/mob/living/simple_animal/corgi/corgizombie
+	name = "Zombie Corgi"
+	real_name = "Zombie Corgi"	//Intended to hold the name without altering it.
+	gender = MALE
+	desc = "Well, at least it's still alive... kind of?"
+	var/turns_since_scan = 0
+	var/obj/movement_target
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
+	icon_state = "corgizombie"
+	icon_living = "corgizombie"
+	icon_dead = "corgizombie_dead"
+
+/mob/living/simple_animal/corgi/corgipurple
+	name = "Purple Corgi"
+	real_name = "Purple Corgi"	//Intended to hold the name without altering it.
+	gender = MALE
+	desc = "This corgi has purple fur."
+	var/turns_since_scan = 0
+	var/obj/movement_target
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
+	icon_state = "corgipurple"
+	icon_living = "corgipurple"
+	icon_dead = "corgipurple_dead"
+
+/mob/living/simple_animal/corgi/corgidblue
+	name = "Dark Blue Corgi"
+	real_name = "Dark Blue Corgi"	//Intended to hold the name without altering it.
+	gender = MALE
+	desc = "This corgi has dark blue fur."
+	var/turns_since_scan = 0
+	var/obj/movement_target
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
+	icon_state = "corgidblue"
+	icon_living = "corgidblue"
+	icon_dead = "corgidblue_dead"
+
+/mob/living/simple_animal/corgi/corgidred
+	name = "Dark Red Corgi"
+	real_name = "Dark Red Corgi"	//Intended to hold the name without altering it.
+	gender = MALE
+	desc = "This corgi has dark red fur."
+	var/turns_since_scan = 0
+	var/obj/movement_target
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
+	icon_state = "corgidred"
+	icon_living = "corgidred"
+	icon_dead = "corgidred_dead"
+
+/mob/living/simple_animal/corgi/corgigreen
+	name = "Green Corgi"
+	real_name = "Green Corgi"	//Intended to hold the name without altering it.
+	gender = MALE
+	desc = "This corgi has green fur."
+	var/turns_since_scan = 0
+	var/obj/movement_target
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
+	icon_state = "corgigreen"
+	icon_living = "corgigreen"
+	icon_dead = "corgigreen_dead"
+
+/mob/living/simple_animal/corgi/corgimagenta
+	name = "Magenta Corgi"
+	real_name = "Magenta Corgi"	//Intended to hold the name without altering it.
+	gender = MALE
+	desc = "This corgi has magenta fur."
+	var/turns_since_scan = 0
+	var/obj/movement_target
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
+	icon_state = "corgimagenta"
+	icon_living = "corgimagenta"
+	icon_dead = "corgimagenta_dead"
+
+/mob/living/simple_animal/corgi/corgidyellow
+	name = "Dark Yellow Corgi"
+	real_name = "Dark Yellow Corgi"	//Intended to hold the name without altering it.
+	gender = MALE
+	desc = "This corgi has dark yellow fur."
+	var/turns_since_scan = 0
+	var/obj/movement_target
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
+	icon_state = "corgidyellow"
+	icon_living = "corgidyellow"
+	icon_dead = "corgidyellow_dead"
+
+/mob/living/simple_animal/corgi/corgiblue
+	name = "Blue Corgi"
+	real_name = "Blue Corgi"	//Intended to hold the name without altering it.
+	gender = MALE
+	desc = "This corgi has blue fur."
+	var/turns_since_scan = 0
+	var/obj/movement_target
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
+	icon_state = "corgiblue"
+	icon_living = "corgiblue"
+	icon_dead = "corgiblue_dead"
+
+/mob/living/simple_animal/corgi/corgiblack
+	name = "Black Corgi"
+	real_name = "Black Corgi"	//Intended to hold the name without altering it.
+	gender = MALE
+	desc = "This corgi has black fur."
+	var/turns_since_scan = 0
+	var/obj/movement_target
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
+	icon_state = "corgiblack"
+	icon_living = "corgiblack"
+	icon_dead = "corgiblack_dead"
+
+/mob/living/simple_animal/corgi/corgired
+	name = "Red Corgi"
+	real_name = "Red Corgi"	//Intended to hold the name without altering it.
+	gender = MALE
+	desc = "This corgi has red fur."
+	var/turns_since_scan = 0
+	var/obj/movement_target
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
+	icon_state = "corgired"
+	icon_living = "corgired"
+	icon_dead = "corgired_dead"
+
+/mob/living/simple_animal/corgi/corgiyellow
+	name = "Yellow Corgi"
+	real_name = "Yellow Corgi"	//Intended to hold the name without altering it.
+	gender = MALE
+	desc = "This corgi has yellow fur."
+	var/turns_since_scan = 0
+	var/obj/movement_target
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
+	icon_state = "corgiyellow"
+	icon_living = "corgiyellow"
+	icon_dead = "corgiyellow_dead"
+
+/mob/living/simple_animal/corgi/corgilime
+	name = "Lime Green Corgi"
+	real_name = "Lime Green Corgi"	//Intended to hold the name without altering it.
+	gender = MALE
+	desc = "This corgi has lime green fur."
+	var/turns_since_scan = 0
+	var/obj/movement_target
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
+	icon_state = "corgilime"
+	icon_living = "corgilime"
+	icon_dead = "corgilime_dead"
+
+/mob/living/simple_animal/corgi/corgicyan
+	name = "Cyan Corgi"
+	real_name = "Cyan Corgi"	//Intended to hold the name without altering it.
+	gender = MALE
+	desc = "This corgi has cyan fur."
+	var/turns_since_scan = 0
+	var/obj/movement_target
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
+	icon_state = "corgicyan"
+	icon_living = "corgicyan"
+	icon_dead = "corgicyan_dead"
+
+/mob/living/simple_animal/corgi/corgilblue
+	name = "Light Blue Corgi"
+	real_name = "Light Blue Corgi"	//Intended to hold the name without altering it.
+	gender = MALE
+	desc = "This corgi has light blue fur."
+	var/turns_since_scan = 0
+	var/obj/movement_target
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
+	icon_state = "corgilblue"
+	icon_living = "corgilblue"
+	icon_dead = "corgilblue_dead"
+
+/mob/living/simple_animal/corgi/corgilpurple
+	name = "Light Purple Corgi"
+	real_name = "Light Purple Corgi"	//Intended to hold the name without altering it.
+	gender = MALE
+	desc = "This corgi has light purple fur."
+	var/turns_since_scan = 0
+	var/obj/movement_target
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
+	icon_state = "corgilpurple"
+	icon_living = "corgilpurple"
+	icon_dead = "corgilpurple_dead"
+
+/mob/living/simple_animal/corgi/corgipink
+	name = "Pink Corgi"
+	real_name = "Pink Corgi"	//Intended to hold the name without altering it.
+	gender = MALE
+	desc = "This corgi has pink fur."
+	var/turns_since_scan = 0
+	var/obj/movement_target
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
+	icon_state = "corgipink"
+	icon_living = "corgipink"
+	icon_dead = "corgipink_dead"
 

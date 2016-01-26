@@ -585,6 +585,30 @@
 		if("swag", "stopsway")
 			src.animate_tail_stop()
 
+		if ("orgasm")
+			message = "shakes in pleasure!"
+			m_type = 1
+
+		if ("drool")
+			message = "drools."
+			m_type = 1
+
+		if ("squirm")
+			message = "squrims."
+			m_type = 1
+
+		if ("pant")
+			if (!muzzled)
+				message = "pants heavily."
+				m_type = 2
+			else
+				message = "breathes heavily."
+				m_type = 2
+
+		if ("lipbite")
+			message = "bites [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "themselves"] lip"
+			m_type =1
+
 		if ("help")
 			src << {"blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough,
 cry, custom, deathgasp, drool, eyebrow, frown, gasp, giggle, groan, grumble, handshake, hug-(none)/mob, glare-(none)/mob,

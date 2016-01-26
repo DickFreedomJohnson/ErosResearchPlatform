@@ -2058,3 +2058,16 @@
 	required_reagents = list("hydrogen" = 2, "carbon" = 2, "ammonia" = 2)
 	result_amount = 6
 
+/datum/chemical_reaction/bitchjuice
+	name = "Bitch Juice"
+	id = "bitchjuice"
+	result = "bitchjuice"
+	required_reagents = list("cream" = 1, "watermelonjuice" = 1, "sodawater" = 1)
+	result_amount = 3
+
+/datum/chemical_reaction/drspank
+	name = "Dr/ Spank"
+	id = "drspank"
+	result = "drspank"
+	required_reagents = list("whiskey" = 1, "vodka" = 1, "blood" = 1)
+	result_amount = 3

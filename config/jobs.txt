@@ -32,6 +32,8 @@ Cargo Technician=3
 Chaplain=1
 Lawyer=2
 Librarian=1
+Mime=1
+Entertainer=3
 
 AI=1
 Cyborg=1
