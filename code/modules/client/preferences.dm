@@ -46,6 +46,7 @@ datum/preferences
 	var/r_skin = 0						//Skin color
 	var/g_skin = 0						//Skin color
 	var/b_skin = 0						//Skin color
+	var/c_type = "flat"					//Breast Type
 	var/r_eyes = 0						//Eye color
 	var/g_eyes = 0						//Eye color
 	var/b_eyes = 0						//Eye color
@@ -294,6 +295,8 @@ datum/preferences
 	character.r_skin = r_skin
 	character.g_skin = g_skin
 	character.b_skin = b_skin
+
+	character.c_type = c_type
 
 	character.h_style = h_style
 	character.f_style = f_style

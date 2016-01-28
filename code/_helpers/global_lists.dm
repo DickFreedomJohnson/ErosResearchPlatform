@@ -73,6 +73,14 @@ var/global/list/socks_t = list(
 	"Thin thigh" = "thin_thigh", "Pantyhose" = "pantyhose", "Striped thigh" = "striped_thigh",
 	"Striped knee" = "striped_knee", "Rainbow knee" = "rainbow_knee", "Rainbow thigh" = "rainbow_thigh",
 	"Fishnets" = "fishnet", "Thin white thigh" = "thinwhite_thigh", "Thin white knee" = "thinwhite_knee", "None")
+	//Alien Customization
+var/global/list/body_breast_list = list("a","b","c","d","e","flat")
+//var/global/list/body_groins_list = list("Dick"= "m","Slit" = "f")
+//var/global/list/body_heads_list = list()
+//var/global/list/body_ears_list  = list()
+//var/global/list/body_wings_list = list()
+//var/global/list/body_tails_list = list()
+
 
 	//Backpacks
 var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt")

@@ -69,7 +69,7 @@
 
 		// Type 4 (Subtle) emotes are basically whispered emotes
 		else if (m_type & 4)
-			for (var/mob/O in get_mobs_in_view(1,src)) //One tile distance, set to 0 to restrict it to just pred/prey only
+			for (var/mob/O in mobs_in_view(1,src)) //One tile distance, set to 0 to restrict it to just pred/prey only
 				/* Commenting out, as on emote type 1 to stop duplicates
 				if (O.status_flags & PASSEMOTES)
 

@@ -19,6 +19,23 @@
 	parent_organ = null
 	encased = "ribcage"
 
+/obj/item/organ/external/chestboobs
+	name = "upper body"
+	organ_tag = BP_TORSO
+	icon_name = "torso"
+	max_damage = 100
+	min_broken_damage = 35
+	w_class = 5
+	body_part = UPPER_TORSO
+	vital = 1
+	amputation_point = "spine"
+	joint = "neck"
+	dislocated = -1
+	boobs_icon = 1
+	cannot_amputate = 1
+	parent_organ = null
+	encased = "ribcage"
+
 /obj/item/organ/external/groin
 	name = "lower body"
 	organ_tag = BP_GROIN

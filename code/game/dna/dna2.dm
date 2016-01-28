@@ -23,7 +23,7 @@
 #define DNA_UI_BEARD_R     4
 #define DNA_UI_BEARD_G     5
 #define DNA_UI_BEARD_B     6
-//#define DNA_UI_SKIN_TONE   7 REMEMBER, WE HAVE THIS DNA STRAND TO USE. ORBIS.
+#define DNA_UI_CUP_SIZE    7
 #define DNA_UI_SKIN_R      8
 #define DNA_UI_SKIN_G      9
 #define DNA_UI_SKIN_B      10
@@ -125,6 +125,9 @@ var/global/list/datum/dna/gene/dna_genes[0]
 		character.f_style = "Shaved"
 	var/beard	= facial_hair_styles_list.Find(character.f_style)
 
+	//Gender stuff
+	var/breast = body_breast_list.Find(character.c_type)
+
 	SetUIValueRange(DNA_UI_HAIR_R,    character.r_hair,    255,    1)
 	SetUIValueRange(DNA_UI_HAIR_G,    character.g_hair,    255,    1)
 	SetUIValueRange(DNA_UI_HAIR_B,    character.b_hair,    255,    1)
@@ -147,6 +150,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 
 	SetUIValueRange(DNA_UI_HAIR_STYLE,  hair,  hair_styles_list.len,       1)
 	SetUIValueRange(DNA_UI_BEARD_STYLE, beard, facial_hair_styles_list.len,1)
+	SetUIValueRange(DNA_UI_CUP_SIZE, breast, body_breast_list.len,1)
 
 	UpdateUI()
 

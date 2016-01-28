@@ -231,8 +231,9 @@ proc/get_id_photo(var/mob/living/carbon/human/H, var/assigned_role)
 		g = "f"
 
 	var/icon/icobase = H.species.icobase
+	var/ct = H.c_type
 
-	preview_icon = new /icon(icobase, "torso_[g]")
+	preview_icon = new /icon(icobase, "torso_[ct]")
 	var/icon/temp
 	temp = new /icon(icobase, "groin_[g]")
 	preview_icon.Blend(temp, ICON_OVERLAY)
