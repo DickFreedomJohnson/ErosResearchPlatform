@@ -79,6 +79,14 @@ var/list/flooring_types
 	build_type = null
 	flags = TURF_HAS_EDGES
 
+/decl/flooring/carpet/arcade
+	name = "carpet"
+	desc = "Kind of tacky, but in a good way."
+	icon = 'icons/turf/flooring/carpet.dmi'
+	icon_base = "arcade"
+	damage_temperature = T0C+200
+	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BURN
+
 /decl/flooring/tiling
 	name = "floor"
 	desc = "Scuffed from the passage of countless greyshirts."
