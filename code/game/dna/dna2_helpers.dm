@@ -165,6 +165,12 @@
 		if((0 < beard) && (beard <= facial_hair_styles_list.len))
 			H.f_style = facial_hair_styles_list[beard]
 
+		//Tits
+		var/breast = dna.GetUIValueRange(DNA_UI_CUP_SIZE,body_breast_list.len)
+		if((0 < breast) && (breast <= body_breast_list.len))
+			H.c_type = body_breast_list[breast]
+
+
 		H.force_update_limbs()
 		H.update_eyes()
 		H.update_hair()

@@ -86,12 +86,22 @@ var/global/list/limb_icon_cache = list()
 	var/gender = "f"
 	if(owner && owner.gender == MALE)
 		gender = "m"
+	var/boobsize = "flat"
+	if (owner)
+		boobsize = owner.c_type
 
 	if(force_icon)
-		mob_icon = new /icon(force_icon, "[icon_name][gendered_icon ? "_[gender]" : ""]")
+		if (boobs_icon)
+			mob_icon = new /icon(force_icon, "[icon_name][boobs_icon ? "_[boobsize]" : ""]")
+		else
+			mob_icon = new /icon(force_icon, "[icon_name][gendered_icon ? "_[gender]" : ""]")
+
 	else
 		if(!dna)
-			mob_icon = new /icon('icons/mob/human_races/r_human.dmi', "[icon_name][gendered_icon ? "_[gender]" : ""]")
+			if (boobs_icon)
+				mob_icon = new /icon('icons/mob/human_races/r_human.dmi', "[icon_name][boobs_icon ? "_[boobsize]" : ""]")
+			else
+				mob_icon = new /icon('icons/mob/human_races/r_human.dmi', "[icon_name][gendered_icon ? "_[gender]" : ""]")
 		else
 
 			if(!gendered_icon)
@@ -108,9 +118,15 @@ var/global/list/limb_icon_cache = list()
 				mob_icon = new /icon('icons/mob/human_races/robotic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
 			else
 				if (status & ORGAN_MUTATED)
-					mob_icon = new /icon(species.deform, "[icon_name][gender ? "_[gender]" : ""]")
+					if (boobs_icon)
+						mob_icon = new /icon(species.deform, "[icon_name][boobsize ? "_[boobsize]" : ""]")
+					else
+						mob_icon = new /icon(species.deform, "[icon_name][gender ? "_[gender]" : ""]")
 				else
-					mob_icon = new /icon(species.icobase, "[icon_name][gender ? "_[gender]" : ""]")
+					if (boobs_icon)
+						mob_icon = new /icon(species.icobase, "[icon_name][boobsize ? "_[boobsize]" : ""]")
+					else
+						mob_icon = new /icon(species.icobase, "[icon_name][gender ? "_[gender]" : ""]")
 
 				if(status & ORGAN_DEAD)
 					mob_icon.ColorTone(rgb(10,50,0))

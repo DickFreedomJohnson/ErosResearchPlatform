@@ -109,11 +109,11 @@
 			message = replacetext(message, "u", "µ")
 			message = replacetext(message, "b", "ß")
 
-	var/list/listening = hearers(message_range, src)
-	listening |= src
+	//var/list/listening = hearers(message_range, src)
+	//listening |= src
 	//var/list/listening = hearers(message_range, src)
 	//listening |= src //Not needed with 'mobs_in_view' anymore.
-	var/list/listening = get_mobs_in_view(message_range, src)
+	var/list/listening = mobs_in_view(message_range, src)
 
 	//ghosts
 	for (var/mob/M in dead_mob_list)	//does this include players who joined as observers as well?

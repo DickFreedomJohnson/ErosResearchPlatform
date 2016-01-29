@@ -21,6 +21,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["eyes_green"]			>> pref.g_eyes
 	S["eyes_blue"]			>> pref.b_eyes
 	S["b_type"]				>> pref.b_type
+	S["c_type"]				>> pref.c_type
 	S["disabilities"]		>> pref.disabilities
 	S["organ_data"]			>> pref.organ_data
 	S["rlimb_data"]			>> pref.rlimb_data
@@ -42,6 +43,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["eyes_green"]			<< pref.g_eyes
 	S["eyes_blue"]			<< pref.b_eyes
 	S["b_type"]				<< pref.b_type
+	S["c_type"]				<< pref.c_type
 	S["disabilities"]		<< pref.disabilities
 	S["organ_data"]			<< pref.organ_data
 	S["rlimb_data"]			<< pref.rlimb_data
@@ -60,6 +62,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	pref.b_skin			= sanitize_integer(pref.b_skin, 0, 255, initial(pref.b_skin))
 	pref.h_style		= sanitize_inlist(pref.h_style, hair_styles_list, initial(pref.h_style))
 	pref.f_style		= sanitize_inlist(pref.f_style, facial_hair_styles_list, initial(pref.f_style))
+	pref.c_type			= sanitize_inlist(pref.c_type, body_breast_list, initial(pref.c_type))
 	pref.r_eyes			= sanitize_integer(pref.r_eyes, 0, 255, initial(pref.r_eyes))
 	pref.g_eyes			= sanitize_integer(pref.g_eyes, 0, 255, initial(pref.g_eyes))
 	pref.b_eyes			= sanitize_integer(pref.b_eyes, 0, 255, initial(pref.b_eyes))
@@ -81,6 +84,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. += "<br>"
 	. += "Species: <a href='?src=\ref[src];show_species=1'>[pref.species]</a><br>"
 	. += "Blood Type: <a href='?src=\ref[src];blood_type=1'>[pref.b_type]</a><br>"
+	. += "Chest Type: <a href='?src=\ref[src];chest_type=1'>[pref.c_type]</a><br>"
 	. += "Needs Glasses: <a href='?src=\ref[src];disabilities=[NEARSIGHTED]'><b>[pref.disabilities & NEARSIGHTED ? "Yes" : "No"]</b></a><br>"
 	. += "Limbs: <a href='?src=\ref[src];limbs=1'>Adjust</a> <a href='?src=\ref[src];reset_limbs=1'>Reset</a><br>"
 	. += "Internal Organs: <a href='?src=\ref[src];organs=1'>Adjust</a><br>"
@@ -196,6 +200,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		var/new_b_type = input(user, "Choose your character's blood-type:", "Character Preference") as null|anything in valid_bloodtypes
 		if(new_b_type && CanUseTopic(user))
 			pref.b_type = new_b_type
+			return TOPIC_REFRESH
+
+	else if(href_list["chest_type"])
+		var/new_c_type = input(user, "Choose your character's Chest Type:", "Character Preference") as null|anything in body_breast_list
+		if(new_c_type && CanUseTopic(user))
+			pref.c_type = new_c_type
 			return TOPIC_REFRESH
 
 	else if(href_list["show_species"])

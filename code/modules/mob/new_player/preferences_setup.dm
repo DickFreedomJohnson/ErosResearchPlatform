@@ -191,6 +191,8 @@ datum/preferences
 
 		var/g = "m"
 		if(gender == FEMALE)	g = "f"
+		var/ct = c_type
+
 
 		var/icon/icobase
 		var/datum/species/current_species = all_species[species]
@@ -208,14 +210,18 @@ datum/preferences
 				var/datum/robolimb/R
 				if(rlimb_data[name]) R = all_robolimbs[rlimb_data[name]]
 				if(!R) R = basic_robolimb
-				if(name in list(BP_TORSO, BP_GROIN, BP_HEAD))
+				if(name in list(BP_GROIN, BP_HEAD))
 					preview_icon.Blend(icon(R.icon, "[name]_[g]"), ICON_OVERLAY)
+				else if(name in list(BP_TORSO))
+					preview_icon.Blend(icon(R.icon, "[name]_[ct]"), ICON_OVERLAY)
 				else
 					preview_icon.Blend(icon(R.icon, "[name]"), ICON_OVERLAY)
 				continue
 			var/icon/limb_icon
-			if(name in list(BP_TORSO, BP_GROIN, BP_HEAD))
+			if(name in list(BP_GROIN, BP_HEAD))
 				limb_icon = new /icon(icobase, "[name]_[g]")
+			else if(name in list(BP_TORSO))
+				limb_icon = new /icon(icobase, "[name]_[ct]")
 			else
 				limb_icon = new /icon(icobase, "[name]")
 			// Skin color
