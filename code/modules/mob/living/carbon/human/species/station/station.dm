@@ -19,7 +19,7 @@
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
 
 	has_limbs = list(
-	BP_TORSO =  list("path" = /obj/item/organ/external/chestboobs),
+	BP_TORSO =  list("path" = /obj/item/organ/external/chest/boobs),
 	BP_GROIN =  list("path" = /obj/item/organ/external/groin),
 	BP_HEAD =   list("path" = /obj/item/organ/external/head),
 	BP_L_ARM =  list("path" = /obj/item/organ/external/arm),

@@ -1170,6 +1170,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 		// Give them a new cell.
 		owner.internal_organs_by_name["cell"] = new /obj/item/organ/internal/cell(owner,1)
 
+/obj/item/organ/external/chest/boobs
+	boobs_icon = 1
 
 /obj/item/organ/external/groin
 	name = "lower body"
