@@ -16,7 +16,7 @@
 	dealing with their traders and merchants; those that do rarely enjoy the experience."
 
 	speech_sounds = list('sound/voice/shriek1.ogg')
-	speech_chance = 20
+	speech_chance = 10
 
 	warning_low_pressure = 50
 	hazard_low_pressure = 0
@@ -115,7 +115,7 @@
 		O_BRAIN =    /obj/item/organ/internal/pariah_brain,
 		O_EYES =     /obj/item/organ/internal/eyes
 		)
-	flags = IS_RESTRICTED | NO_SCAN | HAS_EYE_COLOR
+	flags =  IS_RESTRICTED | NO_SCAN | HAS_EYE_COLOR
 
 // No combat skills for you.
 /datum/species/vox/pariah/can_shred(var/mob/living/carbon/human/H, var/ignore_intent)

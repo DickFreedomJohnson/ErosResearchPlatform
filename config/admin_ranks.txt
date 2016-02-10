@@ -42,5 +42,6 @@ Retired Admin	+ADMIN +STEALTH
 Host			+EVERYTHING
 
 Developer		+DEBUG +VAREDIT +SERVER +SPAWN +REJUV +POSSESS +BUILDMODE
-Dev Mod			+@ +MOD
 Dong Artist		+@
+Badeveloper		+@ +FUN +SOUNDS
+Dev Mod			+@ +MOD
